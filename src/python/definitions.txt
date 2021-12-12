@@ -1,0 +1,48 @@
+A variable is an identifier to access a Memory address.
+A literal is an element that can be declared in source code as a constant.
+ex) Javascript
+a = 10.50 (primitive)
+b = 1001 (primitive)
+c = 'Hello' (primitive)
+d = 'World' (primitive)
+e = true (primitive)
+f = false (primitive)
+g = null (primitive)
+h = undefined (primitive)
+i = {name : 'Lee', age : 5}
+j = [1,2,3]
+k = /ab+c/
+l = function(){}
+
+Javascript dynamically define data type when it is declared.
+
+Operators do 
+arithmetic,
+assignment,
+compare,
+logic,
+type
+operate.
+
+Type of operand is not needed be identical.
+Javascript implicitly do type conversion.
+
+Keyword is ruled(reserved) word to execute.
+
+A statement is an order.
+Statement can be grouped by code block {}.
+
+다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 
+생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
+
+An expression is evaluated by one value.
+Combination of literal, variable, object's property, element of array, 
+call of method, operand and operator
+is expression and can be evaluated by one value.
+
+Expression can only be evaluated and deducted as value
+while Statement can do others.
+
+Javascript is a object-oriented script language.
+Almost everything which constitute javascript is object.
+Other than primitive
