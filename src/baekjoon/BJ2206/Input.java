@@ -1,4 +1,4 @@
-package BJ2206;
+package baekjoon.BJ2206;
 
 import java.util.ArrayList;
 
