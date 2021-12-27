@@ -1,4 +1,4 @@
-package BitMask;
+package bootCamp.BitMask;
 
 public class Subset {
     public static void main(String[] args) {

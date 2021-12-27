@@ -1,4 +1,4 @@
-package SASA;
+package challenges.SASA;
 
 import java.io.BufferedReader;
 import java.io.IOException;
