@@ -13,12 +13,12 @@ public class BJ10951 {
         StringTokenizer st;
         String str;
 
-        while( (str=br.readLine()) != null ){
+        while((str=br.readLine()) != null){
 
             st = new StringTokenizer(str," ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            sb.append(a+b).append("\n");
+            sb.append(a + b).append("\n");
 
         }
         System.out.print(sb);
