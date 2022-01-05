@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class BJ1157 {
 
     public static void main(String[] args) {
-        char[] charArray = new Scanner(System.in).next().toUpperCase().toCharArray();
+        String string = new Scanner(System.in).next().toUpperCase();
         int[] alphabetCount = new int[26];
-        for (char ch : charArray) alphabetCount[((int) ch) - 65]++;
+        for (int i = 0; i < string.length(); i++) alphabetCount[string.charAt(i) - 65]++;
         int maxCount = Integer.MIN_VALUE;
         int maxCountAscii = 0;
         boolean doubleCount = false;
@@ -17,7 +17,7 @@ public class BJ1157 {
                 doubleCount = false;
                 maxCount = nowCount;
                 maxCountAscii = i;
-            } else doubleCount = nowCount == maxCount;
+            } else if (nowCount == maxCount) doubleCount = true;
         }
         if (doubleCount) System.out.print("?");
         else System.out.print((char) (maxCountAscii + 65));
