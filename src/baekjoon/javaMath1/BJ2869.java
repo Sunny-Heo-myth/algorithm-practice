@@ -14,8 +14,10 @@ public class BJ2869 {
         int up = Integer.parseInt(st.nextToken());
         int down = Integer.parseInt(st.nextToken());
         int destination = Integer.parseInt(st.nextToken());
-        double day = (double) destination/(up - down);
+        double doubleDay = (double) (destination - up)/(up - down);
+        int intday = (destination - up)/(up - down);
         if (up >= destination) System.out.print(1);
-        else if (day - destination/(up - down) == 0.0);
+        else if (doubleDay - intday == 0.0) System.out.print(intday + 1);
+        else System.out.print(intday + 2);
     }
 }
