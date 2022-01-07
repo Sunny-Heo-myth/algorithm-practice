@@ -1,9 +1,9 @@
-package programmers;
+package programmers.carpet;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class August_21st {
+public class Carpet {
 
 	public static void main(String[] args) {
 		

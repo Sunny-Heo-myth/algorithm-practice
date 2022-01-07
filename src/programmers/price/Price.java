@@ -1,8 +1,10 @@
-package SaturdaySection;
+package programmers.price;
+
+;
 
 import java.util.Arrays;
 
-public class August_14th {
+public class Price {
 
 	public static void main(String[] args) {
 		
