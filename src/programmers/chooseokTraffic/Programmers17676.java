@@ -1,4 +1,4 @@
-package programmers;
+package programmers.chooseokTraffic;
 
 public class Programmers17676 {
 
