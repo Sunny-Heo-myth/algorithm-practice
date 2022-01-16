@@ -2,8 +2,6 @@ package programmers.sichuanCastle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Programmers1836_3 {
 
@@ -26,24 +24,25 @@ public class Programmers1836_3 {
         char[][] chars = new char[m][n];
         for (int i = 0; i < m; i++) chars[i] = board[i].toCharArray();
 
-        HashMap<Character, Blook> workList = new HashMap<>();
+        HashMap<Character, Bloook> workList = new HashMap<>();
         for (int i = 0; i < chars.length; i++) for (int j = 0; j < chars[0].length; j++) {
             char aChar = chars[i][j];
 
             if (aChar == 42 || aChar == 46) continue;
 
             if (!workList.containsKey(aChar)) {
-                workList.put(aChar, new Blook(i, j, -1, -1, aChar));
+                workList.put(aChar, new Bloook(i, j, -1, -1, aChar));
             }
             else {
                 workList.get(aChar).nextAxis1st = i;
                 workList.get(aChar).nextAxis2nd = j;
             }
         }
+
         StringBuilder result = new StringBuilder();
-        ArrayList<Blook> blooks = new ArrayList<>(workList.values());
+        ArrayList<Bloook> blooks = new ArrayList<>(workList.values());
         while (!blooks.isEmpty()) {
-            ArrayList<Blook> deletableList = new ArrayList<>();
+            ArrayList<Bloook> deletableList = new ArrayList<>();
 
             blooks.stream()
                 .filter(blook -> deletable(copyAndFlip(chars, blook)))
@@ -51,8 +50,8 @@ public class Programmers1836_3 {
 
             if(deletableList.size() == 0) return "IMPOSSIBLE";
 
-            Blook delete = new Blook(-1, -1, -1, -1, '~');
-            for(Blook b : deletableList) if (b.aChar < delete.aChar) delete = b;
+            Bloook delete = new Bloook(-1, -1, -1, -1, '~');
+            for(Bloook b : deletableList) if (b.aChar < delete.aChar) delete = b;
             chars[delete.nowAxis1st][delete.nowAxis2nd] = '.';
             chars[delete.nextAxis1st][delete.nextAxis2nd] = '.';
             result.append(delete.aChar);
@@ -61,7 +60,7 @@ public class Programmers1836_3 {
         return result.toString();
     }
 
-    static char[][] copyAndFlip(char[][] original, Blook blook) {
+    static char[][] copyAndFlip(char[][] original, Bloook blook) {
         int now1st = blook.nowAxis1st;
         int now2nd = blook.nowAxis2nd;
         int next1st = blook.nextAxis1st;
@@ -92,9 +91,7 @@ public class Programmers1836_3 {
         for (int i = 0; i < length1st; i++) {
             System.arraycopy(original[next1st + i], next2nd, chars[i], 0, length2nd);
             char[] instant = new char[length2nd];
-            for (int j = length2nd - 1; j >= 0; j--) {
-                instant[j] = chars[i][length2nd - j - 1];
-            }
+            for (int j = length2nd - 1; j >= 0; j--) instant[j] = chars[i][length2nd - j - 1];
             chars[i] = instant;
         }
     }
@@ -103,6 +100,7 @@ public class Programmers1836_3 {
         int length1st = chars.length;
         int length2nd = chars[0].length;
         int distance = length1st + length2nd - 3;
+
         int step = 1;
         int count = 0;
         while (step <= distance) {
@@ -111,13 +109,15 @@ public class Programmers1836_3 {
             step++;
         }
         if (count == distance) return true;
+
         step = 1;
+        count = 0;
         while (step <= distance) {
-            if (step < length2nd && chars[0][step] != '.') return false;
-            if (step >= length2nd && chars[step - length2nd + 1][length2nd - 1] != '.') return false;
+            if (step < length2nd && chars[0][step] == '.') count++;
+            if (step >= length2nd && chars[step - length2nd + 1][length2nd - 1] == '.') count++;
             step++;
         }
-        return true;
+        return count == distance;
     }
 }
 

@@ -1,4 +1,4 @@
-package privateLab;
+package lab;
 
 public class StaticLocalTest {
 
@@ -8,6 +8,11 @@ public class StaticLocalTest {
         int localNum = 0;
         add1(localNum);
         add2(localNum);
+
+        String[] ss = "s\ns\n".split("\n");
+        for (String s : ss) {
+            System.out.println(s);
+        }
 
     }
 

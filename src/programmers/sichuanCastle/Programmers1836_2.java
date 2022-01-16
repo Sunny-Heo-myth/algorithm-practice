@@ -40,7 +40,7 @@ public class Programmers1836_2 {
             }
         }
         int size = workable.size()/2;
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         while (true) {
             ArrayList<Block> deletable = new ArrayList<>();
 
@@ -68,17 +68,19 @@ public class Programmers1836_2 {
                     nextBlock = instantNextBlock;
                 }
             }
+            assert block != null;
             chars[block.x][block.y] = '.';
+            assert nextBlock != null;
             chars[nextBlock.x][nextBlock.y] = '.';
             workable.remove(block);
             workable.remove(nextBlock);
 
-            answer += deletableChar;
+            answer.append(deletableChar);
         }
 
         if (size != answer.length()) return "IMPOSSIBLE";
 
-        return answer;
+        return answer.toString();
     }
 
     static boolean deletable(char[][] box) {
