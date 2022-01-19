@@ -3,6 +3,8 @@ package baekjoon.java.javaBruteForce;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BJ7568 {
 
@@ -10,39 +12,41 @@ public class BJ7568 {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
 
-        int[][] inputs = new int[n][2];
+        List<Person> personList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             String[] strings = bf.readLine().split(" ");
-            inputs[i][0] = Integer.parseInt(strings[0]);
-            inputs[i][1] = Integer.parseInt(strings[1]);
+            personList.add(new Person(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), 1));
         }
 
-        boolean[] persons = new boolean[n];
-        persons[0] = true;
-        GradeList gradeList = new GradeList(persons, inputs[0][0], inputs[0][1], inputs[0][0], inputs[0][1], 1);
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                Person p1 = personList.get(i);
+                Person p2 = personList.get(j);
 
-        for (int i = 1; i < n; i++) {
+                if (p1.height > p2.height && p1.weight > p2.weight) p2.grade++;
+                else if (p1.height < p2.height && p1.weight < p2.weight) p1.grade++;
 
+            }
         }
+        StringBuilder sb = new StringBuilder();
+        personList
+            .forEach(person -> sb.append(person.grade).append(" "));
+
+        System.out.print(sb);
+
+
     }
 }
 
-class GradeList {
-    boolean[] personList;
-    int maxWeight;
-    int minWeight;
-    int maxHeight;
-    int minHeight;
+class Person {
+    int weight;
+    int height;
     int grade;
 
-    public GradeList(boolean[] personList, int maxWeight, int minWeight, int maxHeight,
-        int minHeight,
-        int grade) {
-        this.personList = personList;
-        this.maxWeight = maxWeight;
-        this.minWeight = minWeight;
-        this.maxHeight = maxHeight;
-        this.minHeight = minHeight;
+    public Person(int weight, int height, int grade) {
+        this.weight = weight;
+        this.height = height;
         this.grade = grade;
     }
 }
+
