@@ -1,4 +1,4 @@
-package programmers.LongestNode;
+package programmers.longestNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

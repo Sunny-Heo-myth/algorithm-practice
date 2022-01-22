@@ -21,32 +21,29 @@ public class BJ18870 {
         int[] sorted = new int[N];
         HashMap<Integer, Integer> rankingMap = new HashMap<Integer, Integer>();
 
-
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) {
 
             sorted[i] = origin[i] = Integer.parseInt(st.nextToken());
         }
 
-
         Arrays.sort(sorted);
 
         int rank = 0;
-        for(int v : sorted) {
-            if(!rankingMap.containsKey(v)) {
+        for (int v : sorted) {
+            if (!rankingMap.containsKey(v)) {
                 rankingMap.put(v, rank);
                 rank++;
             }
         }
 
         StringBuilder sb = new StringBuilder();
-        for(int key : origin) {
+        for (int key : origin) {
             int ranking = rankingMap.get(key);
             sb.append(ranking).append(' ');
         }
 
         System.out.println(sb);
-
 
 
     }

@@ -1,8 +1,7 @@
-package programmers.LongestNode;
+package programmers.longestNode;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Stack;
 
 public class Programmers49189_2 {
