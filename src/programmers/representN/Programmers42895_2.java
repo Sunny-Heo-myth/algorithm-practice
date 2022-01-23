@@ -3,11 +3,13 @@ package programmers.representN;
 public class Programmers42895_2 {
 
     static int answer = -1;
+    static int countCal = 0;
 
     public static void main(String[] args) {
         int N = 5;
-        int number = 12;
+        int number = 45;
         System.out.println(solution(N, number));
+        System.out.println(countCal);
     }
 
     public static int solution(int N, int number) {
@@ -17,6 +19,7 @@ public class Programmers42895_2 {
     }
 
     public static void dfs(int N, int number, int count, int sum) {
+        countCal++;
         if (count > 4) {
             return;
         }

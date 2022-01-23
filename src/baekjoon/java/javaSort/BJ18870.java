@@ -19,19 +19,23 @@ public class BJ18870 {
 
         int[] origin = new int[N];
         int[] sorted = new int[N];
-        HashMap<Integer, Integer> rankingMap = new HashMap<Integer, Integer>();
+        // sorted array of origin
+        HashMap<Integer, Integer> rankingMap = new HashMap<>();
+        // Maps for unique value of array (element, rank)
 
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < N; i++) {
 
-            sorted[i] = origin[i] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < N; i++) {
+            int input = Integer.parseInt(st.nextToken());
+            sorted[i] = input;
+            origin[i] = input;
         }
 
         Arrays.sort(sorted);
 
         int rank = 0;
-        for (int v : sorted) {
-            if (!rankingMap.containsKey(v)) {
+        for (int v : sorted) {  // time complexity : n
+            if (!rankingMap.containsKey(v)) {  //  time complexity : n
                 rankingMap.put(v, rank);
                 rank++;
             }
@@ -39,8 +43,9 @@ public class BJ18870 {
 
         StringBuilder sb = new StringBuilder();
         for (int key : origin) {
-            int ranking = rankingMap.get(key);
-            sb.append(ranking).append(' ');
+            // key is unique element in origin
+            // value is the rank so the each element of origin will be mapped to rank
+            sb.append(rankingMap.get(key)).append(' ');
         }
 
         System.out.println(sb);
