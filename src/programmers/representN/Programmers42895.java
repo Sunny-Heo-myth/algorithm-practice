@@ -1,45 +1,45 @@
 package programmers.representN;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class Programmers42895 {
+    static int N;
+    static int number;
+    static int minimum = -1;
+    static StringBuilder temp = new StringBuilder();
 
     public static void main(String[] args) {
-
+        N = 5;
+        number = 12;
+        dfs(N, number, 0, 0);
+        //System.out.print(minimum);
+        System.out.print(temp);
     }
 
-    public int solution(int N, int number) {
-        // count how much N has been used
-        int count = 0;
-        // do until number comes out from count one;
-        while (count <= 8) {
-            int result = 0;
 
-            if (result == number) {
-                break;
+    public static void dfs(int N, int number, int count, int sum) {
+
+        if (count > 4) {
+            return;
+        }
+
+        temp.append(sum).append("\n");
+
+        if (sum == number) {
+            if (minimum == -1) {
+                minimum = count;
+            } else {
+                minimum = Math.min(minimum, count);
             }
-            // if number doesn't comes out increase count until count
-            count++;
         }
 
-        if (count == 9) {
-            return -1;
+        int X = N;
+        for (int i = 1; i <= 4 - count; i++) {
+            temp.append("\n");
+            dfs(N, number, count + i, sum + X);
+            dfs(N, number, count + i, sum - X);
+            dfs(N, number, count + i, sum * X);
+            dfs(N, number, count + i, sum / X);
+            X = X*10 + N;
         }
-        else {
-            return count;
-        }
-    }
-
-    // result set of operations between the result of operations
-    public static Set<Integer> operations(int n, Set<Integer> input1, Set<Integer> input2) {
-        Set<Integer> result = new HashSet<>();
-
-
-        return result;
-    }
-
-    public int concatenate(int number) {
-        return Integer.parseInt(Integer.toString(number) + Integer.toString(number));
     }
 }
