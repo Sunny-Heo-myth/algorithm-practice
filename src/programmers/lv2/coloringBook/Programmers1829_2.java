@@ -1,4 +1,4 @@
-package programmers.coloringBook;
+package programmers.lv2.coloringBook;
 
 public class Programmers1829_2 {
     static int numberOfArea;

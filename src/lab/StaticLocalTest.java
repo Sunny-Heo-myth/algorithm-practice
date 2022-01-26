@@ -1,4 +1,4 @@
-package privateLab;
+package lab;
 
 public class StaticLocalTest {
 
@@ -6,22 +6,19 @@ public class StaticLocalTest {
 
     public static void main(String[] args) {
         int localNum = 0;
-        add1(localNum);
-        add2(localNum);
+        add(localNum);
+        add(localNum);
+        System.out.println(++localNum);
+        System.out.println(++localNum);
+        System.out.println(localNum);
 
     }
 
-    static void add1(int localNum){
+    static void add(int localNum){
         localNum++;
         staticNum++;
         System.out.println(staticNum);
         System.out.println(localNum);
     }
 
-    static void add2(int localNum){
-        localNum++;
-        staticNum++;
-        System.out.println(staticNum);
-        System.out.println(localNum);
-    }
 }

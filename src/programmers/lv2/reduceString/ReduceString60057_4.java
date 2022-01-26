@@ -1,4 +1,4 @@
-package programmers.reduceString;
+package programmers.lv2.reduceString;
 
 public class ReduceString60057_4 {
     public static void main(String[] args) {

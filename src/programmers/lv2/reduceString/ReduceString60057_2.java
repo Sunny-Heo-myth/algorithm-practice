@@ -1,6 +1,7 @@
-package programmers.reduceString;
+package programmers.lv2.reduceString;
 
-public class ReduceString60057 {
+public class ReduceString60057_2 {
+
     public static int solution(String input) {
         int length = input.length();
         int answer = length;
@@ -15,14 +16,9 @@ public class ReduceString60057 {
 
             while (true) {
                 String subString = input.substring(cp, cep);
+                String lastString = input.substring(cep);
 
-                if (cep > length) {
-                    builder.append(input.substring(cp));
-                    answer = Math.min(answer, builder.length());
-                    break;
-                }
-
-                if (nep <= length && subString.equals(input.substring(cep, nep))) {
+                if (lastString.startsWith(subString)) {
                     count++;
                 } else {
                     String tmp = count == 1 ? subString : count + subString;
@@ -31,7 +27,7 @@ public class ReduceString60057 {
                 }
 
                 if (nep > length) {
-                    builder.append(input.substring(cep));
+                    builder.append(lastString);
                     answer = Math.min(answer, builder.length());
                     break;
                 }
@@ -43,10 +39,5 @@ public class ReduceString60057 {
         }
 
         return answer;
-    }
-
-
-    public static void main(String[] args) {
-        System.out.println(solution("aaabbbccccccccccc"));
     }
 }

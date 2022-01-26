@@ -1,4 +1,4 @@
-package programmers.openChatting;
+package programmers.lv2.openChatting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
