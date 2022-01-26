@@ -29,7 +29,7 @@ public class BJ15649_3 {
 
     public static void dfs(int count) {
 
-        if (count == 2) {
+        if (count == m) {
             for (int i = 0; i < m; i++) {
                 sb.append(arr[i]).append(" ");
             }
