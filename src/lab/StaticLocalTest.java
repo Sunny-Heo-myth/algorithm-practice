@@ -12,6 +12,11 @@ public class StaticLocalTest {
         System.out.println(++localNum);
         System.out.println(localNum);
 
+        String[] ss = "s\ns\n".split("\n");
+        for (String s : ss) {
+            System.out.println(s);
+        }
+
     }
 
     static void add(int localNum){
