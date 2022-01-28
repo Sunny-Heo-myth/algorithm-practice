@@ -22,7 +22,6 @@ public class BJ15649_3 {
         arr = new int[m];
         check = new boolean[n];
 
-
         dfs(0);
         System.out.print(sb);
     }
@@ -30,8 +29,8 @@ public class BJ15649_3 {
     public static void dfs(int count) {
 
         if (count == m) {
-            for (int i = 0; i < m; i++) {
-                sb.append(arr[i]).append(" ");
+            for (int i : arr) {
+                sb.append(i).append(" ");
             }
             sb.append("\n");
             return;
@@ -45,5 +44,7 @@ public class BJ15649_3 {
                 check[i] = false;
             }
         }
+
+
     }
 }
