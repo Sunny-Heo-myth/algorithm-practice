@@ -25,12 +25,13 @@ public class BJ2580_3 {
 
     public static void sudoku(int axis1st, int axis2nd) {
         
-        if (axis2nd == 9) {
+        if (axis2nd == 9) { // when goes to next row,
             sudoku(axis1st + 1, 0);
             return;
         }
 
-        if (axis1st == 9) {
+        if (axis1st == 9) { // when the recursion ends,
+            
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
@@ -38,8 +39,9 @@ public class BJ2580_3 {
                 }
                 sb.append('\n');
             }
+            
             System.out.println(sb);
-            System.exit(0);
+            System.exit(0); // forcefully terminate process when the first outcome comes out.
         }
 
         if (arr[axis1st][axis2nd] == 0) {
@@ -57,26 +59,26 @@ public class BJ2580_3 {
 
     }
 
-    public static boolean possibility(int axis1st, int axis2nd, int value) {
+    public static boolean possibility(int axis1st, int axis2nd, int number) {
 
         for (int i = 0; i < 9; i++) {
-            if (arr[axis1st][i] == value) {
+            if (arr[axis1st][i] == number) {
                 return false;
             }
         }
 
         for (int i = 0; i < 9; i++) {
-            if (arr[i][axis2nd] == value) {
+            if (arr[i][axis2nd] == number) {
                 return false;
             }
         }
 
-        int set_axis1st = (axis1st / 3) * 3; // value가 속한 3x3의 행의 첫
-        int set_axis2nd = (axis2nd / 3) * 3;
+        int setAxis1st = (axis1st / 3) * 3;
+        int setAxis2nd = (axis2nd / 3) * 3;
 
-        for (int i = set_axis1st; i < set_axis1st + 3; i++) {
-            for (int j = set_axis2nd; j < set_axis2nd + 3; j++) {
-                if (arr[i][j] == value) {
+        for (int i = setAxis1st; i < setAxis1st + 3; i++) {
+            for (int j = setAxis2nd; j < setAxis2nd + 3; j++) {
+                if (arr[i][j] == number) {
                     return false;
                 }
             }

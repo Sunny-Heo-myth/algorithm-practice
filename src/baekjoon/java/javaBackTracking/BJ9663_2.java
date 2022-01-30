@@ -5,56 +5,50 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BJ9663_2 {
-    static boolean[][] booleans;
-    static int[] point = new int[2];
+    static int[] queens;
     static int n;
-    static int answer = 0;
+    static int count = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(bf.readLine());
-        booleans = new boolean[n][n];
+        queens = new int[n];
 
-        nQueen(0, booleans);
-        System.out.print(answer);
+        nQueen(0);
+
+        System.out.print(count);
     }
 
-    public static void nQueen(int count, boolean[][] booleans) {
+    public static void nQueen(int depth) {
 
-        if (count == n) {
-            answer++;
+        // if fill up with n rows, count + 1
+        if (depth == n) {
+            count++;
             return;
         }
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            queens[depth] = i;
 
-                int[] point = new int[]{i, j};
-                queenRoute(point);
-                if (routeCheck(point)) {
-                    nQueen(count + 1, booleans);
-                }
-
+            if (queenRoute(depth)) {
+                nQueen(depth + 1);
             }
+
         }
     }
 
-    public static void queenRoute(int[] point) {
-        for (int i = 0; i < n; i++) {
+    public static boolean queenRoute(int column) {
+        for (int i = 0; i < column; i++) {
 
-            boolean b = booleans[point[0]][i];
-            if (b) {
-               // return false;
+            // There should not be same number in queens which means there is 2 queen in same row
+            if (queens[column] == queens[i]) {
+                return false;
             }
-            else {
-                b = true;
+            else if (Math.abs(column - i) == Math.abs(queens[column] - queens[i])) {
+                return false;
             }
-
-            b = booleans[i][point[1]];
         }
-    }
-
-    public static boolean routeCheck(int[] point) {
         return true;
     }
+
 }

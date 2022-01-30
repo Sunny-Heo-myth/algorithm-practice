@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class BJ2580_2  {
         static int[][] sudoku = new int[9][9];
-        static int zeroCount = 0;
+
 
         public static void main(String[] args) throws IOException {
             BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -15,22 +15,23 @@ public class BJ2580_2  {
             for (int i = 0; i < 9; i++) {
                 StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
                 for (int j = 0; j < 9; j++) {
-                    int num = Integer.parseInt(st.nextToken());
-                    if (num == 0) {
-                        zeroCount++;
-                    }
-                    sudoku[i][j] = num;
+                    sudoku[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
 
-            fill(0);
+            fill(0,0);
 
 
         }
 
-        public static void fill(int count) {
+        public static void fill(int axis1st, int axis2nd) {
 
-            if (zeroCount == count) {
+            if (axis2nd == 9) {
+                fill(axis1st + 1, 0);
+                return;
+            }
+
+            if (axis1st == 9) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < 9; i++) {
                     for (int j = 0; j < 9; j++) {
@@ -38,49 +39,45 @@ public class BJ2580_2  {
                     }
                     sb.append("\n");
                 }
+
                 System.out.print(sb);
+                System.exit(0);
+            }
+
+            if (sudoku[axis1st][axis2nd] == 0) {
+                for (int i = 1; i <= 9; i++) {
+                    if (able(axis1st, axis2nd, i)) {
+                        sudoku[axis1st][axis2nd] = i;
+                        fill(axis1st, axis2nd + 1);
+                    }
+                }
+                sudoku[axis1st][axis2nd] = 0;
                 return;
             }
 
+            fill(axis1st, axis2nd + 1);
+        }
+
+        public static boolean able(int axis1st, int axis2nd, int number) {
             for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    if (sudoku[i][j] == 0) {
-                        int possible = able(i, j);
-                        if (possible != 0) {
-                            sudoku[i][j] = possible;
-                        }
-                        fill(count + 1);
+                if (sudoku[axis1st][i] == number) {
+                    return false;
+                }
+                if (sudoku[i][axis2nd] == number) {
+                    return false;
+                }
+            }
+
+            int newAxis1st = (axis1st/3)*3;
+            int newAxis2nd = (axis2nd/3)*3;
+            for (int i = newAxis1st; i < newAxis1st + 3; i++) {
+                for (int j = newAxis2nd; j < newAxis2nd + 3; j++) {
+                    if (sudoku[i][j] == number) {
+                        return false;
                     }
                 }
             }
-        }
-
-        public static int able(int axis1st, int axis2nd) {
-            boolean[] check = new boolean[10];
-
-            for (int i = 0; i < 9; i++) {
-                check[sudoku[axis1st][i]] = true;
-            }
-
-            for (int i = 0; i < 9; i++) {
-                check[sudoku[i][axis2nd]] = true;
-            }
-
-            int set1st = (axis1st/3)*3;
-            int set2nd = (axis2nd/3)*3;
-
-            for (int i = set1st; i < set1st + 3; i++) {
-                for (int j = set2nd; j < set2nd + 3; j++) {
-                    check[sudoku[i][j]] = true;
-                }
-            }
-
-            for (int i = 0; i < 10; i++) {
-                if (!check[i]) {
-                    return i;
-                }
-            }
-            return 0;
+            return true;
         }
 
 
