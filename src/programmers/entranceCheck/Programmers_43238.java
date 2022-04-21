@@ -7,8 +7,8 @@ public class Programmers_43238 {
 
     public static void main(String[] args) throws IOException {
 
-        int[] guards = {2, 3, 5, 10 ,20};
-        System.out.println(solution1(50, guards));
+        int[] guards = {7, 10};
+        System.out.println(solution2(6, guards));
 
     }
 
@@ -32,26 +32,29 @@ public class Programmers_43238 {
     }
 
     public static long solution2(int n, int[] times) {
-
-        long start = 0L;
         Arrays.sort(times);
-        long end = (long) n * times[times.length - 1];
+        long answer = 0;
+        long left = 0;
+        long right = (long) n * times[times.length - 1];
+        long mid;
+        long sum;
 
+        while (left <= right) {
+            mid = (left + right) / 2;
+            sum = 0;
 
-        while (start <= end) {
-            int sum = 0;
-            long mid = (start + end) / 2;
             for (int guard : times) {
-                sum += mid % guard;
+                sum += mid / guard;
             }
 
-            if (sum > n) {
-                end = mid - 1;
-            } else if (sum < n) {
-                start = mid + 1;
+            if (sum < n) {
+                left = mid + 1;
+            }
+            if (sum >= n) {
+                right = mid - 1;
+                answer = mid;
             }
         }
-
-        return 0L;
+        return answer;
     }
 }
