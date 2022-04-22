@@ -1,4 +1,4 @@
-package basic;
+package basic.Array;
 
 import java.util.*;
 
@@ -73,6 +73,10 @@ public class Array {
 
         System.out.println("\nchangeNumeric test\n");
         System.out.println(changeNumeric(16, 59));
+        char[] chars = new char[100];
+        cardConvR(1260, 36, chars);
+        StringBuilder sb = new StringBuilder(String.valueOf(chars)).reverse();
+        System.out.println(sb);
     }
 
     static void elementReverseSwap(int[] ints, int index) {
@@ -115,18 +119,34 @@ public class Array {
         Stack<String> strings = new Stack<>();
         int remainder = 0;
 
-        while (target < number) {   // O(n)
+        while (target < number) {   // o(number/target)
             remainder = number % target;
             strings.push(symbols[remainder]);
             number /= target;
         }
-        strings.push(symbols[number]);
+        strings.push(symbols[number]);  //o(length)
 
         StringBuilder result = new StringBuilder();
         while (!strings.isEmpty()) {
-            result.append(strings.pop());   // O(n)
+            result.append(strings.pop());   // o(length)
         }
 
         return result.toString();
     }
+
+    static int cardConvR(int x, int r, char[] d) {
+        int digits = 0;
+        String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        do {
+            d[digits++] = dchar.charAt(x % r);
+            x /= r;
+        }
+        while (x != 0);
+        return digits;
+    }
+
+
+
+
 }
