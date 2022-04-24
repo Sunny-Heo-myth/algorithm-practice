@@ -1,4 +1,4 @@
-package basic.Array;
+package basic.array;
 
 import java.util.*;
 
@@ -136,13 +136,13 @@ public class Array {
 
     static int cardConvR(int x, int r, char[] d) {
         int digits = 0;
-        String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digitChar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         do {
-            d[digits++] = dchar.charAt(x % r);
+            d[digits++] = digitChar.charAt(x % r);
             x /= r;
-        }
-        while (x != 0);
+        } while (x != 0);
+
         return digits;
     }
 
