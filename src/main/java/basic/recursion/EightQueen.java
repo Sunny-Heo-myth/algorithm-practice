@@ -81,4 +81,40 @@ public class EightQueen {
 
         }
     }
+
+    static void set4(int row) {
+        for (int column = 0; column < 8; column++) {
+            if (!rowFlag[column] && !leftDiagonalFlag[row + column] && !rightDiagonalFlag[row - column + 7]) {
+                pos[row] = column;
+                if (row == 7) {
+                    print();
+                }
+                else {
+                    rowFlag[column] = leftDiagonalFlag[row + column] = rightDiagonalFlag[row - column + 7] = true;
+                    set4(row + 1);
+                    rowFlag[column] = leftDiagonalFlag[row + column] = rightDiagonalFlag[row - column + 7] = false;
+                }
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

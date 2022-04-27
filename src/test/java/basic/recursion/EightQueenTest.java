@@ -24,7 +24,7 @@ public class EightQueenTest {
     }
 
     @Test
-    void set3Test() {
+    void set4Test() {
         EightQueen.set3(0);
     }
 }
