@@ -1,4 +1,4 @@
-package basic.Queue;
+package basic.queue;
 
 public class IntQueue {
     final int max;

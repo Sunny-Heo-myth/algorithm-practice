@@ -2,61 +2,61 @@ package basic.stack;
 
 public class IntPipeStack {
     int max;
-    int lowPointer;
-    int highPointer;
+    int front;
+    int rear;
     int[] stack;
 
     public IntPipeStack(int max) {
         this.max = max;
-        this.lowPointer = 0;
-        this.highPointer = max;
+        this.front = 0;
+        this.rear = max;
         this.stack = new int[max];
     }
 
-    public int lowEdgePush(int x) throws OverflowIntStackException{
-        if (lowPointer >= highPointer) {
+    public int pushFront(int x) throws OverflowIntStackException{
+        if (front >= rear) {
             throw new OverflowIntStackException();
         }
-        return stack[lowPointer++] = x;
+        return stack[front++] = x;
     }
 
-    public int highEdgePush(int x) throws OverflowIntStackException{
-        if (lowPointer >= highPointer) {
+    public int pushRear(int x) throws OverflowIntStackException{
+        if (front >= rear) {
             throw new OverflowIntStackException();
         }
-        return stack[--highPointer] = x;
+        return stack[--rear] = x;
     }
 
-    public int lowEdgePop() throws lowEdgeEmptyIntStackException{
-        if (lowPointer <= 0) {
+    public int popFront() throws lowEdgeEmptyIntStackException{
+        if (front <= 0) {
             throw new lowEdgeEmptyIntStackException();
         }
-        return stack[--lowPointer];
+        return stack[--front];
     }
 
-    public int highEdgePop() throws highEdgeEmptyIntStackException{
-        if (highPointer >= max) {
+    public int popRear() throws highEdgeEmptyIntStackException{
+        if (rear >= max) {
             throw new highEdgeEmptyIntStackException();
         }
-        return stack[highPointer];
+        return stack[rear++];
     }
 
-    public int lowPeek() {
-        if (lowPointer <= 0) {
+    public int peekFront() {
+        if (front <= 0) {
             throw new lowEdgeEmptyIntStackException();
         }
-        return stack[lowPointer];
+        return stack[front];
     }
 
-    public int highPeek() {
-        if (highPointer <= 0) {
+    public int peekRear() {
+        if (rear <= 0) {
             throw new highEdgeEmptyIntStackException();
         }
-        return stack[highPointer];
+        return stack[rear];
     }
 
-    public int lowIndexOf(int value) {
-        for (int i = lowPointer - 1; i >= 0; i--) {
+    public int indexOfFront(int value) {
+        for (int i = front - 1; i >= 0; i--) {
             if (stack[i] == value) {
                 return i;
             }
@@ -64,8 +64,8 @@ public class IntPipeStack {
         return -1;
     }
 
-    public int highIndexOf(int value) {
-        for (int i = highPointer; i < max; i++) {
+    public int indexOfRear(int value) {
+        for (int i = rear; i < max; i++) {
             if (stack[i] == value) {
                 return i;
             }

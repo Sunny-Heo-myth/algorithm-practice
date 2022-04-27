@@ -1,7 +1,5 @@
 package basic.queue;
 
-import basic.Queue.BookIntQueue;
-import basic.Queue.IntQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
