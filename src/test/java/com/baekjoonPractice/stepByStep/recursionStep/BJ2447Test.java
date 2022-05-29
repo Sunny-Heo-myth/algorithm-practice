@@ -63,8 +63,22 @@ public class BJ2447Test {
         sample3.chars = sample3.recur(27);
 
         // then
-        assertEquals(sample1.stringify(), "***\n* *\n***\n");
-        assertEquals(sample2.stringify(), "*********\n* ** ** *\n*********\n***   ***\n* *   * *\n***   ***\n*********\n* ** ** *\n*********\n");
+        assertEquals(sample1.stringify(), """
+                ***
+                * *
+                ***
+                """);
+        assertEquals(sample2.stringify(), """
+                *********
+                * ** ** *
+                *********
+                ***   ***
+                * *   * *
+                ***   ***
+                *********
+                * ** ** *
+                *********
+                """);
         assertEquals(sample3.stringify(), """
                 ***************************
                 * ** ** ** ** ** ** ** ** *
