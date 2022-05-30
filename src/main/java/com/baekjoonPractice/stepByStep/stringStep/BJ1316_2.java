@@ -42,4 +42,5 @@ public class BJ1316_2 {
         }
         System.out.print(answer);
     }
+
 }
