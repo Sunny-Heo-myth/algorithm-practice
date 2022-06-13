@@ -2,7 +2,7 @@ package com.baekjoonPractice.stepByStep.math1Step;
 
 import java.util.Scanner;
 
-public class BJ1193hard {
+public class BJ1193_4 {
 
     public static void main(String[] args) {
         int x = new Scanner(System.in).nextInt();
