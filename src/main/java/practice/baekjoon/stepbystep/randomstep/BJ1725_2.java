@@ -1,4 +1,4 @@
-package practice.baekjoon.stepbystep.randomStep;
+package practice.baekjoon.stepbystep.randomstep;
 
 import java.io.BufferedReader;
 import java.io.IOException;

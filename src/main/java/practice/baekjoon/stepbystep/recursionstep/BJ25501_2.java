@@ -1,4 +1,4 @@
-package practice.baekjoon.stepbystep.recursionStep;
+package practice.baekjoon.stepbystep.recursionstep;
 
 import practice.baekjoon.stepbystep.utils.InputUtil;
 

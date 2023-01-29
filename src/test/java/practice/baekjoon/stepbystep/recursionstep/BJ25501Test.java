@@ -1,7 +1,6 @@
 package practice.baekjoon.stepbystep.recursionstep;
 
 import org.junit.jupiter.api.Test;
-import practice.baekjoon.stepbystep.recursionStep.BJ25501;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

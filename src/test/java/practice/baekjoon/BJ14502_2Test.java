@@ -2,7 +2,7 @@ package practice.baekjoon;
 
 import org.junit.jupiter.api.Test;
 
-public class BJ14502Test {
+public class BJ14502_2Test {
 
     @Test
     void test_1() {
@@ -15,10 +15,8 @@ public class BJ14502Test {
                 "0 1 0 0 0 0 0\n" +
                 "0 1 0 0 0 0 0";
 
-        BJ14502 instance = new BJ14502(input);
-
-        int totalCount = instance.getRow() * instance.getColumn();
-        System.out.print(totalCount - (instance.invasion(instance.getViruses(), instance.getMap(), instance.select3Dots(instance.getMap())) + instance.getWall() + 3));
+        BJ14502_2 instance = BJ14502_2.createInstance(input);
+        System.out.println(instance.simulate());
     }
 
     @Test
@@ -29,9 +27,7 @@ public class BJ14502Test {
                 "1 1 1 0 0 2\n" +
                 "0 0 0 0 0 2";
 
-        BJ14502 instance = new BJ14502(input);
-        int totalCount = instance.getRow() * instance.getColumn();
-        System.out.print(totalCount - (instance.invasion(instance.getViruses(), instance.getMap(), instance.select3Dots(instance.getMap())) + instance.getWall() + 3));
+        BJ14502_2 instance = BJ14502_2.createInstance(input);
     }
 
     @Test
@@ -46,9 +42,6 @@ public class BJ14502Test {
                 "0 0 0 0 0 0 0 0\n" +
                 "0 0 0 0 0 0 0 0";
 
-        BJ14502 instance = new BJ14502(input);
-        int totalCount = instance.getRow() * instance.getColumn();
-        System.out.print(totalCount - (instance.invasion(instance.getViruses(), instance.getMap(), instance.select3Dots(instance.getMap())) + instance.getWall() + 3));
+        BJ14502_2 instance = BJ14502_2.createInstance(input);
     }
-
 }

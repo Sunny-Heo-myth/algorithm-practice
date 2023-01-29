@@ -1,5 +1,7 @@
 package practice.baekjoon;
 
+import lombok.Getter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+@Getter
 public class BJ14502 {
-    public int[][] map;
-    public int row = 0;
-    public int column = 0;
-    public int wall = 0;
-    public List<int[]> viruses;
+    private final int[][] map;
+    private int row = 0;
+    private int column = 0;
+    private int wall = 0;
+    private final List<int[]> viruses;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -123,8 +126,6 @@ public class BJ14502 {
 
     private int infectStack(Stack<int[]> stack, int[][] map) {
         int size = stack.size();
-        int row = map.length;
-        int column = map[0].length;
 
         int[] virus;
         while (!stack.isEmpty()) {
