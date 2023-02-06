@@ -1,6 +1,6 @@
 package practice.baekjoon.stepbystep.recursionstep;
 
-import practice.baekjoon.stepbystep.utils.InputUtil;
+import practice.baekjoon.stepbystep.utils.IOUtil;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ public class BJ25501_2 {
 
     public static void main(String[] args) throws IOException {
         BJ25501_2 instance = new BJ25501_2();
-        InputUtil.answer(instance::isPalindrome, s -> instance.recursionCount);
+        IOUtil.answer(instance::isPalindrome, s -> instance.recursionCount);
     }
 
     public int isPalindrome(String s){
