@@ -50,9 +50,23 @@ public class Chapter4 {
         return new Answer(leftResult + rightResult, leftIndex, rightIndex);
     }
 
-//    public Answer findMaximumArray_bruteForce(int[] array) {
-//
-//    }
+    public Answer findMaximumArray_bruteForce(int[] array) {
+        int result = Integer.MIN_VALUE;
+        int leftIndex = 0;
+        int rightIndex = 0;
+        for (int i = 0; i < array.length; i++) {
+            int sum = 0;
+            for (int j = i; j < array.length; j++) {
+                sum += array[j];
+                if (sum > result) {
+                    result = sum;
+                    leftIndex = i;
+                    rightIndex = j;
+                }
+            }
+        }
+        return new Answer(result, leftIndex, rightIndex);
+    }
 
     @Getter
     @AllArgsConstructor
