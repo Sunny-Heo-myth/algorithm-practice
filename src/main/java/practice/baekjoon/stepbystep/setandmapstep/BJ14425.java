@@ -1,8 +1,8 @@
 package practice.baekjoon.stepbystep.setandmapstep;
 
-import java.io.BufferedReader;
+import practice.baekjoon.stepbystep.utils.IOUtil;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,19 +13,7 @@ public class BJ14425 {
     private int match = 0;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        String firstLine = bf.readLine();
-        sb.append(firstLine).append("\n");
-
-        String[] firstLineWord = firstLine.split(" ");
-        int n = Integer.parseInt(firstLineWord[0]) + Integer.parseInt(firstLineWord[1]);
-        int i = 0;
-        while (i < n) {
-            sb.append(bf.readLine()).append("\n");
-
-            i++;
-        }
+        StringBuilder sb = IOUtil.readFiniteLine();
 
         BJ14425 instance = new BJ14425(sb.deleteCharAt(sb.length() - 1).toString());
         System.out.print(instance.match);
