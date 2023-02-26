@@ -1,6 +1,6 @@
 package practice.baekjoon.stepbystep.setandmapstep;
 
-import practice.baekjoon.stepbystep.utils.IOUtil;
+import practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ public class BJ14425 {
     private int match = 0;
 
     public static void main(String[] args) throws IOException {
-        StringBuilder sb = IOUtil.readFiniteLine();
+        String s = IOUtil.readFiniteLine();
 
-        BJ14425 instance = new BJ14425(sb.deleteCharAt(sb.length() - 1).toString());
+        BJ14425 instance = new BJ14425(s);
         System.out.print(instance.match);
     }
 

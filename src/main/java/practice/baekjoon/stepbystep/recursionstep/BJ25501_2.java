@@ -1,6 +1,6 @@
 package practice.baekjoon.stepbystep.recursionstep;
 
-import practice.baekjoon.stepbystep.utils.IOUtil;
+import practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
 

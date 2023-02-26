@@ -1,6 +1,6 @@
 package practice.baekjoon.stepbystep.setandmapstep;
 
-import practice.baekjoon.stepbystep.utils.IOUtil;
+import practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ public class BJ1620 {
     private final Object[] questionList;
 
     public static void main(String[] args) throws IOException {
-        StringBuilder sb = IOUtil.readFiniteLine();
+        String s = IOUtil.readFiniteLine();
 
-        BJ1620 instance = new BJ1620(sb.deleteCharAt(sb.length() - 1).toString());
+        BJ1620 instance = new BJ1620(s);
         System.out.print(instance.answer());
     }
 

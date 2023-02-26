@@ -1,6 +1,5 @@
 package practice.baekjoon.stepbystep.ifstep;
 
-import practice.baekjoon.stepbystep.ifStep.BJ2525_3;
 import org.junit.jupiter.api.Test;
 
 public class BJ2525Test {

@@ -1,6 +1,5 @@
 package practice.baekjoon.stepbystep.forstep;
 
-import practice.baekjoon.stepbystep.forStep.BJ25304;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

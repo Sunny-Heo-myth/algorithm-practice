@@ -1,6 +1,5 @@
 package practice.baekjoon.stepbystep.sortstep;
 
-import practice.baekjoon.stepbystep.sortStep.BJ25305;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

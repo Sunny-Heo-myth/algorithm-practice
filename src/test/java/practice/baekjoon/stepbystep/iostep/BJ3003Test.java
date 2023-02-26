@@ -1,6 +1,5 @@
 package practice.baekjoon.stepbystep.iostep;
 
-import practice.baekjoon.stepbystep.iOStep.BJ3003;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

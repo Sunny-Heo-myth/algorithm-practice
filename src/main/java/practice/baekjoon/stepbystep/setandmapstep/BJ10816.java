@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BJ10816 {
+public class                       BJ10816 {
     private final int[] keyArray;
     private final int[] to;
     private final Map<Integer, Integer> answerMap;
