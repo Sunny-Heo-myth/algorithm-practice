@@ -1,4 +1,4 @@
-package practice.baekjoon.stepbystep.twodimensionalarray;
+package practice.baekjoon.stepbystep.twodarray;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package practice.baekjoon.stepbystep.twodimensionalarray;
+package practice.baekjoon.stepbystep.twodarray;
 
 import java.util.Arrays;
 
