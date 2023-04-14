@@ -1,8 +1,8 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.basestation;
 
 import java.util.Arrays;
 
-public class BestStation {
+public class BaseStation {
     private boolean[] apartments;
 
     public int solution(int n, int[] stations, int w) {

@@ -1,6 +1,6 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.basestation;
 
-public class BestStation2 {
+public class BaseStation2 {
     public int solution(int n, int[] stations, int w) {
         int answer = 0;
         int leftStart = 1;
