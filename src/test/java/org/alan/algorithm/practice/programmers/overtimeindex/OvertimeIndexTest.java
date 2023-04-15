@@ -1,6 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.overtimeindex;
 
-import org.alan.algorithm.practice.programmers.overtimeindex.OvertimeIndex2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.crosssteppingstone;
 
 public class CrossSteppingStone2 {
     public int solution(int[] stones, int k) {

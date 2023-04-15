@@ -1,7 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.enforcementcamera;
 
-import org.alan.algorithm.practice.programmers.enforcementcamera.EnforcementCamera;
-import org.alan.algorithm.practice.programmers.enforcementcamera.EnforcementCamera2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.crosssteppingstone;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

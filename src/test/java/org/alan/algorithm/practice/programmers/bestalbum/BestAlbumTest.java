@@ -1,6 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.bestalbum;
 
-import org.alan.algorithm.practice.programmers.bestalbum.BestAlbum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

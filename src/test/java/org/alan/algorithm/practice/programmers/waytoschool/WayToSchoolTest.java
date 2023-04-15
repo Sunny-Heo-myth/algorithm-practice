@@ -1,7 +1,6 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.waytoschool;
 
 
-import org.alan.algorithm.practice.programmers.waytoschool.WayToSchool;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

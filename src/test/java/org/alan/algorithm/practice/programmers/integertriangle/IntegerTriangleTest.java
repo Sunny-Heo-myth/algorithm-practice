@@ -1,9 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.integertriangle;
 
-import org.alan.algorithm.practice.programmers.integertriangle.IntegerTriangle;
-import org.alan.algorithm.practice.programmers.integertriangle.IntegerTriangle2;
-import org.alan.algorithm.practice.programmers.integertriangle.IntegerTriangle3;
-import org.alan.algorithm.practice.programmers.integertriangle.IntegerTriangle4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

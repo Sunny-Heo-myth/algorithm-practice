@@ -1,6 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.wordtransform;
 
-import org.alan.algorithm.practice.programmers.wordtransform.WordTransform;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

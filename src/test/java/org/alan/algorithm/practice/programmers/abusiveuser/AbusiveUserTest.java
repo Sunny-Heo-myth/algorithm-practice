@@ -1,9 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.abusiveuser;
 
-import org.alan.algorithm.practice.programmers.abusiveuser.AbusiveUser;
-import org.alan.algorithm.practice.programmers.abusiveuser.AbusiveUser2;
-import org.alan.algorithm.practice.programmers.abusiveuser.AbusiveUser3;
-import org.alan.algorithm.practice.programmers.abusiveuser.AbusiveUser4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

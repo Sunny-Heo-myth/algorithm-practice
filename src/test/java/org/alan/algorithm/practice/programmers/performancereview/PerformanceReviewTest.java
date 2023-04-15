@@ -1,6 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.performancereview;
 
-import org.alan.algorithm.practice.programmers.performancereview.PerformanceReview;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

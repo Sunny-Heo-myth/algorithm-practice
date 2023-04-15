@@ -1,7 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.basestation;
 
-import org.alan.algorithm.practice.programmers.basestation.BaseStation;
-import org.alan.algorithm.practice.programmers.basestation.BaseStation3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

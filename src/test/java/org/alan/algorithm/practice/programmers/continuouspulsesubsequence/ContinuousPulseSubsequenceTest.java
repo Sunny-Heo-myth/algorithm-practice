@@ -1,8 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.continuouspulsesubsequence;
 
-import org.alan.algorithm.practice.programmers.continuouspulsesubsequence.ContinuousPulseSubsequence;
-import org.alan.algorithm.practice.programmers.continuouspulsesubsequence.ContinuousPulseSubsequence2;
-import org.alan.algorithm.practice.programmers.continuouspulsesubsequence.ContinuousPulseSubsequence3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

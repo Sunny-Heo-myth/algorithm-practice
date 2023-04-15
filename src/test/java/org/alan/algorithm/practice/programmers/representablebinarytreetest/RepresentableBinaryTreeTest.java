@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.representablebinarytreetest;
 
 import org.junit.jupiter.api.Test;
 

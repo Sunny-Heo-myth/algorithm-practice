@@ -1,6 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.bestset;
 
-import org.alan.algorithm.practice.programmers.bestset.BestSet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,5 @@
-package org.alan.algorithm.practice.programmers;
+package org.alan.algorithm.practice.programmers.numbergame;
 
-import org.alan.algorithm.practice.programmers.numbergame.NumberGame;
-import org.alan.algorithm.practice.programmers.numbergame.NumberGame2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
