@@ -5,36 +5,43 @@ import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 import java.io.IOException;
 
 public class BJ10811 {
-    private final int[] array;
+    private final int[] baskets;
+    private final int[][] processList;
 
     public BJ10811(String input) {
+        // todo: initiate array
         String[] lines = input.split("\n");
         String[] firstLine = lines[0].split(" ");
-
-        array = new int[Integer.parseInt(firstLine[0])];
-        int n = Integer.parseInt(firstLine[1]);
-
-        int i = 0;
-        while (i < n) {
+        baskets = new int[Integer.parseInt(firstLine[0])];
+        for (int i = 0; i < baskets.length; i++) {
+            baskets[i] = i + 1;
+        }
+        processList = new int[Integer.parseInt(firstLine[1])][2];
+        for (int i = 0; i < processList.length; i++) {
             String[] line = lines[i + 1].split(" ");
             int from = Integer.parseInt(line[0]) - 1;
-            int to = Integer.parseInt(line[1]) - 1;
+            int to = Integer.parseInt(line[1]);
+            processList[i] = new int[]{from, to};
+        }
 
-            int x = 0;
-            for (int j = from; j < (to - from)/2; j++) {
-                int tmp = array[j];
-                array[j] = array[to - x++];
-                array[to - x] = tmp;
-            }
+        // todo: process the array
+        for (int i = 0; i < processList.length; i++) {
+            process(processList[i]);
+        }
+    }
 
-            i++;
+    private void process(int[] ints) {
+        for (int i = 0; i < (ints[1] - ints[0]) / 2; i++) {
+            int temp = baskets[ints[0] + i];
+            baskets[ints[0] + i] = baskets[ints[1] - i - 1];
+            baskets[ints[1] - i - 1] = temp;
         }
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i : array) {
+        for (int i : baskets) {
             sb.append(i).append(" ");
         }
         return sb.deleteCharAt(sb.length() - 1).toString();
