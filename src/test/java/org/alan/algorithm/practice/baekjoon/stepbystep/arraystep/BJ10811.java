@@ -6,17 +6,16 @@ import java.io.IOException;
 
 public class BJ10811 {
     private final int[] baskets;
-    private final int[][] processList;
 
     public BJ10811(String input) {
-        // todo: initiate array
+        // initiate array
         String[] lines = input.split("\n");
         String[] firstLine = lines[0].split(" ");
         baskets = new int[Integer.parseInt(firstLine[0])];
         for (int i = 0; i < baskets.length; i++) {
             baskets[i] = i + 1;
         }
-        processList = new int[Integer.parseInt(firstLine[1])][2];
+        int[][] processList = new int[Integer.parseInt(firstLine[1])][2];
         for (int i = 0; i < processList.length; i++) {
             String[] line = lines[i + 1].split(" ");
             int from = Integer.parseInt(line[0]) - 1;
@@ -24,9 +23,9 @@ public class BJ10811 {
             processList[i] = new int[]{from, to};
         }
 
-        // todo: process the array
-        for (int i = 0; i < processList.length; i++) {
-            process(processList[i]);
+        // process the array
+        for (int[] ints : processList) {
+            process(ints);
         }
     }
 
