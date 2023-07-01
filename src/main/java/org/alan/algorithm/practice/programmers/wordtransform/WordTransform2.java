@@ -1,7 +1,5 @@
 package org.alan.algorithm.practice.programmers.wordtransform;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.*;
 
 public class WordTransform2 {
@@ -49,10 +47,13 @@ public class WordTransform2 {
         return 0;
     }
 
-    @RequiredArgsConstructor
     class Node {
         private final String value;
         private List<Node> connections;
+
+        Node(String value) {
+            this.value = value;
+        }
 
         private void setConnections(Set<Node> nodes) {
             for (Node word : nodes) {

@@ -1,7 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.problem;
 
-import lombok.Getter;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,8 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-@Getter
 public class BJ14502 {
+    public int[][] getMap() {
+        return map;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getWall() {
+        return wall;
+    }
+
+    public List<int[]> getViruses() {
+        return viruses;
+    }
+
     private final int[][] map;
     private int row = 0;
     private int column = 0;

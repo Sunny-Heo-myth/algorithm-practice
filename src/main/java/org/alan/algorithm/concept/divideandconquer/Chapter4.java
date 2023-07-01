@@ -1,8 +1,5 @@
 package org.alan.algorithm.concept.divideandconquer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 public class Chapter4 {
 
     public Answer findMaximumArray(int[] array, int firstIndex, int lastIndex) {
@@ -68,12 +65,28 @@ public class Chapter4 {
         return new Answer(result, leftIndex, rightIndex);
     }
 
-    @Getter
-    @AllArgsConstructor
     static class Answer {
         private int maxSum;
         private int fromIndex;
         private int toIndex;
+
+        public Answer(int i, int firstIndex, int lastIndex) {
+            this.maxSum = i;
+            this.fromIndex = firstIndex;
+            this.toIndex = lastIndex;
+        }
+
+        public int getMaxSum() {
+            return maxSum;
+        }
+
+        public int getFromIndex() {
+            return fromIndex;
+        }
+
+        public int getToIndex() {
+            return toIndex;
+        }
     }
 
 }
