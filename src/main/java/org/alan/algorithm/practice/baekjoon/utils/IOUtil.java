@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.function.Function;
 
 public class IOUtil {
+
     /**
      * A method read String from console with lambda counting readable number of line.
      * @param lineCounter A function provides number of line that it should read.
