@@ -8,6 +8,23 @@ import java.util.function.Function;
 public class IOUtil {
 
     /**
+     * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
+     * @param lineCounter {@link org.alan.algorithm.practice.baekjoon.utils.IOUtil#readFiniteLine(java.util.function.Function)}
+     * @param solution solution function which provides actual solution of the given problem.
+     * @return answer string split by end-of-line.
+     * @throws IOException
+     */
+    public static String answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+        String input = IOUtil.readFiniteLine(lineCounter);
+        String[] inputs = input.split("\n");
+        StringBuilder answer = new StringBuilder();
+        for (int i = 1; i < inputs.length; i++) {
+            answer.append(solution.apply(inputs[i])).append("\n");
+        }
+        return answer.deleteCharAt(answer.length() - 1).toString();
+    }
+
+    /**
      * A method read String from console with lambda counting readable number of line.
      * @param lineCounter A function provides number of line that it should read.
      * @return Console input
@@ -27,28 +44,6 @@ public class IOUtil {
         }
 
         return sb.deleteCharAt(sb.length() - 1).toString();
-    }
-
-    /**
-     * Get System input and sout applied answer.
-     * @param p1 solution function for a problem. The return value converted into String.
-     * @param p2 Auxiliary function for a problem. The return value converted into String.
-     * @throws IOException happens while reading console input
-     */
-    public static <T, U> void answer(Function<String, T> p1, Function<String, U> p2) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-
-        int cases = Integer.parseInt(bf.readLine());
-
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        while (count < cases) {
-            String inputLine = bf.readLine();
-            sb.append(p1.apply(inputLine)).append(" ").append(p2.apply(inputLine)).append("\n");
-            count++;
-        }
-
-        System.out.print(sb.deleteCharAt(sb.length() - 1));
     }
 
 }
