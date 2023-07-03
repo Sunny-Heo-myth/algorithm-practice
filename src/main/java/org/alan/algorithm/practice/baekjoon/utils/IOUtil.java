@@ -34,8 +34,8 @@ public class IOUtil {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         String firstLine = bf.readLine();
-        sb.append(firstLine).append("\n");
 
+        sb.append(firstLine).append("\n");
         int n = lineCounter.apply(firstLine);
         int i = 0;
         while (i < n) {
@@ -43,6 +43,16 @@ public class IOUtil {
             i++;
         }
 
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static String answer(Function<String, String> solution) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = bf.readLine()) != null) {
+            sb.append(solution.apply(line)).append("\n");
+        }
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
