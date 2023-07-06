@@ -9,7 +9,7 @@ public class IOUtil {
 
     /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
-     * @param lineCounter {@link org.alan.algorithm.practice.baekjoon.utils.IOUtil#readFiniteLine(java.util.function.Function)}
+     * @param lineCounter {@link IOUtil#readFiniteLine(Function)}
      * @param solution solution function which provides actual solution of the given problem.
      * @return answer string split by end-of-line.
      * @throws IOException

@@ -2,8 +2,6 @@ package org.alan.algorithm.practice.baekjoon.stepbystep.recursionstep;
 
 import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 
-import java.io.IOException;
-
 public class BJ25501_2 {
     public int recursionCount = 0;
 
