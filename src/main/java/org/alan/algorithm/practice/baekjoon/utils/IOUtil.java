@@ -24,6 +24,10 @@ public class IOUtil {
         return answer.deleteCharAt(answer.length() - 1).toString();
     }
 
+    public static String answer(Function<String, String> solution) throws IOException {
+        String input = IOUtil.readFiniteLine(s -> 0);
+        return solution.apply(input);
+    }
     /**
      * A method read String from console with lambda counting readable number of line.
      * @param lineCounter A function provides number of line that it should read.
@@ -43,16 +47,6 @@ public class IOUtil {
             i++;
         }
 
-        return sb.deleteCharAt(sb.length() - 1).toString();
-    }
-
-    public static String answer(Function<String, String> solution) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = bf.readLine()) != null) {
-            sb.append(solution.apply(line)).append("\n");
-        }
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
