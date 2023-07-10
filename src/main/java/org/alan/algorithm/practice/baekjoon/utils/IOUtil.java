@@ -24,6 +24,23 @@ public class IOUtil {
         return answer.deleteCharAt(answer.length() - 1).toString();
     }
 
+    /**
+     * This method can not properly operate when the first line has the endOfLine condition.
+     * @param endLineCondition
+     * @param solution
+     * @return
+     * @throws IOException
+     */
+    public static String answerWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
+        String input = IOUtil.readLineUntil(endLineCondition);
+        String[] inputs = input.split("\n");
+        StringBuilder answer = new StringBuilder();
+        for (String s : inputs) {
+            answer.append(solution.apply(s)).append("\n");
+        }
+        return answer.deleteCharAt(answer.length() - 1).toString();
+    }
+
     public static String answer(Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(s -> 0);
         return solution.apply(input);
@@ -47,7 +64,26 @@ public class IOUtil {
             i++;
         }
 
+        bf.close();
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
+    public static String readLineUntil(Function<String, Boolean> endLineCondition) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        int maxLine = 20;
+        int currentLine = 0;
+        while (currentLine < maxLine) {
+            currentLine++;
+            String line = bf.readLine();
+            if (endLineCondition.apply(line)) {
+                break;
+            }
+            sb.append(line).append("\n");
+        }
+        bf.close();
+
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
 }
