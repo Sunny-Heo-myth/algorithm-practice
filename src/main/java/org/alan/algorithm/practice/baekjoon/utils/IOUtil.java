@@ -72,10 +72,7 @@ public class IOUtil {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
-        int maxLine = 20;
-        int currentLine = 0;
-        while (currentLine < maxLine) {
-            currentLine++;
+        while (true) {
             String line = bf.readLine();
             if (endLineCondition.apply(line)) {
                 break;
