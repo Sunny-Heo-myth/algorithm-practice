@@ -41,6 +41,11 @@ public class IOUtil {
         return answer.deleteCharAt(answer.length() - 1).toString();
     }
 
+    public static String answer(int additionalLine, Function<String, String> solution) throws IOException {
+        String input = IOUtil.readFiniteLine(s -> additionalLine);
+        return solution.apply(input);
+    }
+
     public static String answer(Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(s -> 0);
         return solution.apply(input);

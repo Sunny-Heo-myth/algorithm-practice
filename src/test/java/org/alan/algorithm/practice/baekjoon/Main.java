@@ -1,6 +1,6 @@
 package org.alan.algorithm.practice.baekjoon;
 
-import org.alan.algorithm.practice.baekjoon.stepbystep.factormultipleprime.BJ9506;
+import org.alan.algorithm.practice.baekjoon.stepbystep.rectangletriangle.BJ27323;
 import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        BJ9506 instance = new BJ9506();
-        String answer = IOUtil.answerWithEndLineCondition(s -> Integer.parseInt(s) == -1, instance::solve);
+        BJ27323 instance = new BJ27323();
+        String answer = IOUtil.answer(1, instance::solve);
         System.out.print(answer);
     }
 
