@@ -61,9 +61,9 @@ public class IOUtil {
         StringBuilder sb = new StringBuilder();
         String firstLine = bf.readLine();
 
-        sb.append(firstLine).append("\n");
         int n = lineCounter.apply(firstLine);
         int i = 0;
+        sb.append(firstLine).append("\n");
         while (i < n) {
             sb.append(bf.readLine()).append("\n");
             i++;
@@ -88,4 +88,8 @@ public class IOUtil {
 
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
+
+//    public static String answer(Function<String, String> solution) {
+//        int numberOfLineToRead =
+//    }
 }
