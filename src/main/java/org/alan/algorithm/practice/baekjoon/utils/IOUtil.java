@@ -32,7 +32,7 @@ public class IOUtil {
      * @throws IOException
      */
     public static String answerWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
-        String input = IOUtil.readLineUntil(endLineCondition);
+        String input = IOUtil.readWithEndLineCondition(endLineCondition);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (String s : inputs) {
@@ -73,23 +73,36 @@ public class IOUtil {
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
-    public static String readLineUntil(Function<String, Boolean> endLineCondition) throws IOException {
+    public static String readFiniteLine(int n) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
-        while (true) {
+        int i = 0;
+        while (i < n) {
+            sb.append(bf.readLine()).append("\n");
+            i++;
+        }
+
+        bf.close();
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static String readWithEndLineCondition(Function<String, Boolean> endLineCondition) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        int n = 0;
+        while (n < 10000) {
             String line = bf.readLine();
             if (endLineCondition.apply(line)) {
                 break;
             }
             sb.append(line).append("\n");
+            n++;
         }
-        bf.close();
 
+        bf.close();
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
-//    public static String answer(Function<String, String> solution) {
-//        int numberOfLineToRead =
-//    }
 }
