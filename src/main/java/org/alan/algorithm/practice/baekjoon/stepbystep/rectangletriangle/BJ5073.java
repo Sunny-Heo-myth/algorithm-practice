@@ -18,8 +18,8 @@ public class BJ5073 {
             if (Objects.equals(line, "0 0 0")) {
                 break;
             }
+            int[] sides = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).sorted().toArray();    // nlogn
 
-            int[] sides = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).sorted().toArray();
             if (sides[0] + sides[1] <= sides[2]) {
                 sb.append(INVALID).append("\n");
                 continue;

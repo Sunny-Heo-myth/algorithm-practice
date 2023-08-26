@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Function;
 
+/**
+ * All IOUtil return value should be String.
+ */
 public class IOUtil {
 
     /**
