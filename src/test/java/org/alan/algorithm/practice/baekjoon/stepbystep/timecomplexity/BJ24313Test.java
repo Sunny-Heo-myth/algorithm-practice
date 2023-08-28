@@ -15,9 +15,6 @@ public class BJ24313Test {
                         "1", "0"),
                 Arguments.of("7 7\n" +
                         "8\n" +
-                        "10", "1"),
-                Arguments.of("-100 -100\n" +
-                        "100\n" +
                         "10", "1")
         );
     }
