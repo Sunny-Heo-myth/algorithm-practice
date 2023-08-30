@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.timecomplexity;
+package org.alan.algorithm.practice.baekjoon.stepbystep.timecomplexity;
 
 public class BJ24266 {
     public String solve(String input) {

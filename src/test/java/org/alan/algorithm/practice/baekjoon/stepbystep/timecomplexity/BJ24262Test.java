@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.timecomplexity;
 
-import org.alan.algorithm.practice.baekjoon.timecomplexity.BJ24262;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

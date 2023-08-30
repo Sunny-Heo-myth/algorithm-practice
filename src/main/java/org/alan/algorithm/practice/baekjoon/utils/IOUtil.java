@@ -54,7 +54,7 @@ public class IOUtil {
         return solution.apply(input);
     }
     /**
-     * A method read String from console with lambda counting readable number of line.
+     * read the interpreted int value of first line
      * @param lineCounter A function provides number of line that it should read.
      * @return Console input
      * @throws IOException IOException when reading console.
@@ -76,6 +76,12 @@ public class IOUtil {
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
+    /**
+     * read n lines.
+     * @param n
+     * @return
+     * @throws IOException
+     */
     public static String readFiniteLine(int n) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -90,6 +96,12 @@ public class IOUtil {
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
+    /**
+     * read until the line meets the end condition
+     * @param endLineCondition
+     * @return
+     * @throws IOException
+     */
     public static String readWithEndLineCondition(Function<String, Boolean> endLineCondition) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
