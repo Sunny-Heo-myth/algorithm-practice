@@ -53,8 +53,9 @@ public class IOUtil {
         String input = IOUtil.readFiniteLine(s -> 0);
         return solution.apply(input);
     }
+
     /**
-     * read the interpreted int value of first line
+     * Read the interpreted number of the first line.
      * @param lineCounter A function provides number of line that it should read.
      * @return Console input
      * @throws IOException IOException when reading console.
