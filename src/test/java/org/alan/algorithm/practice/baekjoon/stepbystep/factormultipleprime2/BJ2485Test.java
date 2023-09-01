@@ -21,7 +21,6 @@ public class BJ2485Test {
                         "7\n" +
                         "8\n" +
                         "13", "5"),
-
                 Arguments.of("3\n" +
                         "999999996\n" +
                         "999999998\n" +

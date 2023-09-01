@@ -10,12 +10,10 @@ import java.util.stream.Stream;
 public class BJ4134Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(
-                        "3\n" +
+                Arguments.of("3\n" +
                         "6\n" +
                         "20\n" +
-                        "100",
-                        "7\n" +
+                        "100", "7\n" +
                         "23\n" +
                         "101")
         );

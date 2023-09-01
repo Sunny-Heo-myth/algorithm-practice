@@ -49,9 +49,30 @@ public class IOUtil {
         return solution.apply(input);
     }
 
-    public static String answer(Function<String, String> solution) throws IOException {
-        String input = IOUtil.readFiniteLine(s -> 0);
-        return solution.apply(input);
+    /**
+     * Give multiple answer in different lines.
+     * @param solution
+     * @throws IOException
+     */
+    public static void answerMultipleQuestions(Function<String, String> solution) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String firstLine = bf.readLine();   // Read the first line in os buffer
+        int n = Integer.parseInt(firstLine);
+        String[] lines = new String[n];
+
+        int i = 0;
+        while (i < n) {
+            String line = bf.readLine();
+            lines[i] = line;
+            i++;
+        }
+        bf.close();
+
+        StringBuilder answer = new StringBuilder();
+        for (String line : lines) {
+            answer.append(solution.apply(line)).append("\n");
+        }
+        System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
     /**
@@ -63,7 +84,7 @@ public class IOUtil {
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        String firstLine = bf.readLine();
+        String firstLine = bf.readLine();   // Read the first line in os buffer
 
         int n = lineCounter.apply(firstLine);
         int i = 0;

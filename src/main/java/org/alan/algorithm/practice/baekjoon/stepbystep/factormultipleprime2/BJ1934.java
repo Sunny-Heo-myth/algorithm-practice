@@ -2,50 +2,36 @@ package org.alan.algorithm.practice.baekjoon.stepbystep.factormultipleprime2;
 
 public class BJ1934 {
     public String solve(String input) {
-        String[] s = input.split("\n");
-        int n = Integer.parseInt(s[0]);
-        int[][] ints = new int[n][2];
-        for (int i = 0; i < n; i++) {
-            String[] ss = s[i + 1].split(" ");
-            ints[i] = new int[]{Integer.parseInt(ss[0]), Integer.parseInt(ss[1])};
-        }
+        String[] s = input.split(" ");
+        int i = Integer.parseInt(s[0]); int j = Integer.parseInt(s[1]);
 
-        StringBuilder sb = new StringBuilder();
+        int big;
+        int small;
 
-        for (int[] line : ints) {
-            int i = line[0]; int j = line[1];
+        if (i == j) {
+            return String.valueOf(j);
 
-            int big;
-            int small;
-
-            if (i == j) {
-                sb.append(j).append("\n");
-                continue;
-
+        } else {
+            if (i > j) {
+                big = i;
+                small = j;
             } else {
-                if (i > j) {
-                    big = i;
-                    small = j;
-                } else {
-                    small = i;
-                    big = j;
-                }
-
-                if (big % small == 0) {
-                    sb.append(big).append("\n");
-                    continue;
-                }
+                small = i;
+                big = j;
             }
 
-            for (int divisor = small - 1; divisor >= 1; divisor--) { // todo: performance by dividing 2
-                if (small % divisor == 0 && big % divisor == 0) {
-                    sb.append(((long) big * small) / divisor).append("\n");
-                    break;
-                }
+            if (big % small == 0) {
+                return String.valueOf(big);
             }
         }
 
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        for (int divisor = small - 1; divisor >= 1; divisor--) { // todo: performance by dividing 2
+            if (small % divisor == 0 && big % divisor == 0) {
+                return String.valueOf(((long) big * small) / divisor);
+            }
+        }
+
+        return String.valueOf(i * j);
         // check if one of the is 1, if then return non 1.
         // check if both are same, if then return the number.
 

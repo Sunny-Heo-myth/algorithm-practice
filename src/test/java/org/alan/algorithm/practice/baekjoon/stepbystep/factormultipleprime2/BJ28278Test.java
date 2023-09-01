@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 public class BJ28278Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(, )
         );
     }
 
