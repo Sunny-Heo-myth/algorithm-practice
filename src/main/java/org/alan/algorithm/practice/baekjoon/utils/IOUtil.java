@@ -17,7 +17,7 @@ public class IOUtil {
      * @return answer string split by end-of-line.
      * @throws IOException
      */
-    public static String answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static String answerMultipleQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(lineCounter);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
@@ -27,6 +27,17 @@ public class IOUtil {
         return answer.deleteCharAt(answer.length() - 1).toString();
     }
 
+    /**
+     * Answer one question with input conditions are:
+     * 1. The first line is total input line count.(except the first ine)
+     * 2. Continuing input introduced at each line.
+     * @param solution
+     * @return
+     */
+    public static String answer(Function<String, String> solution) {
+        // todo:
+        return null;
+    }
     /**
      * This method can not properly operate when the first line has the endOfLine condition.
      * @param endLineCondition
@@ -50,7 +61,7 @@ public class IOUtil {
     }
 
     /**
-     * Give multiple answer in different lines.
+     * Give multiple answer in delimiter as lines.
      * @param solution
      * @throws IOException
      */
