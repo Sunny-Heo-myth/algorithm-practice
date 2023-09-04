@@ -10,12 +10,11 @@ import java.util.stream.Stream;
 public class BJ4134Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("3\n" +
-                        "6\n" +
-                        "20\n" +
-                        "100", "7\n" +
-                        "23\n" +
-                        "101")
+                Arguments.of("6", "7"),
+                Arguments.of("20", "23"),
+                Arguments.of("100", "101"),
+                Arguments.of("101", "101"),
+                Arguments.of("1000000001", "1000000007")
         );
     }
     
@@ -23,6 +22,6 @@ public class BJ4134Test {
     @MethodSource("parameters")
     public void test1(String input, String expected) {
         BJ4134 instance = new BJ4134();
-        Assertions.assertEquals(expected, instance.solve(input));
+        Assertions.assertEquals(expected, instance.solve1(input));
     }
 }

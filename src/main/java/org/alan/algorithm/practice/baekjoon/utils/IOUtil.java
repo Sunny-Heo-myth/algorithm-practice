@@ -67,7 +67,7 @@ public class IOUtil {
      */
     public static void answerMultipleQuestions(Function<String, String> solution) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        String firstLine = bf.readLine();   // Read the first line in os buffer
+        String firstLine = bf.readLine();   // After os buffer has all input value, let jvm read the first line.
         int n = Integer.parseInt(firstLine);
         String[] lines = new String[n];
 
@@ -140,7 +140,7 @@ public class IOUtil {
         StringBuilder sb = new StringBuilder();
 
         int n = 0;
-        while (n < 10000) {
+        while (n < 10000) { // do not let infinite loop
             String line = bf.readLine();
             if (endLineCondition.apply(line)) {
                 break;
