@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedeque;
+package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedequestep;
 
 import java.util.Stack;
 

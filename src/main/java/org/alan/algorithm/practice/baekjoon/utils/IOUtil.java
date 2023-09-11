@@ -12,8 +12,9 @@ public class IOUtil {
 
     /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
+     *
      * @param lineCounter {@link IOUtil#readFiniteLine(Function)}
-     * @param solution solution function which provides actual solution of the given problem.
+     * @param solution    solution function which provides actual solution of the given problem.
      * @return answer string split by end-of-line.
      * @throws IOException
      */
@@ -34,12 +35,14 @@ public class IOUtil {
      * @param solution
      * @return
      */
-    public static String answer(Function<String, String> solution) {
-        // todo:
-        return null;
-    }
+//    public static String answer(Function<String, String> solution) {
+//        // todo:
+//        return null;
+//    }
+
     /**
      * This method can not properly operate when the first line has the endOfLine condition.
+     *
      * @param endLineCondition
      * @param solution
      * @return
@@ -55,13 +58,19 @@ public class IOUtil {
         return answer.deleteCharAt(answer.length() - 1).toString();
     }
 
-    public static String answer(int additionalLine, Function<String, String> solution) throws IOException {
+    public static void answer(Function<String, String> solution) throws IOException {
+        String input = IOUtil.readFiniteLine(s -> 0);
+        System.out.print(solution.apply(input));
+    }
+
+    public static void answer(int additionalLine, Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(s -> additionalLine);
-        return solution.apply(input);
+        System.out.print(solution.apply(input));
     }
 
     /**
      * Give multiple answer in delimiter as lines.
+     *
      * @param solution
      * @throws IOException
      */
@@ -88,6 +97,7 @@ public class IOUtil {
 
     /**
      * Read the interpreted number of the first line.
+     *
      * @param lineCounter A function provides number of line that it should read.
      * @return Console input
      * @throws IOException IOException when reading console.
@@ -111,6 +121,7 @@ public class IOUtil {
 
     /**
      * read n lines.
+     *
      * @param n
      * @return
      * @throws IOException
@@ -131,6 +142,7 @@ public class IOUtil {
 
     /**
      * read until the line meets the end condition
+     *
      * @param endLineCondition
      * @return
      * @throws IOException
