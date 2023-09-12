@@ -48,14 +48,14 @@ public class IOUtil {
      * @return
      * @throws IOException
      */
-    public static String answerWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
+    public static void answerWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
         String input = IOUtil.readWithEndLineCondition(endLineCondition);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (String s : inputs) {
             answer.append(solution.apply(s)).append("\n");
         }
-        return answer.deleteCharAt(answer.length() - 1).toString();
+        System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
     public static void answer(Function<String, String> solution) throws IOException {
