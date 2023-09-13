@@ -1,8 +1,9 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedeque;
+package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedequestep;
 
 import java.util.Stack;
 
 public class BJ4949 {
+
     private static final char LEFT_PARENTHESES = '(';
     private static final char RIGHT_PARENTHESES = ')';
     private static final char LEFT_SQUARE_BRACKETS = '[';
