@@ -18,7 +18,7 @@ public class IOUtil {
      * @return answer string split by end-of-line.
      * @throws IOException
      */
-    public static String answerMultipleQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static String answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(lineCounter);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
@@ -35,10 +35,10 @@ public class IOUtil {
      * @param solution
      * @return
      */
-//    public static String answer(Function<String, String> solution) {
-//        // todo:
-//        return null;
-//    }
+    public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(lineCounter);
+        System.out.print(solution.apply(input));
+    }
 
     /**
      * This method can not properly operate when the first line has the endOfLine condition.
@@ -48,7 +48,7 @@ public class IOUtil {
      * @return
      * @throws IOException
      */
-    public static void answerWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
+    public static void answerQuestionsWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
         String input = IOUtil.readWithEndLineCondition(endLineCondition);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
@@ -74,7 +74,7 @@ public class IOUtil {
      * @param solution
      * @throws IOException
      */
-    public static void answerMultipleQuestions(Function<String, String> solution) throws IOException {
+    public static void answerQuestions(Function<String, String> solution) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String firstLine = bf.readLine();   // After os buffer has all input value, let jvm read the first line.
         int n = Integer.parseInt(firstLine);
