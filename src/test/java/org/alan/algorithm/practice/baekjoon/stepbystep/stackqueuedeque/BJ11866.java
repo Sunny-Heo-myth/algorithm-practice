@@ -2,6 +2,7 @@ package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedeque;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 public class BJ11866 {
     public String solve(String input) {
@@ -33,6 +34,32 @@ public class BJ11866 {
 
         // return result in format
         return result.insert(0, "<").append(">").toString();
+    }
+
+    public String solve2(String input) {
+        // parse and initiate length & hop
+        String[] s = input.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        // declare & initiate deque
+        List<Integer> chain = new LinkedList<>();
+        for (int i = 1; i <= Integer.parseInt(s[0]); i++) {
+            chain.add(i);
+        }
+
+        // declare & initiate hop
+        int hop = Integer.parseInt(s[1]);
+
+        int index = 0;
+        while (chain.size() > 1) {  // O(n)
+            // initiate index
+            index = (index + hop - 1) % chain.size();
+
+            // get rid of element & append to result
+            result.append(chain.remove(index)).append(", ");
+        }
+
+        return result.append(chain.remove(0)).insert(0, "<").append(">").toString();
     }
 
 }

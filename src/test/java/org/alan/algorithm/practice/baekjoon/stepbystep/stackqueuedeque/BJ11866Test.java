@@ -19,6 +19,6 @@ public class BJ11866Test {
     @MethodSource("parameters")
     public void test1(String input, String expected) {
         BJ11866 instance = new BJ11866();
-        Assertions.assertEquals(expected, instance.solve(input));
+        Assertions.assertEquals(expected, instance.solve2(input));
     }
 }
