@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedeque;
+package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedequestep;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,14 +14,7 @@ public class BJ28279 {
 
             // execute each deque operation in list sequentially & write to result.
             if (s[i].length() != 1) {
-                String[] ss = s[i].split(" ");
-                int operation = Integer.parseInt(ss[0]);
-                int x = Integer.parseInt(ss[1]);
-                if (operation == 1) {
-                    pushFirst(x);
-                } else if (operation == 2) {
-                    pushLast(x);
-                }
+                push(s[i]);
 
             } else {
                 switch (s[i]) {
@@ -38,6 +31,17 @@ public class BJ28279 {
 
         // return result
         return result.deleteCharAt(result.length() - 1).toString();
+    }
+
+    private void push(String s) {
+        String[] ss = s.split(" ");
+        int operation = Integer.parseInt(ss[0]);
+        int x = Integer.parseInt(ss[1]);
+        if (operation == 1) {
+            pushFirst(x);
+        } else if (operation == 2) {
+            pushLast(x);
+        }
     }
 
     // implement each deque operation
