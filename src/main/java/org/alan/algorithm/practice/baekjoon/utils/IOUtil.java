@@ -105,7 +105,7 @@ public class IOUtil {
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        String firstLine = bf.readLine();   // Read the first line in os buffer
+        String firstLine = bf.readLine();
 
         int n = lineCounter.apply(firstLine);
         int i = 0;

@@ -17,7 +17,7 @@ public class BJ24511 {
         // D&I a queue
         Queue<Integer> queue = new LinkedList<>();
 
-        // fill the queue with reverse index order
+        // if zeroOne is zero fill the queue with reverse index order
         for (int i = zeroOne.length - 1; i >= 0; i--) { // O(n)
             if (zeroOne[i] == 0) {
                 queue.offer(numbers[i]);
