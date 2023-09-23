@@ -18,14 +18,14 @@ public class IOUtil {
      * @return answer string split by end-of-line.
      * @throws IOException
      */
-    public static String answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static void answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(lineCounter);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) {
             answer.append(solution.apply(inputs[i])).append("\n");
         }
-        return answer.deleteCharAt(answer.length() - 1).toString();
+        System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
     /**
