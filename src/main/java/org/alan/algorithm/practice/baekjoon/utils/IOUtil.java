@@ -58,6 +58,42 @@ public class IOUtil {
         System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
+    public static void answerEndLineConditionedQuestions(Function<String, Integer> numberOfQuestionProvider,
+                                                         Function<String, Integer> questionEndLineCounter,
+                                                         Function<String, String> solution) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int numberOfProblems = numberOfQuestionProvider.apply(bf.readLine());
+
+        StringBuilder answer = new StringBuilder();
+        while (0 < numberOfProblems) {
+            int n = questionEndLineCounter.apply(bf.readLine());
+
+            StringBuilder input = new StringBuilder();
+            int lineNumber = 0;
+            while (lineNumber < n) {
+                input.append(bf.readLine()).append("\n");
+                lineNumber++;
+            }
+
+            answer.append(solution.apply(input.deleteCharAt(input.length() - 1).toString())).append("\n");
+            numberOfProblems--;
+        }
+
+        bf.close();
+        System.out.print(answer.deleteCharAt(answer.length() - 1));
+    }
+
+    public static void testAnswer() throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = bf.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        bf.close();
+        System.out.print(sb);
+    }
+
     public static void answer(Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(s -> 0);
         System.out.print(solution.apply(input));
@@ -152,7 +188,7 @@ public class IOUtil {
         StringBuilder sb = new StringBuilder();
 
         int n = 0;
-        while (n < 10000) { // do not let infinite loop
+        while (n < 2000000) { // do not let infinite loop
             String line = bf.readLine();
             if (endLineCondition.apply(line)) {
                 break;

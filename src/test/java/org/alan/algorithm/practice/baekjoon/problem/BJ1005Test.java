@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
 import java.util.stream.Stream;
 
 public class BJ1005Test {
@@ -35,8 +36,8 @@ public class BJ1005Test {
     
     @ParameterizedTest
     @MethodSource("parameters")
-    public void test1(String input, String expected) {
+    public void test1(String input, String expected) throws IOException {
         BJ1005 instance = new BJ1005();
-        Assertions.assertEquals(expected, instance.solve(input));
+        Assertions.assertEquals(expected, instance.solve());
     }
 }
