@@ -21,27 +21,33 @@ public class BJ1005 {
             int numberOfRules = Integer.parseInt(line[1]);
 
             // DNI elapsed time for each building as array (directed edge)
-            int[] elapseTime = Arrays.stream(bf.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            int[] constructionTime = Arrays.stream(bf.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
             // DNI total elapsed time for each building as array
-            int[] totalElapseTime = new int[numberOfBuildings];
+            int[] totalElapsedTime = new int[numberOfBuildings];
 
             // DNI directed edges
             Map<Integer, List<Integer>> edgeMap = new HashMap<>();
             for (int i = 0; i < numberOfRules; i++) {
                 String[] s = bf.readLine().split(" ");
-                int key = Integer.parseInt(s[0]);
-                int valueElement = Integer.parseInt(s[1]);
+                int key = Integer.parseInt(s[0]) - 1;   // minus 1 for array processing
+                int valueElement = Integer.parseInt(s[1]) - 1;  // minus 1 for array processing
                 if (edgeMap.containsKey(key)) {
                     edgeMap.get(key).add(valueElement);
                 } else {
-                    edgeMap.put(key, List.of(valueElement));
+                    List<Integer> integers = new ArrayList<>();
+                    integers.add(valueElement);
+                    edgeMap.put(key, integers);
                 }
             }
 
             // DNI destination
-            int destination = Integer.parseInt(bf.readLine());
+            int destination = Integer.parseInt(bf.readLine()) - 1;  // minus 1 for array processing
 
+            // initiate first element of totalElapsedTime
+            System.arraycopy(constructionTime, 0, totalElapsedTime, 0, constructionTime.length);
+
+            result.append(answer(constructionTime, totalElapsedTime, edgeMap, destination)).append("\n");
 
             numberOfQuestions--;
         }
@@ -50,24 +56,91 @@ public class BJ1005 {
         return result.deleteCharAt(result.length() - 1).toString();
     }
 
-    private String answer(String s) {
+    private int answer(int[] constructionTime,
+                       int[] totalElapsedTime,
+                       Map<Integer, List<Integer>> edgeMap,
+                       int destination) {
 
+        int shortestTime = Integer.MAX_VALUE;
+        Queue<Integer> queue = new LinkedList<>();
 
-        // DNI queue
-        // add starting point to queue<int>
+        queue.add(0);
+        while (!queue.isEmpty()) {
+            // DNI current building with poll & add to total for the building
+            int currentBuilding = queue.poll();
 
-        // while queue is not empty
+            // if it is destination, update result
+            if (currentBuilding == destination) {
+                if (shortestTime > totalElapsedTime[destination]) {
+                    shortestTime = totalElapsedTime[destination];
+                }
+                continue;
+            }
 
-        // DNI current building with poll & add to total for the building
+            List<Integer> nextBuildings = edgeMap.get(currentBuilding);
+            for (int nextBuilding : nextBuildings) {
+                // if total is 0 add the building cost to total and write to the building
+                if (totalElapsedTime[nextBuilding] == constructionTime[nextBuilding]) {
+                    queue.add(nextBuilding);
+                    totalElapsedTime[nextBuilding] += totalElapsedTime[currentBuilding];
+                }
+                // else compare total elapsed time of the building vs total elapsed time of current building & update total
+                else {
+                    int sum = totalElapsedTime[currentBuilding] + constructionTime[nextBuilding];
+                    if (totalElapsedTime[nextBuilding] > sum) {
+                        queue.add(nextBuilding);
+                        totalElapsedTime[nextBuilding] = sum;
+                    }
+                }
+            }
 
-        // if total is 0 add the building cost to total and write to the building
-        // else compare total elapsed time of the building vs total elapsed time of current building & update total
-
-        // if it is destination, update result
-
-        // while end
+        }
 
         // return result
-        return null;
+        return shortestTime;
+    }
+
+    private int answer2(int[] constructionTime,
+                        int[] reversedTotalElapsedTime,
+                        Map<Integer, List<Integer>> reversedEdgeMap,
+                        int destination) {
+
+        int shortestTime = Integer.MAX_VALUE;
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(destination);
+        while (!queue.isEmpty()) {
+            // DNI current building with poll & add to total for the building
+            int currentBuilding = queue.poll();
+
+            // if it is destination, update result
+            if (currentBuilding == 0) {
+                if (shortestTime > reversedTotalElapsedTime[0]) {
+                    shortestTime = reversedTotalElapsedTime[0];
+                }
+                continue;
+            }
+
+            List<Integer> previousBuildings = reversedEdgeMap.get(currentBuilding);
+            for (int previousBuilding : previousBuildings) {
+                // if total is 0 add the building cost to total and write to the building
+                if (reversedTotalElapsedTime[previousBuilding] == constructionTime[previousBuilding]) {
+                    queue.add(previousBuilding);
+                    reversedTotalElapsedTime[previousBuilding] += reversedTotalElapsedTime[currentBuilding];
+                }
+                // else compare total elapsed time of the building vs total elapsed time of current building & update total
+                else {
+                    int sum = reversedTotalElapsedTime[currentBuilding] + constructionTime[previousBuilding];
+                    if (reversedTotalElapsedTime[previousBuilding] > sum) {
+                        queue.add(previousBuilding);
+                        reversedTotalElapsedTime[previousBuilding] = sum;
+                    }
+                }
+            }
+
+        }
+
+        // return result
+        return shortestTime;
     }
 }
