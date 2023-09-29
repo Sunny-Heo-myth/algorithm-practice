@@ -1,56 +1,70 @@
 package org.alan.algorithm.lab;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+import java.util.stream.IntStream;
 
+/**
+ * Topological sort can only be used with non-cyclical arrowed graph to sort traverse order.
+ */
 public class TopologicalSort {
-    private final int numberOfNode;
-    private final int numberOfEdge;
+    private final int[] nodes;
     private final int[] fromArray;
     private final int[] toArray;
 
-    public TopologicalSort(int numberOfNode, int[] fromArray, int[] toArray) {
+    public TopologicalSort(int nodes, int[] fromArray, int[] toArray) {
         if (fromArray.length != toArray.length) {
             throw new IllegalArgumentException();
         }
 
-        this.numberOfNode = numberOfNode;
-        this.numberOfEdge = fromArray.length;
+        this.nodes = IntStream.rangeClosed(1, nodes).toArray();
+        this.fromArray = fromArray;
+        this.toArray = toArray;
+    }
+
+    public TopologicalSort(int[] nodes, int[] fromArray, int[] toArray) {
+        if (fromArray.length != toArray.length) {
+            throw new IllegalArgumentException();
+        }
+
+        this.nodes = nodes;
         this.fromArray = fromArray;
         this.toArray = toArray;
     }
 
     public Queue<Integer> solve() {
-        // Outer List index is "from" node & Inner list index is list of "to" node.
-        List<List<Integer>> fromTo = new ArrayList<>();
-        for (int i = 0; i < numberOfNode + 1; i++) {
-            fromTo.add(new ArrayList<>());
+        Map<Integer, List<Integer>> fromTo = new HashMap<>();
+        Map<Integer, Integer> inDegrees = new HashMap<>();
+
+        for (int i : nodes) {
+            fromTo.put(i, new ArrayList<>());
+            inDegrees.put(i, 0);
         }
 
-        // index 0 is remain unused
-        int[] inDegrees = new int[numberOfNode + 1];
-        for (int i = 0; i < numberOfEdge; i++) {
+        for (int i = 0; i < fromArray.length; i++) {
             int from = fromArray[i];
             int to = toArray[i];
 
             fromTo.get(from).add(to);
-            inDegrees[to]++;
+            if (inDegrees.containsKey(to)) {
+                inDegrees.put(to, inDegrees.get(to) + 1);
+            } else {
+                inDegrees.put(to, 1);
+            }
+
         }
 
         return sort(fromTo, inDegrees);
 
     }
 
-    private Queue<Integer> sort(List<List<Integer>> fromTo, int[] inDegrees) {
+    private Queue<Integer> sort(Map<Integer, List<Integer>> fromTo, Map<Integer, Integer> inDegrees) {
         Queue<Integer> queue = new LinkedList<>();
         Queue<Integer> result = new LinkedList<>();
 
-        // There can be multiple starting point wherever inDegree is 0
-        for (int i = 1; i < numberOfNode + 1; i++) {
-            if (inDegrees[i] == 0) {
-                queue.offer(i);
+        // There can be multiple starting point wherever inDegree value for the node is 0
+        for (int from : fromTo.keySet()) {
+            if (inDegrees.get(from) == 0) {
+                queue.offer(from);
             }
         }
 
@@ -59,14 +73,14 @@ public class TopologicalSort {
             result.offer(node);
 
             for (int to : fromTo.get(node)) {
-                inDegrees[to]--;
+                inDegrees.put(to, inDegrees.get(to) - 1);
 
-                if (inDegrees[to] == 0) {
+                if (inDegrees.get(to) == 0) {
                     queue.offer(to);
                 }
             }
         }
-        
+
         return result;
     }
 
