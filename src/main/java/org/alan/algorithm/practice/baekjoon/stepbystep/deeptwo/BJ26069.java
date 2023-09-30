@@ -20,9 +20,6 @@ public class BJ26069 {
         // DNI map
         Set<String> set = new HashSet<>();
 
-        // DNI flag as false
-        boolean flag = false;
-
         // DNI count as 0
         int count = 0;
 
@@ -32,16 +29,12 @@ public class BJ26069 {
             if (Objects.equals(ss[0], "ChongChong") || Objects.equals(ss[1], "ChongChong")) {
                 set.add(ss[0]);
                 set.add(ss[1]);
-                flag = true;
                 continue;
             }
 
-            // if flag is true
-            if (flag) {
-                if (set.contains(ss[0]) || set.contains(ss[1])) {
-                    set.add(ss[0]);
-                    set.add(ss[1]);
-                }
+            if (set.contains(ss[0]) || set.contains(ss[1])) {
+                set.add(ss[0]);
+                set.add(ss[1]);
             }
         }
 
