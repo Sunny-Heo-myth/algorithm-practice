@@ -1,8 +1,8 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.deeptwo;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class BJ26069 {
     public String solve(String input) {
@@ -18,7 +18,7 @@ public class BJ26069 {
         }
 
         // DNI map
-        Map<String, Boolean> map = new HashMap<>();
+        Set<String> set = new HashSet<>();
 
         // DNI flag as false
         boolean flag = false;
@@ -30,21 +30,21 @@ public class BJ26069 {
         for (String[] ss : meeting) {
             // if there is chong chong
             if (Objects.equals(ss[0], "ChongChong") || Objects.equals(ss[1], "ChongChong")) {
-                map.put(ss[0], true);
-                map.put(ss[1], true);
+                set.add(ss[0]);
+                set.add(ss[1]);
                 flag = true;
                 continue;
             }
 
             // if flag is true
             if (flag) {
-                if (map.containsKey(ss[0]) || map.containsKey(ss[1])) {
-                    map.put(ss[0], true);
-                    map.put(ss[1], true);
+                if (set.contains(ss[0]) || set.contains(ss[1])) {
+                    set.add(ss[0]);
+                    set.add(ss[1]);
                 }
             }
         }
 
-        return String.valueOf(map.keySet().size());
+        return String.valueOf(set.size());
     }
 }
