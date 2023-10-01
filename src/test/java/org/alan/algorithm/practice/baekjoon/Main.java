@@ -1,14 +1,15 @@
 package org.alan.algorithm.practice.baekjoon;
 
-import org.alan.algorithm.practice.baekjoon.stepbystep.deeptwo.BJ20920;
+import org.alan.algorithm.practice.baekjoon.stepbystep.recursionstep.BJ24060;
+import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        BJ20920 instance = new BJ20920();
-        System.out.print(instance.solve());
+        BJ24060 instance = new BJ24060();
+        IOUtil.answer(1, instance::solve);
     }
 
 }
