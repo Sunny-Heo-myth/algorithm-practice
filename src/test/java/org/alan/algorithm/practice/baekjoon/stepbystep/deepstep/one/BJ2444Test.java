@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.deepstep.one;
 
-import org.alan.algorithm.practice.baekjoon.stepbystep.deepstep.BJ2444;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

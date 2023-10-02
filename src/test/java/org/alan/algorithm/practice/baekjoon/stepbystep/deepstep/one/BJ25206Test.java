@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.deepstep.one;
 
-import org.alan.algorithm.practice.baekjoon.stepbystep.deepstep.BJ25206;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
