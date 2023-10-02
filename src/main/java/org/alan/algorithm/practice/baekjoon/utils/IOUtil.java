@@ -83,17 +83,6 @@ public class IOUtil {
         System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
-    public static void testAnswer() throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = bf.readLine()) != null) {
-            sb.append(line).append("\n");
-        }
-        bf.close();
-        System.out.print(sb);
-    }
-
     public static void answer(Function<String, String> solution) throws IOException {
         String input = IOUtil.readFiniteLine(s -> 0);
         System.out.print(solution.apply(input));
@@ -128,6 +117,18 @@ public class IOUtil {
         for (String line : lines) {
             answer.append(solution.apply(line)).append("\n");
         }
+        System.out.print(answer.deleteCharAt(answer.length() - 1));
+    }
+
+    // todo: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
+    public static void answerQuestionsWithNoEndLineCondition(Function<String, String> solution) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder answer = new StringBuilder();
+        String line;
+        while ((line = bf.readLine()) != null) {
+            answer.append(solution.apply(line)).append("\n");
+        }
+        bf.close();
         System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
@@ -199,6 +200,17 @@ public class IOUtil {
 
         bf.close();
         return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static String readWithNoEndLineCondition() throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = bf.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        bf.close();
+        return sb.toString();
     }
 
 }
