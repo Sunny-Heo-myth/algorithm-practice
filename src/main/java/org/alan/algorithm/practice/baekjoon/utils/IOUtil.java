@@ -19,7 +19,7 @@ public class IOUtil {
      * @throws IOException
      */
     public static void answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
-        String input = IOUtil.readFiniteLine(lineCounter);
+        String input = readFiniteLine(lineCounter);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) {
@@ -49,7 +49,7 @@ public class IOUtil {
      * @throws IOException
      */
     public static void answerQuestionsWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
-        String input = IOUtil.readWithEndLineCondition(endLineCondition);
+        String input = readWithEndLineCondition(endLineCondition);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (String s : inputs) {
@@ -84,12 +84,12 @@ public class IOUtil {
     }
 
     public static void answer(Function<String, String> solution) throws IOException {
-        String input = IOUtil.readFiniteLine(s -> 0);
+        String input = readFiniteLine(s -> 0);
         System.out.print(solution.apply(input));
     }
 
     public static void answer(int additionalLine, Function<String, String> solution) throws IOException {
-        String input = IOUtil.readFiniteLine(s -> additionalLine);
+        String input = readFiniteLine(s -> additionalLine);
         System.out.print(solution.apply(input));
     }
 
