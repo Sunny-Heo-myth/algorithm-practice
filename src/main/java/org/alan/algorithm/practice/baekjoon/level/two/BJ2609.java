@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.level.two;
 
 public class BJ2609 {
     public String solve(String input) {

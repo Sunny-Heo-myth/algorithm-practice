@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.level.two;
 
 public class BJ10828_2 {
     private static final String TOP = "top";

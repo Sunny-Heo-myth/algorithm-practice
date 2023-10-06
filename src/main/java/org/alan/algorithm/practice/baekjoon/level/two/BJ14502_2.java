@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.level.two;
 
 import java.util.ArrayList;
 import java.util.List;
