@@ -1,6 +1,6 @@
 package org.alan.algorithm.practice.baekjoon;
 
-import org.alan.algorithm.practice.baekjoon.problem.BJ2609;
+import org.alan.algorithm.practice.baekjoon.problem.BJ10845;
 import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        BJ2609 instance = new BJ2609();
-        IOUtil.answer(instance::solve);
+        BJ10845 instance = new BJ10845();
+        IOUtil.answer(Integer::parseInt, instance::solve);
     }
 
 }
