@@ -3,7 +3,7 @@ package org.alan.algorithm.datastructure.recursion;
 
 import org.junit.jupiter.api.Test;
 
-import static org.alan.algorithm.concept.recursion.Factorial.whileFactorial;
+import static org.alan.algorithm.ioa.recursion.Factorial.whileFactorial;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecursionTest {

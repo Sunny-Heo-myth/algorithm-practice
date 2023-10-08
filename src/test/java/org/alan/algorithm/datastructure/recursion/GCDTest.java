@@ -2,8 +2,8 @@ package org.alan.algorithm.datastructure.recursion;
 
 import org.junit.jupiter.api.Test;
 
-import static org.alan.algorithm.concept.recursion.GCD.euclidGcd;
-import static org.alan.algorithm.concept.recursion.GCD.gcd;
+import static org.alan.algorithm.ioa.recursion.GCD.euclidGcd;
+import static org.alan.algorithm.ioa.recursion.GCD.gcd;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GCDTest {

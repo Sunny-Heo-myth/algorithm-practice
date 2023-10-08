@@ -5,16 +5,13 @@ import java.util.Queue;
 
 public class BJ1697 {
     private final Queue<Integer> queue = new LinkedList<>();
-//    private int endIndex;
-    private int[] counts = new int[100001];
+    private final int[] counts = new int[100001];
 
     public String solve(String input) {
         String[] s = input.split(" ");
         int x = Integer.parseInt(s[0]);
         int y = Integer.parseInt(s[1]);
         // I always prefer endIndex is not covered.
-//        endIndex = Math.min((y - 1) * 2 + 1, 100001);
-//        counts = new int[endIndex];
 
         int answer = move(x, y);
         return String.valueOf(answer);

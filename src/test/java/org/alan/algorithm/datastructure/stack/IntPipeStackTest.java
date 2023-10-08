@@ -1,5 +1,6 @@
 package org.alan.algorithm.datastructure.stack;
 
+import org.alan.algorithm.ioa.datastructure.stack.IntPipeStack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

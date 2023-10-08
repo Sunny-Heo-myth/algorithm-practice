@@ -1,5 +1,6 @@
 package org.alan.algorithm.datastructure.queue;
 
+import org.alan.algorithm.ioa.datastructure.queue.BookIntQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
