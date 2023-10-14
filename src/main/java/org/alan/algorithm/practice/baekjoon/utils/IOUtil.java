@@ -11,6 +11,43 @@ import java.util.function.Function;
 public class IOUtil {
 
     /**
+     * Answer one question with input conditions are:
+     * 1. The first line is total input line count.(except the first ine)
+     * 2. Continuing input introduced at each line.
+     *
+     * @param solution
+     * @return
+     */
+    public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(lineCounter);
+        System.out.print(solution.apply(input));
+    }
+
+    /**
+     * Read the interpreted number of the first line.
+     *
+     * @param lineCounter A function provides number of line that it should read.
+     * @return Console input
+     * @throws IOException IOException when reading console.
+     */
+    public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String firstLine = bf.readLine();
+
+        int n = lineCounter.apply(firstLine);
+        int i = 0;
+        sb.append(firstLine).append("\n");
+        while (i < n) {
+            sb.append(bf.readLine()).append("\n");
+            i++;
+        }
+
+        bf.close();
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
      *
      * @param lineCounter {@link IOUtil#readFiniteLine(Function)}
@@ -28,15 +65,13 @@ public class IOUtil {
         System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
-    /**
-     * Answer one question with input conditions are:
-     * 1. The first line is total input line count.(except the first ine)
-     * 2. Continuing input introduced at each line.
-     * @param solution
-     * @return
-     */
-    public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
-        String input = readFiniteLine(lineCounter);
+    public static void answer(Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(s -> 0);
+        System.out.print(solution.apply(input));
+    }
+
+    public static void answer(int additionalLine, Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(s -> additionalLine);
         System.out.print(solution.apply(input));
     }
 
@@ -83,16 +118,6 @@ public class IOUtil {
         System.out.print(answer.deleteCharAt(answer.length() - 1));
     }
 
-    public static void answer(Function<String, String> solution) throws IOException {
-        String input = readFiniteLine(s -> 0);
-        System.out.print(solution.apply(input));
-    }
-
-    public static void answer(int additionalLine, Function<String, String> solution) throws IOException {
-        String input = readFiniteLine(s -> additionalLine);
-        System.out.print(solution.apply(input));
-    }
-
     /**
      * Give multiple answer in delimiter as lines.
      *
@@ -130,30 +155,6 @@ public class IOUtil {
         }
         bf.close();
         System.out.print(answer.deleteCharAt(answer.length() - 1));
-    }
-
-    /**
-     * Read the interpreted number of the first line.
-     *
-     * @param lineCounter A function provides number of line that it should read.
-     * @return Console input
-     * @throws IOException IOException when reading console.
-     */
-    public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        String firstLine = bf.readLine();
-
-        int n = lineCounter.apply(firstLine);
-        int i = 0;
-        sb.append(firstLine).append("\n");
-        while (i < n) {
-            sb.append(bf.readLine()).append("\n");
-            i++;
-        }
-
-        bf.close();
-        return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
     /**
