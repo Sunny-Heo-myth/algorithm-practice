@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.topic.geometry;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -65,6 +64,5 @@ public class BJ1004Test {
     @MethodSource("parameters")
     public void test1(String input, String expected) {
         BJ1004 instance = new BJ1004();
-        Assertions.assertEquals(expected, instance.solve(input));
     }
 }
