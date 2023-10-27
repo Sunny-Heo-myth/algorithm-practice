@@ -1,0 +1,16 @@
+
+Bellman-Ford(Graph, source):
+1. Initialize distance[] = INFINITY and distance[source] = 0
+2. For i from 1 to size(vertices) - 1:
+     For each edge (u, v) with weight w in edges:
+         If distance[u] + w < distance[v]:
+             distance[v] = distance[u] + w
+3. For each edge (u, v) with weight w in edges:
+     If distance[u] + w < distance[v]:
+         print "Graph contains negative weight cycle"
+4. Return distance[]
+
+The key insight of the Bellman-Ford algorithm is that
+the shortest path from the source to any other vertex in a graph with |V| vertices must have at most |V| - 1 edges.
+If a shorter path is found that uses |V| or more edges,
+then there's a negative weight cycle in the graph.
