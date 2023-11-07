@@ -14,18 +14,14 @@ public class BJ11404 {
     private int[][] relation;
     private static final int NO_ROUTE = 100000001;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BJ11404 instance = new BJ11404();
-        instance.numberOfVertix = Integer.parseInt(br.readLine());
-        instance.relation = new int[instance.numberOfVertix][instance.numberOfVertix];
-        for (int[] ints : instance.relation) Arrays.fill(ints, NO_ROUTE);
-        int line = Integer.parseInt(br.readLine());
-        while (line-- > 0) instance.updateEdge(br.readLine());
-
-        instance.floydWarshall();
-        instance.write(instance.relation);
-        br.close();
+    public String solve(String input) {
+        String[] s = input.split(" ");
+        numberOfVertix = Integer.parseInt(s[0]);
+        relation = new int[numberOfVertix][numberOfVertix];
+        for (int[] ints : relation) Arrays.fill(ints, NO_ROUTE);
+        Arrays.stream(s).skip(2).forEach(this::updateEdge);
+        floydWarshall();
+        return write(relation);
     }
 
     private void updateEdge(String s) {
@@ -41,12 +37,12 @@ public class BJ11404 {
             else relation[i][j] = Integer.min(relation[i][j], relation[i][k] + relation[k][j]);
     }
 
-    private void write(int[][] relation) {
+    private String write(int[][] relation) {
         for (int i = 0; i < numberOfVertix; i++) for (int j = 0; j < numberOfVertix; j++)
             relation[i][j] = relation[i][j] == NO_ROUTE ? 0 : relation[i][j];
 
-        System.out.print(Arrays.stream(relation)
+        return Arrays.stream(relation)
                 .map(ints -> Arrays.stream(ints).mapToObj(String::valueOf).collect(Collectors.joining(" ")))
-                .collect(Collectors.joining("\n")));
+                .collect(Collectors.joining("\n"));
     }
 }
