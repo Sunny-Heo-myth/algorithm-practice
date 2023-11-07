@@ -1,6 +1,8 @@
 package org.alan.algorithm.practice.baekjoon.level.four;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BJ1753 {
     private boolean[] check;    // initialized only once
@@ -10,7 +12,9 @@ public class BJ1753 {
     public String solve(String input) {
         int start = parse(input);
         dijkstra(start);
-        return write();
+        return IntStream.range(1, distance.length)
+                .mapToObj(i -> distance[i] == Integer.MAX_VALUE ? "INF" : String.valueOf(distance[i]))
+                .collect(Collectors.joining("\n"));
     }
 
     private void dijkstra(int start) {
@@ -53,13 +57,7 @@ public class BJ1753 {
         return Integer.parseInt(s[1]);
     }
 
-    private String write() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < distance.length; i++) sb.append(distance[i] == Integer.MAX_VALUE ? "INF" : distance[i]).append("\n");
-        return sb.deleteCharAt(sb.length() - 1).toString();
-    }
-
-    private class ToCost {
+    private static class ToCost {
         private final int to;
         private final int cost;
 

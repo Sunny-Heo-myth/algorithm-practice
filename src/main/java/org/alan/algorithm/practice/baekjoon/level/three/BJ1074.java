@@ -7,9 +7,7 @@ public class BJ1074 {
     }
 
     private int z(int n, int r, int c, int total) {
-        if (n == 1) {
-            return r * 2 + c + total;
-        }
+        if (n == 1) return r * 2 + c + total;
 
         int side = (int) Math.pow(2, n - 1);
         return z(n - 1, r % side, c % side, side * side * ((r / side) * 2 + (c / side)) + total);

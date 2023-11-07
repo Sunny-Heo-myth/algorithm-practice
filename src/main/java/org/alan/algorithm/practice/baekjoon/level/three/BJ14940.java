@@ -3,6 +3,8 @@ package org.alan.algorithm.practice.baekjoon.level.three;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BJ14940 {
     private final int[] xx = {1, 0, -1, 0};
@@ -31,18 +33,16 @@ public class BJ14940 {
         int count = 1;
         while (!queue.isEmpty()) {
             int[] from = queue.poll();
-            move(from, count);
+            move(from);
         }
     }
 
-    private void move(int[] from, int count) {
+    private void move(int[] from) {
         for (int i = 0; i < 4; i++) {
             int toX = from[0] + xx[i];
             int toY = from[1] + yy[i];
 
-            if (toX < 0 || toX >= map.length || toY < 0 || toY >= map[0].length){
-                continue;
-            }
+            if (toX < 0 || toX >= map.length || toY < 0 || toY >= map[0].length) continue;
 
             if (map[toX][toY] != 0 && answer[toX][toY] == 0) {
                 answer[toX][toY] = answer[from[0]][from[1]] + 1;
@@ -64,20 +64,13 @@ public class BJ14940 {
                     .mapToInt(Integer::parseInt)
                     .toArray();
 
-        start:
-        for (int i = 0; i < x; i++) for (int j = 0; j < y; j++) if (map[i][j] == 2) {
-                start = new int[]{i, j};
-                break start;
-            }
+        for (int i = 0; i < x; i++) for (int j = 0; j < y; j++) if (map[i][j] == 2) return new int[]{i, j};
         return start;
     }
 
     private String write(int[][] multiply) {
-        StringBuilder sb = new StringBuilder();
-        for (int[] ints : multiply) {
-            for (int j : ints) sb.append(j).append(" ");
-            sb.deleteCharAt(sb.length() - 1).append("\n");
-        }
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return Arrays.stream(multiply)
+                .map(ints -> Arrays.stream(ints).mapToObj(String::valueOf).collect(Collectors.joining(" ")))
+                .collect(Collectors.joining("\n"));
     }
 }

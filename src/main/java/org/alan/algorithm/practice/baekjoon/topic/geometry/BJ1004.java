@@ -13,9 +13,7 @@ public class BJ1004 {
 
         BJ1004 instance = new BJ1004();
         int n = Integer.parseInt(bf.readLine());
-        while (n-- > 0) {
-            instance.sb.append(instance.solve(bf)).append("\n");
-        }
+        while (n-- > 0) instance.sb.append(instance.solve(bf)).append("\n");
 
         System.out.print(instance.sb.deleteCharAt(instance.sb.length() - 1));
     }

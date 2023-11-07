@@ -3,6 +3,8 @@ package org.alan.algorithm.practice.baekjoon.problem;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BJ10830 {
     private final int DIVISOR = 1000;
@@ -28,12 +30,9 @@ public class BJ10830 {
     }
 
     private String write(int[][] multiply) {
-        StringBuilder sb = new StringBuilder();
-        for (int[] ints : multiply) {
-            for (int j : ints) sb.append(j).append(" ");
-            sb.deleteCharAt(sb.length() - 1).append("\n");
-        }
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return Arrays.stream(multiply)
+                .map(ints -> Arrays.stream(ints).mapToObj(String::valueOf).collect(Collectors.joining(" ")))
+                .collect(Collectors.joining("\n"));
     }
 
     private int[][] power(int[][] parameter, long times) {
@@ -54,15 +53,13 @@ public class BJ10830 {
 
     private int[][] multiply(int[][] left, int[][] right) {
         int[][] result = new int[matrix.length][matrix.length];
-        for (int i = 0; i < matrix.length; i++) for (int j = 0; j < matrix.length; j++)
-            result[i][j] = getNumber(left, right, i, j);
+        for (int x = 0; x < matrix.length; x++) for (int j = 0; j < matrix.length; j++)
+            result[x][j] = getNumber(left, right, x, j);
         return result;
     }
 
     private int getNumber(int[][] left, int[][] right, int x, int y) {
-        int sum = 0;
-        for (int i = 0; i < matrix.length; i++) sum += left[x][i] * right[i][y];
-        return sum % DIVISOR;
+        return IntStream.range(0, matrix.length).map(k -> left[x][k] * right[k][y]).sum() % DIVISOR;
     }
 
 }
