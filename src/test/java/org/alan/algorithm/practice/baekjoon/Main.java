@@ -1,14 +1,14 @@
 package org.alan.algorithm.practice.baekjoon;
 
-import org.alan.algorithm.practice.baekjoon.topic.greedy.BJ5585;
+import org.alan.algorithm.practice.baekjoon.topic.geometry.BJ11758;
 import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BJ5585 instance = new BJ5585();
-        IOUtil.answer(instance::solve);
+        BJ11758 instance = new BJ11758();
+        IOUtil.answer(2, instance::solve);
     }
 
 
