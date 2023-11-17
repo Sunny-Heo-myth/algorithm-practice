@@ -23,6 +23,11 @@ public class IOUtil {
         System.out.print(solution.apply(input));
     }
 
+    public static void answer(int nthLine, Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(nthLine, lineCounter);
+        System.out.print(solution.apply(input));
+    }
+
     /**
      * Read the interpreted number of the first line.
      *
@@ -36,6 +41,22 @@ public class IOUtil {
         String firstLine = bf.readLine();
         int n = lineCounter.apply(firstLine);
         sb.append(firstLine).append("\n");
+        int i = 0;
+        while (i++ < n) sb.append(bf.readLine()).append("\n");
+        bf.close();
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static String readFiniteLine(int nthLine, Function<String, Integer> lineCounter) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        nthLine -= 1;
+        while (nthLine-- > 0) sb.append(bf.readLine()).append("\n");
+
+        String counter = bf.readLine();
+        sb.append(counter).append("\n");
+        int n = lineCounter.apply(counter);
         int i = 0;
         while (i++ < n) sb.append(bf.readLine()).append("\n");
         bf.close();
