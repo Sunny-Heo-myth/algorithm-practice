@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 /**
+ * This is a utility class of various types of common inputs & outputs for algorithm problem.
  * All IOUtil return value should be String.
  */
 public class IOUtil {
@@ -38,13 +40,7 @@ public class IOUtil {
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        String firstLine = bf.readLine();
-        int n = lineCounter.apply(firstLine);
-        sb.append(firstLine).append("\n");
-        int i = 0;
-        while (i++ < n) sb.append(bf.readLine()).append("\n");
-        bf.close();
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return getAnswerString(lineCounter, bf, sb);
     }
 
     public static String readFiniteLine(int nthLine, Function<String, Integer> lineCounter) throws IOException {
@@ -54,13 +50,16 @@ public class IOUtil {
         nthLine -= 1;
         while (nthLine-- > 0) sb.append(bf.readLine()).append("\n");
 
+        return getAnswerString(lineCounter, bf, sb);
+    }
+
+    private static String getAnswerString(Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
         String counter = bf.readLine();
         sb.append(counter).append("\n");
         int n = lineCounter.apply(counter);
-        int i = 0;
-        while (i++ < n) sb.append(bf.readLine()).append("\n");
+        while (0 < n--) sb.append(bf.readLine()).append("\n");
         bf.close();
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return deleteLastCharacter(sb).toString();
     }
 
     /**
@@ -75,10 +74,8 @@ public class IOUtil {
         String input = readFiniteLine(lineCounter);
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
-        for (int i = 1; i < inputs.length; i++) {
-            answer.append(solution.apply(inputs[i])).append("\n");
-        }
-        System.out.print(answer.deleteCharAt(answer.length() - 1));
+        for (int i = 1; i < inputs.length; i++) answer.append(solution.apply(inputs[i])).append("\n");
+        System.out.print(deleteLastCharacter(answer));
     }
 
     public static void answer(Function<String, String> solution) throws IOException {
@@ -99,43 +96,51 @@ public class IOUtil {
      * @return
      * @throws IOException
      */
-    public static void answerQuestionsWithEndLineCondition(Function<String, Boolean> endLineCondition, Function<String, String> solution) throws IOException {
+    public static void answerQuestionsWithEndLineCondition(Function<String, Boolean> endLineCondition,
+                                                           Function<String, String> solution) throws IOException {
         String input = readWithEndLineCondition(endLineCondition);
-        String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
-        for (String s : inputs) {
-            answer.append(solution.apply(s)).append("\n");
-        }
-        System.out.print(answer.deleteCharAt(answer.length() - 1));
+        Pattern.compile("\n").splitAsStream(input).forEach(s -> answer.append(solution.apply(s)).append("\n"));
+        System.out.print(deleteLastCharacter(answer));
     }
 
-    public static void answerEndLineConditionedQuestions(Function<String, Integer> numberOfQuestionProvider,
-                                                         Function<String, Integer> questionEndLineCounter,
-                                                         Function<String, String> solution) throws IOException {
+    public static void answerQuestionsWithLineCounter(Function<String, Integer> numberOfQuestionProvider,
+                                                      Function<String, Integer> lineCounter,
+                                                      Function<String, String> solution) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int numberOfProblems = numberOfQuestionProvider.apply(bf.readLine());
 
         StringBuilder answer = new StringBuilder();
-        while (0 < numberOfProblems) {
-            int n = questionEndLineCounter.apply(bf.readLine());
-
+        int numberOfProblems = numberOfQuestionProvider.apply(bf.readLine());
+        while (0 < numberOfProblems--) {
             StringBuilder input = new StringBuilder();
-            int lineNumber = 0;
-            while (lineNumber < n) {
-                input.append(bf.readLine()).append("\n");
-                lineNumber++;
-            }
-
-            answer.append(solution.apply(input.deleteCharAt(input.length() - 1).toString())).append("\n");
-            numberOfProblems--;
+            int n = lineCounter.apply(bf.readLine());
+            while (0 < n--) input.append(bf.readLine()).append("\n");
+            answer.append(solution.apply(deleteLastCharacter(input).toString())).append("\n");
         }
 
         bf.close();
-        System.out.print(answer.deleteCharAt(answer.length() - 1));
+        System.out.print(deleteLastCharacter(answer));
+    }
+
+    public static void answerQuestionsWithNumberOfLine(Function<String, Integer> numberOfQuestionProvider,
+                                                       int numberOfLine,
+                                                       Function<String, String> solution) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder answer = new StringBuilder();
+
+        int numberOfQuestions = numberOfQuestionProvider.apply(bf.readLine());
+        while (0 < numberOfQuestions--) {
+            StringBuilder input = new StringBuilder();
+            int n = numberOfLine;
+            while (0 < n--) input.append(bf.readLine()).append("\n");
+            answer.append(solution.apply(input.toString())).append("\n");
+        }
+        bf.close();
+        System.out.print(deleteLastCharacter(answer));
     }
 
     /**
-     * Give multiple answer in delimiter as lines.
+     * Give multiple answer with delimiter as lines.
      *
      * @param solution
      * @throws IOException
@@ -145,20 +150,12 @@ public class IOUtil {
         String firstLine = bf.readLine();   // After os buffer has all input value, let jvm read the first line.
         int n = Integer.parseInt(firstLine);
         String[] lines = new String[n];
-
-        int i = 0;
-        while (i < n) {
-            String line = bf.readLine();
-            lines[i] = line;
-            i++;
-        }
+        while (0 <= n--) lines[lines.length - n - 1] = bf.readLine();
         bf.close();
 
         StringBuilder answer = new StringBuilder();
-        for (String line : lines) {
-            answer.append(solution.apply(line)).append("\n");
-        }
-        System.out.print(answer.deleteCharAt(answer.length() - 1));
+        for (String line : lines) answer.append(solution.apply(line)).append("\n");
+        System.out.print(deleteLastCharacter(answer));
     }
 
     // todo: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
@@ -166,11 +163,9 @@ public class IOUtil {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder answer = new StringBuilder();
         String line;
-        while ((line = bf.readLine()) != null) {
-            answer.append(solution.apply(line)).append("\n");
-        }
+        while ((line = bf.readLine()) != null) answer.append(solution.apply(line)).append("\n");
         bf.close();
-        System.out.print(answer.deleteCharAt(answer.length() - 1));
+        System.out.print(deleteLastCharacter(answer));
     }
 
     /**
@@ -183,15 +178,9 @@ public class IOUtil {
     public static String readFiniteLine(int n) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-
-        int i = 0;
-        while (i < n) {
-            sb.append(bf.readLine()).append("\n");
-            i++;
-        }
-
+        while (0 < n--) sb.append(bf.readLine()).append("\n");
         bf.close();
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return deleteLastCharacter(sb).toString();
     }
 
     /**
@@ -206,28 +195,26 @@ public class IOUtil {
         StringBuilder sb = new StringBuilder();
 
         int n = 0;
-        while (n < 2000000) { // do not let infinite loop
+        while (n++ < 2000000) { // do not let infinite loop
             String line = bf.readLine();
-            if (endLineCondition.apply(line)) {
-                break;
-            }
+            if (endLineCondition.apply(line)) break;
             sb.append(line).append("\n");
-            n++;
         }
 
         bf.close();
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return deleteLastCharacter(sb).toString();
     }
 
     public static String readWithNoEndLineCondition() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         String line;
-        while ((line = bf.readLine()) != null) {
-            sb.append(line).append("\n");
-        }
+        while ((line = bf.readLine()) != null) sb.append(line).append("\n");
         bf.close();
         return sb.toString();
     }
 
+    private static StringBuilder deleteLastCharacter(StringBuilder answer) {
+        return answer.deleteCharAt(answer.length() - 1);
+    }
 }
