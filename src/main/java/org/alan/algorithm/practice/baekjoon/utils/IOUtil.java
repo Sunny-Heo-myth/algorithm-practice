@@ -53,15 +53,6 @@ public class IOUtil {
         return getAnswerString(lineCounter, bf, sb);
     }
 
-    private static String getAnswerString(Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
-        String counter = bf.readLine();
-        sb.append(counter).append("\n");
-        int n = lineCounter.apply(counter);
-        while (0 < n--) sb.append(bf.readLine()).append("\n");
-        bf.close();
-        return deleteLastCharacter(sb).toString();
-    }
-
     /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
      *
@@ -212,6 +203,15 @@ public class IOUtil {
         while ((line = bf.readLine()) != null) sb.append(line).append("\n");
         bf.close();
         return sb.toString();
+    }
+
+    private static String getAnswerString(Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
+        String counter = bf.readLine();
+        sb.append(counter).append("\n");
+        int n = lineCounter.apply(counter);
+        while (0 < n--) sb.append(bf.readLine()).append("\n");
+        bf.close();
+        return deleteLastCharacter(sb).toString();
     }
 
     private static StringBuilder deleteLastCharacter(StringBuilder answer) {
