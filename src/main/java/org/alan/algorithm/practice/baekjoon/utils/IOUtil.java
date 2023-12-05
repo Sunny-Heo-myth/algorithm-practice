@@ -105,6 +105,7 @@ public class IOUtil {
         while (0 < numberOfProblems--) {
             StringBuilder input = new StringBuilder();
             int n = lineCounter.apply(bf.readLine());
+            input.append(n).append("\n");
             while (0 < n--) input.append(bf.readLine()).append("\n");
             answer.append(solution.apply(deleteLastCharacter(input).toString())).append("\n");
         }
