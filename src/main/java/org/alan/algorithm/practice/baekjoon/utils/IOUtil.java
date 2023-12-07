@@ -66,7 +66,7 @@ public class IOUtil {
         String[] inputs = input.split("\n");
         StringBuilder answer = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) answer.append(solution.apply(inputs[i])).append("\n");
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     public static void answer(Function<String, String> solution) throws IOException {
@@ -92,7 +92,7 @@ public class IOUtil {
         String input = readWithEndLineCondition(endLineCondition);
         StringBuilder answer = new StringBuilder();
         Pattern.compile("\n").splitAsStream(input).forEach(s -> answer.append(solution.apply(s)).append("\n"));
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     public static void answerQuestionsWithLineCounter(Function<String, Integer> numberOfQuestionProvider,
@@ -107,11 +107,11 @@ public class IOUtil {
             int n = lineCounter.apply(bf.readLine());
             input.append(n).append("\n");
             while (0 < n--) input.append(bf.readLine()).append("\n");
-            answer.append(solution.apply(deleteLastCharacter(input).toString())).append("\n");
+            answer.append(solution.apply(input.substring(0, input.length() - 1))).append("\n");
         }
 
         bf.close();
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     public static void answerQuestionsWithNumberOfLine(Function<String, Integer> numberOfQuestionProvider,
@@ -128,7 +128,7 @@ public class IOUtil {
             answer.append(solution.apply(input.toString())).append("\n");
         }
         bf.close();
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     /**
@@ -147,7 +147,7 @@ public class IOUtil {
 
         StringBuilder answer = new StringBuilder();
         for (String line : lines) answer.append(solution.apply(line)).append("\n");
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     // todo: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
@@ -157,7 +157,7 @@ public class IOUtil {
         String line;
         while ((line = bf.readLine()) != null) answer.append(solution.apply(line)).append("\n");
         bf.close();
-        System.out.print(deleteLastCharacter(answer));
+        System.out.print(answer.substring(0, answer.length() - 1));
     }
 
     /**
@@ -172,7 +172,7 @@ public class IOUtil {
         StringBuilder sb = new StringBuilder();
         while (0 < n--) sb.append(bf.readLine()).append("\n");
         bf.close();
-        return deleteLastCharacter(sb).toString();
+        return sb.substring(0, sb.length() - 1);
     }
 
     /**
@@ -194,7 +194,7 @@ public class IOUtil {
         }
 
         bf.close();
-        return deleteLastCharacter(sb).toString();
+        return sb.substring(0, sb.length() - 1);
     }
 
     public static String readWithNoEndLineCondition() throws IOException {
@@ -212,10 +212,7 @@ public class IOUtil {
         int n = lineCounter.apply(counter);
         while (0 < n--) sb.append(bf.readLine()).append("\n");
         bf.close();
-        return deleteLastCharacter(sb).toString();
+        return sb.substring(0, sb.length() - 1);
     }
 
-    private static StringBuilder deleteLastCharacter(StringBuilder answer) {
-        return answer.deleteCharAt(answer.length() - 1);
-    }
 }
