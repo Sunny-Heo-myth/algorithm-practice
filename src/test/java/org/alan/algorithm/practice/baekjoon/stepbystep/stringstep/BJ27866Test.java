@@ -14,7 +14,6 @@ public class BJ27866Test {
     void test1() throws IOException {
         // given
         BJ27866 instance = new BJ27866();
-//        String input = IOUtil.readFiniteLine(x -> 1);
         String input = "Sprout\n" +
                 "3";
         char expected = 'r';
