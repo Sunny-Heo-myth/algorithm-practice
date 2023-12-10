@@ -30,6 +30,11 @@ public class IOUtil {
         System.out.print(solution.apply(input));
     }
 
+    public static void answerLineCountFrom(int lineCountFrom, Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+        String input = readFiniteLineCountFrom(lineCountFrom, lineCounter);
+        System.out.print(solution.apply(input));
+    }
+
     /**
      * Read the interpreted number of the first line.
      *
@@ -40,7 +45,7 @@ public class IOUtil {
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        return getAnswerString(lineCounter, bf, sb);
+        return readString(lineCounter, bf, sb);
     }
 
     public static String readFiniteLine(int nthLine, Function<String, Integer> lineCounter) throws IOException {
@@ -50,7 +55,14 @@ public class IOUtil {
         nthLine -= 1;
         while (nthLine-- > 0) sb.append(bf.readLine()).append("\n");
 
-        return getAnswerString(lineCounter, bf, sb);
+        return readString(lineCounter, bf, sb);
+    }
+
+
+    public static String readFiniteLineCountFrom(int nthLine, Function<String, Integer> lineCounter) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        return readString(nthLine, lineCounter, bf, sb);
     }
 
     /**
@@ -206,7 +218,7 @@ public class IOUtil {
         return sb.toString();
     }
 
-    private static String getAnswerString(Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
+    private static String readString(Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
         String counter = bf.readLine();
         sb.append(counter).append("\n");
         int n = lineCounter.apply(counter);
@@ -215,4 +227,13 @@ public class IOUtil {
         return sb.substring(0, sb.length() - 1);
     }
 
+    private static String readString(int lineCountFrom, Function<String, Integer> lineCounter, BufferedReader bf, StringBuilder sb) throws IOException {
+        while (--lineCountFrom > 0) sb.append(bf.readLine()).append("\n");
+        String counter = bf.readLine();
+        int numberOfLine = lineCounter.apply(counter);
+        sb.append(counter).append("\n");
+        while (0 < numberOfLine--) sb.append(bf.readLine()).append("\n");
+        bf.close();
+        return sb.substring(0, sb.length() - 1);
+    }
 }
