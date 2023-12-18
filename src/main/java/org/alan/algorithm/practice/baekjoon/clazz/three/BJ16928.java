@@ -1,44 +1,48 @@
 package org.alan.algorithm.practice.baekjoon.clazz.three;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BJ16928 {
+
     public String solve(String input) {
-        List<List<TermCost>> initTermCost = new ArrayList<>();
-        int[][] cost = new int[101][101];
+        int[] shortest = new int[101];
+        Arrays.fill(shortest, Integer.MAX_VALUE);
+        List<List<Edge>> edges = new ArrayList<>();
+        edges.add(new ArrayList<>());
+        Queue<Edge> queue = new LinkedList<>();
+        queue.offer(new Edge(1, 0));
 
-        IntStream.range(0, 101).forEach(i -> {
-            IntStream.of(i + 1).limit(6).forEach(j -> initTermCost.get(i).add(new TermCost(Math.min(j, 100), 1)));
-            initTermCost.add(new ArrayList<>());
-            Arrays.fill(cost[i], Integer.MAX_VALUE);
-        });
+        IntStream.rangeClosed(1, 100).forEach(i -> edges.add(IntStream.rangeClosed(i + 1, i + 6)
+                .takeWhile(j -> j <= 100).mapToObj(j -> new Edge(j, 1)).collect(Collectors.toList())));
 
-        input.lines().skip(1).forEach(s -> {
-            String[] ss = s.split(" ");
-            initTermCost.get(Integer.parseInt(ss[0])).add(new TermCost(Integer.parseInt(ss[1]), 1));
-        });
+        input.lines().skip(1).map(s -> s.split(" "))
+                .forEach(s -> edges.get(Integer.parseInt(s[0])).add(new Edge(Integer.parseInt(s[1]), 0)));
 
-        Queue<TermCost> queue = new LinkedList<>();
-        queue.offer(new TermCost(1, 0));
         while (!queue.isEmpty()) {
-            TermCost now = queue.poll();
-
-            for (TermCost next : initTermCost.get(now.cost)) {
-                if (cost[now.term][next.term] == Integer.MAX_VALUE) {
+            Edge now = queue.poll();
+            for (Edge next : edges.get(now.terminal)) {
+                if (shortest[next.terminal] != Integer.MAX_VALUE) {
+                    if (shortest[next.terminal] > now.cost + 1) {
+                        shortest[next.terminal] = now.cost + 1;
+                        queue.offer(new Edge(next.terminal, shortest[next.terminal]));
+                    }
+                } else {
+                    shortest[next.terminal] = now.cost + 1;
+                    queue.offer(new Edge(next.terminal, shortest[next.terminal]));
                 }
             }
         }
-        return null;
+        return String.valueOf(shortest[100] - 1);
     }
 
+    private static class Edge {
+        private final int terminal;
+        private final int cost;
 
-    private static class TermCost {
-        private int term;
-        private int cost;
-
-        public TermCost(int term, int cost) {
-            this.term = term;
+        public Edge(int terminal, int cost) {
+            this.terminal = terminal;
             this.cost = cost;
         }
     }
