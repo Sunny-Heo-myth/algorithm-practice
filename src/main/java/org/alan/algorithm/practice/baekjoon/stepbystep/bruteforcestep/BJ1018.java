@@ -3,6 +3,8 @@ package org.alan.algorithm.practice.baekjoon.stepbystep.bruteforcestep;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class BJ1018 {
 
@@ -64,4 +66,39 @@ public class BJ1018 {
         return Math.min(count1, count2);
     }
 
+    private static final char[][] BOARD_TYPE_1 = {
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'}
+    };
+
+    private static final char[][] BOARD_TYPE_2 = {
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+            {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+            {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'}
+    };
+
+    // brute force
+    public String solve(String input) {
+        char[][] chars = Pattern.compile("\n").splitAsStream(input).skip(1)
+                .map(String::toCharArray).toArray(char[][]::new);
+        long answer = Math.min(getMin(chars, BOARD_TYPE_1), getMin(chars, BOARD_TYPE_2));
+        return String.valueOf(answer);
+    }
+
+    private long getMin(char[][] chars, char[][] boardType) {
+        return IntStream.range(0, chars.length - 7).mapToLong(m -> IntStream.range(0, chars[0].length - 7).mapToLong(n ->
+                IntStream.range(0, 8).mapToLong(i -> IntStream.range(0, 8).filter(j -> chars[m + i][n + j] != boardType[i][j])
+                        .count()).sum()).min().orElse(0)).min().orElse(0);
+    }
 }
