@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.alan'
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_15
 
 configurations {
     compileOnly {
@@ -13,7 +13,6 @@ configurations {
 }
 
 repositories {
-//    mavenCentral()
     mavenLocal()
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
