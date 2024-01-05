@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.sortstep;
+package org.alan.algorithm.practice.baekjoon.clazz.two;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class BJ1181 {
@@ -45,7 +46,14 @@ public class BJ1181 {
             }
         }
         System.out.print(sb);
+    }
 
 
+    public String solve(String input) {
+        return input.lines().skip(1).distinct()
+                .sorted(((s1, s2) -> {
+                    if (s1.length() != s2.length()) return s1.length() - s2.length();
+                    return s1.compareTo(s2);
+                })).collect(Collectors.joining("\n"));
     }
 }
