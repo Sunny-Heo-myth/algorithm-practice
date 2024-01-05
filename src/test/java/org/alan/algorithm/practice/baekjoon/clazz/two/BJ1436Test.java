@@ -7,26 +7,20 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class BJ1259Test {
+public class BJ1436Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("121", "yes"),
-                Arguments.of("1231", "no"),
-                Arguments.of("12421", "yes")
+                Arguments.of("2", "1666"),
+                Arguments.of("3", "2666"),
+                Arguments.of("6", "5666"),
+                Arguments.of("187", "66666"),
+                Arguments.of("500", "166699")
         );
     }
     
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        BJ1259 instance = new BJ1259();
-        Assertions.assertEquals(expected, instance.solve(input));
-    }
-
-    @ParameterizedTest
-    @MethodSource("parameters")
-    public void test2(String input, String expected) {
-        BJ1259 instance = new BJ1259();
-        Assertions.assertEquals(expected, instance.solve2(input));
+        Assertions.assertEquals(expected, new BJ1436().solve(input));
     }
 }

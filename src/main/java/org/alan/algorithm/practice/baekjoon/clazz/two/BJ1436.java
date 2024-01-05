@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.bruteforcestep;
+package org.alan.algorithm.practice.baekjoon.clazz.two;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,4 +27,10 @@ public class BJ1436 {
         }
     }
 
+    public String solve(String input) {
+        int count = 0;
+        long x = 666;
+        while (count < Integer.parseInt(input)) if (String.valueOf(x++).contains("666")) count++;
+        return String.valueOf(x - 1);
+    }
 }
