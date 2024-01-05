@@ -14,33 +14,30 @@ import java.util.stream.IntStream;
 // todo: resource open at where?
 public class IOUtil {
 
-    public static void answer(Function<String, String> solution) throws IOException {
-        String input = readFiniteLine(s -> 0);
-        System.out.print(solution.apply(input.substring(0, input.length() - 1)));
-    }
-
     public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         System.out.print(solution.apply(readFiniteLine(lineCounter)));
     }
-
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             return readCountedLine(lineCounter, bf);
         }
     }
-
     public static String readCountedLine(Function<String, Integer> lineCounter, BufferedReader bf) {
         String counter = readLine(bf);
         return counter + "\n" + IntStream.range(0, lineCounter.apply(counter))
                 .mapToObj(i -> readLine(bf)).collect(Collectors.joining("\n"));
     }
-
     private static String readLine(BufferedReader bf) {
         try {
             return bf.readLine();
         } catch (IOException e) {
             throw new IllegalArgumentException("BuffedReader#readLine IOException.");
         }
+    }
+
+    public static void answer(Function<String, String> solution) throws IOException {
+        String input = readFiniteLine(s -> 0);
+        System.out.print(solution.apply(input.substring(0, input.length() - 1)));
     }
 
     public static void answer(int countFrom, Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
@@ -84,7 +81,7 @@ public class IOUtil {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             StringBuilder sb = new StringBuilder();
             int n = 0;
-            while (n++ < 2000000) { // do not let infinite loop
+            while (n++ < 1000000) {
                 String line = readLine(bf);
                 if (endLineCondition.apply(line)) break;
                 sb.append(line).append("\n");
