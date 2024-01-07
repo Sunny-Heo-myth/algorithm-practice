@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.greedy;
+package org.alan.algorithm.practice.baekjoon.tagged.greedy;
 
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;

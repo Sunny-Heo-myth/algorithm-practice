@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.geometry;
+package org.alan.algorithm.practice.baekjoon.tagged.geometry;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

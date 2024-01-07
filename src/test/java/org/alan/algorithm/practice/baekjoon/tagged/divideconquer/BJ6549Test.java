@@ -1,5 +1,6 @@
-package org.alan.algorithm.practice.baekjoon.topic.divideconquer;
+package org.alan.algorithm.practice.baekjoon.tagged.divideconquer;
 
+import org.alan.algorithm.practice.baekjoon.tagged.divideconquer.BJ6549;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

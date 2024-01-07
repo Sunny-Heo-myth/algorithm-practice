@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.divideconquer;
+package org.alan.algorithm.practice.baekjoon.tagged.divideconquer;
 
 import java.util.regex.Pattern;
 

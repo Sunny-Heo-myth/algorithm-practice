@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.greedy;
+package org.alan.algorithm.practice.baekjoon.tagged.greedy;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

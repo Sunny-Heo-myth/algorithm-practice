@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.geometry;
+package org.alan.algorithm.practice.baekjoon.tagged.geometry;
 
 import java.util.regex.Pattern;
 

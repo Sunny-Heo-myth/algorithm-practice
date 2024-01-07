@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.topic.greedy;
+package org.alan.algorithm.practice.baekjoon.tagged.greedy;
 
 public class BJ5585 {
     public String solve(String input) {
