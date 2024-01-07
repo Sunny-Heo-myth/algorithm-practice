@@ -10,14 +10,15 @@ import java.util.stream.Stream;
 public class BJ1504Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("4 6\n" +
-                        "1 2 3\n" +
-                        "2 3 3\n" +
-                        "3 4 1\n" +
-                        "1 3 5\n" +
-                        "2 4 5\n" +
-                        "1 4 4\n" +
-                        "2 3", "7")
+                Arguments.of("""
+                        4 6
+                        1 2 3
+                        2 3 3
+                        3 4 1
+                        1 3 5
+                        2 4 5
+                        1 4 4
+                        2 3""", "7")
         );
     }
     
