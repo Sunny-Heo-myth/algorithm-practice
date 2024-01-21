@@ -23,4 +23,16 @@ public class BJ1509Test {
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ1509().solve(input));
     }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ1509().solve2(input));
+    }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test3(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ1509().solve3(input));
+    }
 }
