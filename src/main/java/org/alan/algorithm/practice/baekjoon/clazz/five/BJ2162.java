@@ -37,23 +37,14 @@ public class BJ2162 {
         parents = new int[lineArray.length];
         Arrays.fill(parents, -1);
 
-        for (int i = 0; i < lineArray.length; i++) {
-            for (int j = i + 1; j < lineArray.length; j++) {
-                if (lineArray[i].isIntersection(lineArray[j])) {
-                    union(i, j);
-                }
-            }
-        }
+        for (int i = 0; i < lineArray.length; i++) for (int j = i + 1; j < lineArray.length; j++)
+            if (lineArray[i].isIntersection(lineArray[j])) union(i, j);
 
         int cnt = 0;
         int min = 0;
-        for (int i = 0; i < lineArray.length; i++) {
-            if (parents[i] < 0) {
-                cnt++;
-                if (parents[i] < min) {
-                    min = parents[i];
-                }
-            }
+        for (int i = 0; i < lineArray.length; i++) if (parents[i] < 0) {
+            cnt++;
+            min = Integer.min(min, parents[i]);
         }
         return cnt + "\n" + -min;
     }
@@ -91,7 +82,7 @@ class Point implements Comparable<Point> {
 }
 
 class Line {
-    private final Point a, b;
+    final Point a, b;
 
     public Line(Point p1, Point p2) {
         a = p1.compareTo(p2) <= 0 ? p1 : p2;
