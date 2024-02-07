@@ -10,15 +10,18 @@ import java.util.stream.Stream;
 public class BJ11758Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("1 1\n" +
-                        "5 5\n" +
-                        "7 3", "-1"),
-                Arguments.of("1 1\n" +
-                        "3 3\n" +
-                        "5 5", "0"),
-                Arguments.of("1 1\n" +
-                        "7 3\n" +
-                        "5 5", "1")
+                Arguments.of("""
+                        1 1
+                        5 5
+                        7 3""", "-1"),
+                Arguments.of("""
+                        1 1
+                        3 3
+                        5 5""", "0"),
+                Arguments.of("""
+                        1 1
+                        7 3
+                        5 5""", "1")
         );
     }
     

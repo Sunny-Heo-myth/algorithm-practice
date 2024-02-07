@@ -3,12 +3,8 @@ package org.alan.algorithm.ioa.recursion;
 public class GCD {
 
     public static int euclidGcd(int x, int y) {
-        if (y == 0) {
-            return x;
-        }
-        else {
-            return euclidGcd(y, x % y);
-        }
+        if (y == 0) return x;
+        else return euclidGcd(y, x % y);
     }
 
     public static int euclidGcd(int[] ints) {

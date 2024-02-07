@@ -10,9 +10,10 @@ import java.util.stream.Stream;
 public class BJ2217Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("2\n" +
-                        "10\n" +
-                        "15", "20")
+                Arguments.of("""
+                        2
+                        10
+                        15""", "20")
         );
     }
     
