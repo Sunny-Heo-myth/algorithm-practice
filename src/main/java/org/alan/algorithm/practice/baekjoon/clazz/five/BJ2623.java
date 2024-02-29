@@ -17,11 +17,12 @@ public class BJ2623 {
                         adjacency.get(ints[i - 1]).add(ints[i]);
                         inDegree[ints[i]]++;
                     }
-        });
+                });
 
         List<Integer> answer = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i < adjacency.size(); i++) if (inDegree[i] == 0) queue.offer(i);
+
         while (!queue.isEmpty()) {
             Integer prior = queue.poll();
             answer.add(prior);

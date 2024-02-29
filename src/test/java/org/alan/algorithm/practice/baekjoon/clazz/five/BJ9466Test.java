@@ -7,21 +7,21 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class BJ9252Test {
+public class BJ9466Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
                 Arguments.of("""
-                        ACAYKP
-                        CAPCAK""", """
-                        4
-                        ACAK""")
+                        7
+                        3 1 3 7 3 4 6""", "3"),
+                Arguments.of("""
+                        8
+                        1 2 3 4 5 6 7 8""", "0")
         );
     }
     
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ9252().solve(input));
+        Assertions.assertEquals(expected, new BJ9466().solve2(input));
     }
-
 }
