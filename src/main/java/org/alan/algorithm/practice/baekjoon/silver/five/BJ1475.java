@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.silver;
+package org.alan.algorithm.practice.baekjoon.silver.five;
 
 public class BJ1475 {
     public String solve(String input) {

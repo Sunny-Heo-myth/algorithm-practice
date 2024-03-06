@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.silver;
+package org.alan.algorithm.practice.baekjoon.silver.five;
 
 import java.util.StringTokenizer;
 
