@@ -34,7 +34,6 @@ public class IOUtil {
             throw new IllegalArgumentException("BuffedReader#readLine IOException.");
         }
     }
-
     public static void answer(Function<String, String> solution) throws IOException {
         String input = readFiniteLine(s -> 0);
         System.out.print(solution.apply(input.substring(0, input.length() - 1)));
@@ -86,7 +85,7 @@ public class IOUtil {
                 if (endLineCondition.apply(line)) break;
                 sb.append(line).append("\n");
             }
-            String input = sb.substring(0, sb.length() - 1);
+            String input = sb.substring(0, sb.length());
             System.out.print(input.lines().map(solution).collect(Collectors.joining("\n")));
         }
     }
@@ -96,7 +95,7 @@ public class IOUtil {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             StringBuilder answer = new StringBuilder();
             String line;
-            while ((line = readLine(bf)) != null) answer.append(solution.apply(line)).append("\n");
+            while ((line = readLine(bf)) != null || line.isEmpty()) answer.append(solution.apply(line)).append("\n");
             System.out.print(answer.substring(0, answer.length() - 1));
         }
     }
