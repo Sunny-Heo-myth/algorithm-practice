@@ -39,4 +39,35 @@ public class BJ2529 {
         return b || m > n;
     }
 
+    private Boolean[] signs;
+    private final boolean[] visited = new boolean[10];
+    private final List<String> answer = new ArrayList<>();
+
+    public String solve2(String input) {
+        signs = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
+                .map(s -> s.equals("<") ? Boolean.TRUE : Boolean.FALSE).toArray(Boolean[]::new);
+
+        recur2("", 0);
+        return answer.get(answer.size() - 1) + "\n" + answer.get(0);
+    }
+
+    private void recur2(String s, int i) {
+        if (i == signs.length + 1) {
+            answer.add(s);
+            return;
+        }
+
+        for (int j = 0; j < 10; j++) {
+            if (visited[j] || (i != 0 && !match(s.charAt(i - 1) - '0', j, signs[i - 1]))) continue;
+            visited[j] = true;
+            recur2(s + j, i + 1);
+            visited[j] = false;
+        }
+    }
+
+    private boolean match(int i, int j, boolean b) {
+        if (i == j) throw new IllegalArgumentException();
+        return (b && i < j) || (!b && i > j);
+    }
+
 }

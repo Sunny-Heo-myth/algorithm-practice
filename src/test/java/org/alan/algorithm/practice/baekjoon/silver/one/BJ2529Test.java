@@ -28,4 +28,10 @@ public class BJ2529Test {   // todo:
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ2529().solve(input));
     }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ2529().solve2(input));
+    }
 }
