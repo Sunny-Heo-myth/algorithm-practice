@@ -3,29 +3,33 @@ package org.alan.algorithm.practice.baekjoon.silver.one;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-public class BJ2343 {
+public class BJ2343 {   //todo:
 
     public String solve(String input) {
         int m = Integer.parseInt(input.split("\n")[0].split(" ")[1]);
         int[] lessons = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
                 .mapToInt(Integer::parseInt).toArray();
-        int max = Arrays.stream(lessons).max().orElse(-1);
-        int sum = Arrays.stream(lessons).sum();
-        
-        while (max <= sum) {
-            int mid = (max + sum) / 2;
-            int currentSum = 0;
-            int count = 0;
+        int from = Arrays.stream(lessons).max().orElse(-1);    // Min possible dvd size.
+        int to = Arrays.stream(lessons).sum(); // Max possible dvd size.
+
+        while (from <= to) {
+            int need = 0;
+            int size = (from + to) / 2;
+
+            int sum = 0;
             for (int lesson : lessons) {
-                if (currentSum + lesson > mid) {
-                    count++; currentSum = 0;
+                if (sum + lesson > size) {
+                    need++;
+                    sum = 0;
                 }
-                currentSum += lesson;
+                sum += lesson;
             }
-            if (currentSum != 0) count++;
-            if (count > m) max = mid + 1;
-            else sum = mid - 1;
+            if (sum != 0) need++;
+
+            if (need > m) from = size + 1;
+            else to = size - 1;
         }
-        return String.valueOf(max);
+
+        return String.valueOf(from);
     }
 }
