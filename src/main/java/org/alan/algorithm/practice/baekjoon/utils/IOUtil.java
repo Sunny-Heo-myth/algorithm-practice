@@ -17,16 +17,20 @@ public class IOUtil {
     public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         System.out.print(solution.apply(readFiniteLine(lineCounter)));
     }
+
     public static String readFiniteLine(Function<String, Integer> lineCounter) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             return readCountedLine(lineCounter, bf);
         }
     }
+
     public static String readCountedLine(Function<String, Integer> lineCounter, BufferedReader bf) {
-        String counter = readLine(bf);
-        return counter + "\n" + IntStream.range(0, lineCounter.apply(counter))
+        String numberOfLine = readLine(bf);
+        Integer nol = lineCounter.apply(numberOfLine);
+        return  nol <= 0 ? numberOfLine : numberOfLine + "\n" + IntStream.range(0, nol)
                 .mapToObj(i -> readLine(bf)).collect(Collectors.joining("\n"));
     }
+
     private static String readLine(BufferedReader bf) {
         try {
             return bf.readLine();
@@ -34,6 +38,7 @@ public class IOUtil {
             throw new IllegalArgumentException("BuffedReader#readLine IOException.");
         }
     }
+
     public static void answer(Function<String, String> solution) throws IOException {
         String input = readFiniteLine(s -> 0);
         System.out.print(solution.apply(input.substring(0, input.length() - 1)));
@@ -41,7 +46,7 @@ public class IOUtil {
 
     public static void answer(int countFrom, Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print(solution.apply(readCountedLine(s -> countFrom, bf) + "\n" + readCountedLine(lineCounter, bf)));
+            System.out.print(solution.apply(readCountedLine(s -> countFrom - 1, bf) + "\n" + readCountedLine(lineCounter, bf)));
         }
     }
 
