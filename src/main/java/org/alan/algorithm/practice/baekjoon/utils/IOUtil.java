@@ -15,8 +15,7 @@ import java.util.stream.IntStream;
 public class IOUtil {
 
     public static void answer(Function<String, String> solution) throws IOException {
-        String input = readFiniteLine(s -> 0);
-        System.out.print(solution.apply(input.substring(0, input.length() - 1)));
+        System.out.print(solution.apply(readFiniteLine(s -> 0)));
     }
 
     public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
