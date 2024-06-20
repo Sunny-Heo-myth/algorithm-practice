@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.gold.four;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -21,6 +20,16 @@ public class BJ1922 {
             merge(edge[0], edge[1]);
         }
         return String.valueOf(totalCost);
+    }
+
+    public String solve2(String input) {
+        parents = IntStream.rangeClosed(0, Integer.parseInt(input.split("\n")[0])).toArray();
+        return String.valueOf(input.lines().skip(2)
+                .map(s -> Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt).toArray())
+                .sorted(Comparator.comparingInt(ints -> ints[2]))
+                .filter(edge -> find(edge[0]) != find(edge[1]))
+                .peek(edge -> merge(edge[0], edge[1]))
+                .reduce(0, (i, ints) -> i + ints[2], Integer::sum));
     }
 
     private int find(int child) {
