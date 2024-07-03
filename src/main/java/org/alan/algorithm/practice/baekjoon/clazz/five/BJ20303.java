@@ -34,9 +34,12 @@ public class BJ20303 {
             }
             groups.add(nsum);
         }
-        groups.sort((g1, g2) -> g1[0] == g2[0] ? g2[1] - g1[1] : g1[0] - g2[0]);
 
         int[] memo = new int[cry];
-        return null;
+        for (int[] nsum : groups) {
+            int n = nsum[0]; int sum = nsum[1];
+            for (int i = cry - 1; i >= n; i--) memo[i] = Math.max(memo[i], memo[i - n] + sum);
+        }
+        return String.valueOf(memo[cry - 1]);
     }
 }
