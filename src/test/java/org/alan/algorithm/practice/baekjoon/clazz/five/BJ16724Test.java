@@ -14,6 +14,12 @@ public class BJ16724Test {
                         3 4
                         DLLL
                         DRLU
+                        RRRU""", "2"),
+                Arguments.of("""
+                        4 4
+                        DLLL
+                        DRLU
+                        RRRU
                         RRRU""", "2")
         );
     }
