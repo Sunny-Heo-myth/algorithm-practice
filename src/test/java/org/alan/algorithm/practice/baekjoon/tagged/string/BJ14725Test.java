@@ -21,7 +21,8 @@ public class BJ14725Test {
                         ------D
                         --C
                         B
-                        --A"""),
+                        --A
+                        """),
                 Arguments.of("""
                         4
                         2 KIWI BANANA
@@ -34,7 +35,8 @@ public class BJ14725Test {
                         ----KIWI
                         KIWI
                         --APPLE
-                        --BANANA""")
+                        --BANANA
+                        """)
         );
     }
 
