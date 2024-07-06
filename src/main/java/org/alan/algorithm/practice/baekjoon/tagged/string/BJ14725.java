@@ -1,52 +1,56 @@
 package org.alan.algorithm.practice.baekjoon.tagged.string;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+import java.util.regex.Pattern;
 
 public class BJ14725 {
     public String solve(String input) {
-        TrieNode root = new TrieNode(0);
-        input.lines().skip(1).forEach(s -> root.insert(
-                Arrays.stream(s.split(" ")).skip(1).collect(Collectors.joining(","))));
+        Node root = new Node(0);
+        input.lines().skip(1)
+                .map(s -> Pattern.compile(" ").splitAsStream(s).skip(1).toArray(String[]::new))
+                .forEach(root::insert);
         return root.print();
     }
 }
 
-class TrieNode {
+class Node {
     private final int depth;
-    private final Map<String, TrieNode> children = new HashMap<>();
+    private final Map<String, Node> children = new HashMap<>();
 
-    public TrieNode(int depth) {
+    public Node(int depth) {
         this.depth = depth;
     }
 
-    void insert(String ss) {
-        TrieNode node = this;
-        for (String s : ss.split(",")) {
-            node.children.putIfAbsent(s, new TrieNode(node.depth + 1));
-            node = node.children.get(s);
+    void insert(String[] topToBottom) {
+        Node current = this;
+        for (String str : topToBottom) {
+            current.children.putIfAbsent(str, new Node(current.depth + 1));
+            current = current.children.get(str);
         }
     }
 
     String print() {
         StringBuilder sb = new StringBuilder();
-        Stack<TrieNode> stack = new Stack<>();
         Stack<String> keyStack = new Stack<>();
+        Stack<Node> nodeStack = new Stack<>();
 
-        stack.push(this);
+        nodeStack.push(this);
         keyStack.push("");
 
-        while (!stack.isEmpty()) {
-            TrieNode pop = stack.pop();
-            String key = keyStack.pop();
-            if (!key.isEmpty()) sb.append("--".repeat(pop.depth - 1)).append(key).append("\n");
+        while (!nodeStack.empty()) {
+            Node popNode = nodeStack.pop();
+            String popKey = keyStack.pop();
+            if (popNode.depth > 0) sb.append("--".repeat(popNode.depth - 1)).append(popKey).append("\n");
 
-            pop.children.keySet().stream().sorted(Comparator.reverseOrder()).forEach(s -> {
-                stack.push(pop.children.get(s));
-                keyStack.push(s);
+            popNode.children.keySet().stream().sorted(Comparator.reverseOrder()).forEach(child -> {
+                nodeStack.push(popNode.children.get(child));
+                keyStack.push(child);
             });
         }
-
         return sb.toString();
     }
 }
+
