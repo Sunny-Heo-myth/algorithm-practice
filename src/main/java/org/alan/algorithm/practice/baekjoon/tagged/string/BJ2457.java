@@ -4,29 +4,25 @@ import java.util.regex.Pattern;
 
 public class BJ2457 {
     public String solve(String input) {
-        int[][] flowers = input.lines().skip(1)
-                .map(s -> {
-                    int[] fromTo = Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt).toArray();
-                    return new int[]{fromTo[0] * 100 + fromTo[1], fromTo[2] * 100 + fromTo[3]};
-                })
-                .sorted((flower1, flower2) -> flower1[0] == flower2[0] ? flower2[1] - flower1[1] : flower1[0] - flower2[0])
-                .toArray(int[][]::new);
+        int[][] flowers = input.lines().skip(1).map(s -> {
+            int[] startEnd = Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt).toArray();
+            return new int[]{startEnd[0] * 100 + startEnd[1], startEnd[2] * 100 + startEnd[3]};
+        }).sorted((f1, f2) -> f1[0] != f2[0] ? f1[0] - f2[0] : f2[1] - f1[1]).toArray(int[][]::new);
 
-        int now = 301, end = 1130;
-        int idx = 0, nowEnd = 0, count = 0;
-        while (now <= end) {
+        int now = 301, i = 0, end = 0, count = 0;
+        while (now <= 1130) {
             boolean found = false;
-            while (idx < flowers.length && flowers[idx][0] <= now) {
-                if (flowers[idx][1] > nowEnd) {
-                    nowEnd = flowers[idx][1];
+            while (i < flowers.length && flowers[i][0] <= now) {
+                if (flowers[i][1] > end) {
+                    end = flowers[i][1];
                     found = true;
                 }
-                idx++;
+                i++;
             }
-            if (!found) return "0";
 
+            if (!found) return "0";
+            now = end;
             count++;
-            now = nowEnd;
         }
         return String.valueOf(count);
     }
