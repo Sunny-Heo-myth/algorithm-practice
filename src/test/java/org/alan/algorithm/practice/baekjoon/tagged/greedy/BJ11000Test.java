@@ -14,7 +14,15 @@ public class BJ11000Test {
                         3
                         1 3
                         2 4
-                        3 5""", "2")
+                        3 5""", "2"),
+                Arguments.of("""
+                        6
+                        1 3
+                        2 9
+                        4 7
+                        5 7
+                        7 10
+                        8 9""", "3")
         );
     }
     
@@ -22,5 +30,11 @@ public class BJ11000Test {
     @MethodSource("parameters")
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ11000().solve(input));
+    }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ11000().solve2(input));
     }
 }
