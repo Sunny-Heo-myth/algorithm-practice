@@ -9,26 +9,34 @@ public class BJ1027 {
         if (buildings.length < 3) return String.valueOf(buildings.length - 1);
 
         int max = 0;
-        double[] slopes = new double[buildings.length];
         for (int t = 0; t < buildings.length; t++) {
+            int lMax = 0;
             int cMax = 0;
-            double now = (buildings[0] - buildings[t]) / -t;
-            boolean increasing = now > 0;
-            for (int i = 1; i < t; i++) {
-                double next = (buildings[i] - buildings[t]) / -t;
-                if (increasing) {
-
+            double now = Double.NEGATIVE_INFINITY;
+            for (int i = 0; i < t; i++) {
+                double next = (buildings[t] - buildings[i]) / (t - i);
+                if (next > now) cMax++;
+                else {
+                    lMax = Math.max(lMax, cMax);
+                    cMax = 0;
                 }
-
-                if (next > )
+                now = next;
             }
 
-//            now
-            for (int i = t + 2; i < buildings.length; i++) {
-
+            int rMax = 0;
+            cMax = 0;
+            now = Double.NEGATIVE_INFINITY;
+            for (int i = t + 1; i < buildings.length; i++) {
+                double next = (buildings[i] - buildings[t]) / (i - t);
+                if (next > now) cMax++;
+                else {
+                    rMax = Math.max(rMax, cMax);
+                    cMax = 0;
+                }
+                now = next;
             }
 
-            max = Math.max(max, cMax);
+            max = Math.max(lMax + rMax, max);
         }
         return String.valueOf(max);
     }
