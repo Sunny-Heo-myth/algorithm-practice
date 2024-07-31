@@ -1,5 +1,6 @@
 package org.alan.algorithm.practice.baekjoon.tagged.string;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class BJ1701 {
@@ -9,18 +10,15 @@ public class BJ1701 {
     }
 
     private int getPreSufMax(String pattern) {
-        int l = 0, n = pattern.length(), max = 0;
+        int l = 0, n = pattern.length();
         int[] pi = new int[n];
 
         for (int r = 1; r < n; r++) {
             while (l > 0 && pattern.charAt(l) != pattern.charAt(r)) l = pi[l - 1];
-
-            if (pattern.charAt(l) == pattern.charAt(r)) {
-                pi[r] = ++l;
-                max = Math.max(max, pi[r]);
-            }
+            if (pattern.charAt(l) == pattern.charAt(r)) pi[r] = ++l;
         }
-        return max;
+
+        return Arrays.stream(pi).max().orElse(0);
     }
 
 }
