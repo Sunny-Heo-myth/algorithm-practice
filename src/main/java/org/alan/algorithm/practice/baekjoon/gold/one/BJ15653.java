@@ -1,13 +1,13 @@
 package org.alan.algorithm.practice.baekjoon.gold.one;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BJ15653 {
     private final int[] dx = {-1, 1, 0, 0}, dy = {0, 0, -1, 1};
     private char[][] board;
     private int[][][][] shortest;
-    private final PriorityQueue<SnapShot> q = new PriorityQueue<>(Comparator.comparingInt(s -> shortest[s.rx][s.ry][s.bx][s.by]));
+    private final Queue<SnapShot> q = new LinkedList<>();
     private int hx, hy;
 
     public String solve(String input) {
@@ -23,6 +23,7 @@ public class BJ15653 {
             else if (board[i][j] == 'R') { irx = i; iry = j; }
             else if (board[i][j] == 'B') { ibx = i; iby = j; }
 
+        shortest[irx][iry][ibx][iby] = 0;
         q.offer(new SnapShot(irx, iry, ibx, iby, 0));
         while (!q.isEmpty()) {
             SnapShot now = q.poll();
@@ -40,10 +41,10 @@ public class BJ15653 {
     private void offer(SnapShot shot, int dir, boolean isRedFirst) {
         int[] r, b;
         if (isRedFirst) {
-            r = move(shot.rx, shot.ry, 999, 999, dir);
+            r = move(shot.rx, shot.ry, -1, -1, dir);
             b = move(shot.bx, shot.by, r[0], r[1], dir);
         } else {
-            b = move(shot.bx, shot.by, 999, 999, dir);
+            b = move(shot.bx, shot.by, -1, -1, dir);
             r = move(shot.rx, shot.ry, b[0], b[1], dir);
         }
         if ((shot.rx == r[0] && shot.ry == r[1] && shot.bx == b[0] && shot.by == b[1])
