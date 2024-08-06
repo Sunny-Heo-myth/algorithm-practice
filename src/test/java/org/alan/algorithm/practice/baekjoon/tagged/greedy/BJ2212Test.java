@@ -1,6 +1,5 @@
 package org.alan.algorithm.practice.baekjoon.tagged.greedy;
 
-import org.alan.algorithm.practice.baekjoon.tagged.greedy.BJ2212;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

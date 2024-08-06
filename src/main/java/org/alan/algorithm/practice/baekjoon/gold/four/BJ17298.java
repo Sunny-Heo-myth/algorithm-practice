@@ -1,6 +1,7 @@
 package org.alan.algorithm.practice.baekjoon.gold.four;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Stack;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 

@@ -1,7 +1,6 @@
 package org.alan.algorithm.practice.baekjoon.clazz.four;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.regex.Pattern;

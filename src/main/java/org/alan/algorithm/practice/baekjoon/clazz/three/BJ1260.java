@@ -1,6 +1,9 @@
 package org.alan.algorithm.practice.baekjoon.clazz.three;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class BJ1260 {
     private int numberOfVertices;

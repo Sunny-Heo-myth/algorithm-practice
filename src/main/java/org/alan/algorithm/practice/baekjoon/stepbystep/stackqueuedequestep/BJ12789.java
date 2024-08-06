@@ -1,6 +1,9 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.stackqueuedequestep;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class BJ12789 {
