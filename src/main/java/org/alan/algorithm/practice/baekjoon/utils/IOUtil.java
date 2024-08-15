@@ -49,6 +49,20 @@ public class IOUtil {
         }
     }
 
+    public static void answerQuestionWithCondition(Function<String, Boolean> endLineCondition,
+                                                   Function<String, String> solution) throws IOException {
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+            StringBuilder sb = new StringBuilder();
+            int n = 0;
+            while (n++ < 1000000) {
+                String line = readLine(bf);
+                if (endLineCondition.apply(line)) break;
+                sb.append(line).append("\n");
+            }
+            System.out.print(solution.apply(sb.substring(0, sb.length() - 1)));
+        }
+    }
+
     /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
      *
