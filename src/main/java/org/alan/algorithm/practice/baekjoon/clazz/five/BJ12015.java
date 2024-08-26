@@ -6,23 +6,18 @@ public class BJ12015 {
     private int[] memo;
 
     public String solve(String input) {
-        int[] arr = input.lines().skip(1).flatMapToInt(s ->
-                Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt)).toArray();
-        memo = new int[arr.length]; memo[0] = arr[0];
+        int[] arr = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
+                .mapToInt(Integer::parseInt).toArray();
+        int l = arr.length;
+        memo = new int[l]; memo[0] = arr[0];
 
-        int length = 1;
-        for (int i = 1; i < arr.length; i++) {
+        int size = 1;
+        for (int i = 1; i < l; i++) {
             int key = arr[i];
-            if (memo[length - 1] < key) {
-                length++;
-                memo[length - 1] = key;
-            } else {
-                int idx = bSearch(length, key);
-                memo[idx] = key;
-            }
+            if (memo[size - 1] < key) memo[size++] = key;
+            else memo[bSearch(i, key)] = key;
         }
-
-        return String.valueOf(length);
+        return String.valueOf(size);
     }
 
     private int bSearch(int right, int key) {
@@ -34,4 +29,5 @@ public class BJ12015 {
         }
         return left;
     }
+
 }
