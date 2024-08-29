@@ -1,4 +1,4 @@
-package org.alan.algorithm.lab.datastructure.InterfaceTest.test2;
+package org.alan.algorithm.lab.InterfaceTest.test2;
 
 public class DImplementedC implements ChildC {
 

@@ -1,5 +1,7 @@
 package org.alan.algorithm.lab.datastructure;
 
+import java.util.Collection;
+
 public class BalancedTree {
     private final int width;
     private final RootNode root;
@@ -10,6 +12,10 @@ public class BalancedTree {
     }
 
     public Object find(String key) {
+        return null;
+    }
+
+    public Collection<Object> findRange(String keyFromInclusive, String keyToExclusive) {
         return null;
     }
 

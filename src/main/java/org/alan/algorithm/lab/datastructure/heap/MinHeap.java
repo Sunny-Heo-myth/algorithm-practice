@@ -1,15 +1,14 @@
 package org.alan.algorithm.lab.datastructure.heap;
 
 public class MinHeap {
-    private int[] arr;
-    private int size;
-    private int capacity;
+    private final int[] arr;
+    private final int capacity;
+    private int size = 0;
 
     public MinHeap(int capacity) {
         this.arr = new int[capacity + 1];
-        arr[0] = Integer.MIN_VALUE;
-        this.size = 0;
         this.capacity = capacity;
+        arr[0] = Integer.MIN_VALUE;
     }
 
     private int parent(int i) {

@@ -1,14 +1,13 @@
 package org.alan.algorithm.lab.datastructure.heap;
 
 public class MaxHeap {
-    private int[] arr;
-    private int size;
-    private int maxSize;
+    private final int[] arr;
+    private final int capacity;
+    private int size = 0;
 
     public MaxHeap(int maxSize) {
-        this.maxSize = maxSize;
-        this.size = 0;
         this.arr = new int[maxSize + 1];
+        this.capacity = maxSize;
         this.arr[0] = Integer.MAX_VALUE;
     }
 
@@ -61,7 +60,7 @@ public class MaxHeap {
     }
 
     public void insert(int v) {
-        if (size >= maxSize) throw new RuntimeException("MaxHeap is full.");
+        if (size >= capacity) throw new RuntimeException("MaxHeap is full.");
 
         arr[++size] = v;
 

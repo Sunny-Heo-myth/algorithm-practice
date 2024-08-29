@@ -1,4 +1,4 @@
-package org.alan.algorithm.lab.datastructure.recursion;
+package org.alan.algorithm.lab.recursion;
 
 
 import org.junit.jupiter.api.Test;
