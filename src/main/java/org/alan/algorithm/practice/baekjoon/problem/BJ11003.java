@@ -1,33 +1,29 @@
 package org.alan.algorithm.practice.baekjoon.problem;
 
+import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class BJ11003 {
-    public String solve(String input) {
-        String[] lines = input.split("\n");
-        int L = Integer.parseInt(lines[0].split(" ")[1]);
-        Queue<Integer> queue = Pattern.compile(" ").splitAsStream(lines[1])
-                .map(Integer::parseInt).collect(Collectors.toCollection(LinkedList::new));
-        Queue<Integer> pipe = new LinkedList<>();
-        List<Integer> answer = new ArrayList<>();
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    public static void main(String[] args) throws IOException {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int N = Integer.parseInt(st.nextToken()), L = Integer.parseInt(st.nextToken());
 
-        while (!queue.isEmpty()) {
-            int polled = queue.poll();
-            pipe.offer(polled);
-            pq.offer(polled);
-
-            if (!pipe.isEmpty() && pipe.size() > L) {
-                int poll = pipe.poll();
-                pq.remove(poll);
+            st = new StringTokenizer(br.readLine());
+            Deque<int[]> deque = new ArrayDeque<>();
+            for (int i = 0; i < N; i++) {
+                int n = Integer.parseInt(st.nextToken());
+                while (!deque.isEmpty() && deque.peekLast()[0] > n) deque.pollLast();
+                deque.offer(new int[]{n, i});
+                if (deque.peek()[1] < i - (L - 1)) deque.poll();
+                bw.write(deque.peek()[0] + " ");
             }
-
-            answer.add(pq.peek());
+            bw.flush();
         }
-        return answer.stream().map(String::valueOf).collect(Collectors.joining(" "));
     }
 
     public String solve2(String input) {
