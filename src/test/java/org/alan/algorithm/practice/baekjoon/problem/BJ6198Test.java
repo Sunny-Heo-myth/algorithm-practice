@@ -5,6 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.Stack;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class BJ6198Test {
@@ -78,4 +81,5 @@ public class BJ6198Test {
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ6198().solve(input));
     }
+
 }
