@@ -10,35 +10,40 @@ import java.util.stream.Stream;
 public class BJ1043Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("4 3\n" +
-                        "0\n" +
-                        "2 1 2\n" +
-                        "1 3\n" +
-                        "3 2 3 4", "3"),
-                Arguments.of("4 1\n" +
-                        "1 1\n" +
-                        "4 1 2 3 4", "0"),
-                Arguments.of("4 1\n" +
-                        "0\n" +
-                        "4 1 2 3 4", "1"),
-                Arguments.of("4 5\n" +
-                        "1 1\n" +
-                        "1 1\n" +
-                        "1 2\n" +
-                        "1 3\n" +
-                        "1 4\n" +
-                        "2 4 1", "2"),
-                Arguments.of("10 9\n" +
-                        "4 1 2 3 4\n" +
-                        "2 1 5\n" +
-                        "2 2 6\n" +
-                        "1 7\n" +
-                        "1 8\n" +
-                        "2 7 8\n" +
-                        "1 9\n" +
-                        "1 10\n" +
-                        "2 3 10\n" +
-                        "1 4", "4")
+                Arguments.of("""
+                        4 3
+                        0
+                        2 1 2
+                        1 3
+                        3 2 3 4""", "3"),
+                Arguments.of("""
+                        4 1
+                        1 1
+                        4 1 2 3 4""", "0"),
+                Arguments.of("""
+                        4 1
+                        0
+                        4 1 2 3 4""", "1"),
+                Arguments.of("""
+                        4 5
+                        1 1
+                        1 1
+                        1 2
+                        1 3
+                        1 4
+                        2 4 1""", "2"),
+                Arguments.of("""
+                        10 9
+                        4 1 2 3 4
+                        2 1 5
+                        2 2 6
+                        1 7
+                        1 8
+                        2 7 8
+                        1 9
+                        1 10
+                        2 3 10
+                        1 4""", "4")
         );
     }
     
