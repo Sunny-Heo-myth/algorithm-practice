@@ -1,9 +1,8 @@
 package org.alan.algorithm.practice.baekjoon.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,7 +10,6 @@ import java.util.stream.IntStream;
  * This is a utility class of various types of common inputs & outputs for algorithm problem.
  * All IOUtil return value should be String.
  */
-// todo: resource open at where?
 public class IOUtil {
 
     public static void answer(Function<String, String> solution) throws IOException {
@@ -37,8 +35,9 @@ public class IOUtil {
     public static String readCountedLine(Function<String, Integer> lineCounter, BufferedReader bf) {
         String numberOfLine = readLine(bf);
         Integer nol = lineCounter.apply(numberOfLine);
-        return  nol <= 0 ? numberOfLine : numberOfLine + "\n" + IntStream.range(0, nol)
-                .mapToObj(i -> readLine(bf)).collect(Collectors.joining("\n"));
+        return nol <= 0 ? numberOfLine : numberOfLine + "\n" + IntStream.range(0, nol)
+                .mapToObj(i -> readLine(bf))
+                .collect(Collectors.joining("\n"));
     }
 
     private static String readLine(BufferedReader bf) {
@@ -56,7 +55,9 @@ public class IOUtil {
             int n = 0;
             while (n++ < 1000000) {
                 String line = readLine(bf);
-                if (endLineCondition.apply(line)) break;
+                if (endLineCondition.apply(line)) {
+                    break;
+                }
                 sb.append(line).append("\n");
             }
             System.out.print(solution.apply(sb.substring(0, sb.length() - 1)));
@@ -72,7 +73,10 @@ public class IOUtil {
      * @throws IOException
      */
     public static void answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
-        System.out.print(readFiniteLine(lineCounter).lines().skip(1).map(solution).collect(Collectors.joining("\n")));
+        System.out.print(readFiniteLine(lineCounter).lines()
+                .skip(1)
+                .map(solution)
+                .collect(Collectors.joining("\n")));
     }
 
     public static void answerQuestions(Function<String, Integer> numberOfQuestionProvider,
@@ -87,28 +91,48 @@ public class IOUtil {
 
     /**
      * This method can not properly operate when the first line has the endOfLine condition.
-     *
-     * @param endLineCondition
-     * @param solution
-     * @return
-     * @throws IOException
      */
-    public static void answerQuestionsWithCondition(Function<String, Boolean> endLineCondition,
-                                                    Function<String, String> solution) throws IOException {
-        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+    public static void answerQuestionsPerLineWithEndCondition(Predicate<String> terminationCondition,
+                                                              Function<String, String> solution) throws IOException {
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringBuilder sb = new StringBuilder();
             int n = 0;
             while (n++ < 1000000) {
                 String line = readLine(bf);
-                if (endLineCondition.apply(line)) break;
+                if (terminationCondition.test(line)) {
+                    break;
+                }
                 sb.append(line).append("\n");
             }
             String input = sb.substring(0, sb.length());
-            System.out.print(input.lines().map(solution).collect(Collectors.joining("\n")));
+            bw.write(input.lines().map(solution).collect(Collectors.joining("\n")));
+            bw.flush();
         }
     }
 
-    // todo: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
+    public static void answerQuestionsWithEndCondition(Function<String, Integer> numberOfQuestionProvider,
+                                                       Function<String, String> solution,
+                                                       Predicate<String> terminationCondition) throws IOException {
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
+            int numberOfQuestions = numberOfQuestionProvider.apply(bf.readLine());
+            int i = 0;
+            while (i++ < numberOfQuestions) {
+                StringBuilder input = new StringBuilder();
+                int numberOfLines = 0;
+                while (numberOfLines++ < 1000000) {
+                    String line = readLine(bf);
+                    if (terminationCondition.test(line)) break;
+                    input.append(line).append("\n");
+                }
+                bw.write(solution.apply(input.append(i).toString()) + "\n");
+            }
+            bw.flush();
+        }
+    }
+
+    // fixme: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
     public static void answerQuestionsWithNoCondition(Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             StringBuilder answer = new StringBuilder();
