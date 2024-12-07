@@ -55,9 +55,7 @@ public class IOUtil {
             int n = 0;
             while (n++ < 1000000) {
                 String line = readLine(bf);
-                if (endLineCondition.apply(line)) {
-                    break;
-                }
+                if (endLineCondition.apply(line)) break;
                 sb.append(line).append("\n");
             }
             System.out.print(solution.apply(sb.substring(0, sb.length() - 1)));
@@ -81,32 +79,12 @@ public class IOUtil {
 
     public static void answerQuestions(Function<String, Integer> numberOfQuestionProvider,
                                        Function<String, Integer> numberOfInputLineCounter,
-                                       Function<String, String> solution) throws IOException {
-        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print(IntStream.range(0, numberOfQuestionProvider.apply(readLine(bf)))
-                    .mapToObj(i -> solution.apply(readCountedLine(numberOfInputLineCounter, bf)))
-                    .collect(Collectors.joining("\n")));
-        }
-    }
-
-    /**
-     * This method can not properly operate when the first line has the endOfLine condition.
-     */
-    public static void answerQuestionsPerLineWithEndCondition(Predicate<String> terminationCondition,
-                                                              Function<String, String> solution) throws IOException {
+                                       Function<String, String> solution) throws IOException {  // todo: instantiation for each sub-problem
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
-            StringBuilder sb = new StringBuilder();
-            int n = 0;
-            while (n++ < 1000000) {
-                String line = readLine(bf);
-                if (terminationCondition.test(line)) {
-                    break;
-                }
-                sb.append(line).append("\n");
-            }
-            String input = sb.substring(0, sb.length());
-            bw.write(input.lines().map(solution).collect(Collectors.joining("\n")));
+            bw.write(IntStream.range(0, numberOfQuestionProvider.apply(readLine(bf)))
+                    .mapToObj(i -> solution.apply(readCountedLine(numberOfInputLineCounter, bf)))
+                    .collect(Collectors.joining("\n")));
             bw.flush();
         }
     }
@@ -132,13 +110,17 @@ public class IOUtil {
         }
     }
 
-    // fixme: BJ JVM & local Main work different in terms of carriage return & line feed or IDK shit
-    public static void answerQuestionsWithNoCondition(Function<String, String> solution) throws IOException {
-        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+    public static void answerSingleLinedQuestionsWithNoEndCondition(Function<String, String> solution) throws IOException {
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringBuilder answer = new StringBuilder();
+
             String line;
-            while ((line = readLine(bf)) != null || line.isEmpty()) answer.append(solution.apply(line)).append("\n");
-            System.out.print(answer.substring(0, answer.length() - 1));
+            while ((line = bf.readLine()) != null)
+                answer.append(solution.apply(line)).append("\n");
+
+            bw.write(answer.toString());
+            bw.flush();
         }
     }
 
