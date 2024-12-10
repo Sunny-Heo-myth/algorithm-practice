@@ -89,6 +89,31 @@ public class IOUtil {
         }
     }
 
+    public static void answerQuestionsWithEndCondition(Function<String, Integer> numberOfInputLineCounter,
+                                                       Predicate<String> terminationCondition,
+                                                       Function<String, String> solution) throws IOException {
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
+            StringBuilder totalAnswer = new StringBuilder();
+
+            int i = 1000000;
+            while (i-- > 0) {
+                String line = readLine(bf);
+                if (terminationCondition.test(line)) break;
+
+                StringBuilder input = new StringBuilder();
+                input.append(line).append("\n");
+
+                int numberOfLines = numberOfInputLineCounter.apply(line);
+                while (numberOfLines-- > 0) input.append(readLine(bf)).append("\n");
+                totalAnswer.append(solution.apply(input.toString())).append("\n");
+            }
+
+            bw.write(totalAnswer.toString());
+            bw.flush();
+        }
+    }
+
     public static void answerQuestionsWithEndCondition(Function<String, Integer> numberOfQuestionProvider,
                                                        Function<String, String> solution,
                                                        Predicate<String> terminationCondition) throws IOException {
