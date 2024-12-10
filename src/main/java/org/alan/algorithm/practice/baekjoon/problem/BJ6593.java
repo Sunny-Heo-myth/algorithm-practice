@@ -3,14 +3,12 @@ package org.alan.algorithm.practice.baekjoon.problem;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class BJ6593 {
     public String solve(String input) {
         char START = 'S', END = 'E', WALL = '#';
         int[] dx = {1, -1, 0, 0, 0, 0}, dy = {0, 0, 1, -1, 0, 0}, dz = {0, 0, 0, 0, 1, -1};
-        char [][][] cube = Pattern.compile("\n\n").splitAsStream(input.lines()
-                        .skip(1).collect(Collectors.joining("\n")))
+        char [][][] cube = Pattern.compile("\n\n").splitAsStream(input.substring(input.indexOf("\n") + 1))
                 .map(matrix -> Pattern.compile("\n").splitAsStream(matrix)
                         .map(String::toCharArray)
                         .toArray(char[][]::new))
