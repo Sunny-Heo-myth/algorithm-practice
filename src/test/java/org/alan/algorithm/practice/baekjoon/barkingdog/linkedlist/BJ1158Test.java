@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.silver.five;
+package org.alan.algorithm.practice.baekjoon.barkingdog.linkedlist;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

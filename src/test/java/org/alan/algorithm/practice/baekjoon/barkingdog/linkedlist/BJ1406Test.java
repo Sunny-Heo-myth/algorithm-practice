@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.barkingdog.linkedlist;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,7 +47,8 @@ public class BJ1406Test {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    public void test1(String input, String expected) {
+    public void test2(String input, String expected) {
         Assertions.assertEquals(expected, new BJ1406().solve(input));
     }
+
 }

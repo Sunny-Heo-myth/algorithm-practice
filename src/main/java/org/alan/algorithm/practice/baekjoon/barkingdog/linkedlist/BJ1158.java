@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.silver.five;
+package org.alan.algorithm.practice.baekjoon.barkingdog.linkedlist;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
