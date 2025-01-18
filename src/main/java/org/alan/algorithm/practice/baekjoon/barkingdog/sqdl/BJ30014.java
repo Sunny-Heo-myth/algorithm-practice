@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.barkingdog.deque;
+package org.alan.algorithm.practice.baekjoon.barkingdog.sqdl;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

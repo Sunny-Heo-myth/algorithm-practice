@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.barkingdog.sqdl;
 
 import java.util.Stack;
 import java.util.stream.Collectors;

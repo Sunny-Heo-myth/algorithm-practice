@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.barkingdog.linkedlist;
+package org.alan.algorithm.practice.baekjoon.barkingdog.sqdl;
 
 import java.util.*;
 import java.util.stream.Collectors;

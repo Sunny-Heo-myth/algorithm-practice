@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.barkingdog.stack;
+package org.alan.algorithm.practice.baekjoon.barkingdog.sqdl;
 
 import java.util.Stack;
 import java.util.regex.Pattern;
