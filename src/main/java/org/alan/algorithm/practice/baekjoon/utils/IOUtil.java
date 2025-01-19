@@ -16,11 +16,14 @@ public class IOUtil {
         System.out.print(solution.apply(readFiniteLine(s -> 0)));
     }
 
-    public static void answer(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static void answer(Function<String, Integer> lineCounter,
+                              Function<String, String> solution) throws IOException {
         System.out.print(solution.apply(readFiniteLine(lineCounter)));
     }
 
-    public static void answer(int countFrom, Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static void answer(int countFrom,
+                              Function<String, Integer> lineCounter,
+                              Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.print(solution.apply(readCountedLine(s -> countFrom - 1, bf) + "\n" + readCountedLine(lineCounter, bf)));
         }
@@ -32,7 +35,8 @@ public class IOUtil {
         }
     }
 
-    public static String readCountedLine(Function<String, Integer> lineCounter, BufferedReader bf) {
+    public static String readCountedLine(Function<String, Integer> lineCounter,
+                                         BufferedReader bf) {
         String numberOfLine = readLine(bf);
         Integer nol = lineCounter.apply(numberOfLine);
         return nol <= 0 ? numberOfLine : numberOfLine + "\n" + IntStream.range(0, nol)
@@ -48,14 +52,14 @@ public class IOUtil {
         }
     }
 
-    public static void answerQuestionWithCondition(Function<String, Boolean> endLineCondition,
+    public static void answerQuestionWithCondition(Function<String, Boolean> endOfInputPredicate,
                                                    Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
             StringBuilder sb = new StringBuilder();
             int n = 0;
             while (n++ < 1000000) {
                 String line = readLine(bf);
-                if (endLineCondition.apply(line)) break;
+                if (endOfInputPredicate.apply(line)) break;
                 sb.append(line).append("\n");
             }
             System.out.print(solution.apply(sb.substring(0, sb.length() - 1)));
@@ -70,27 +74,28 @@ public class IOUtil {
      * @return answer string split by end-of-line.
      * @throws IOException
      */
-    public static void answerQuestions(Function<String, Integer> lineCounter, Function<String, String> solution) throws IOException {
+    public static void answerQuestions(Function<String, Integer> lineCounter,
+                                       Function<String, String> solution) throws IOException {
         System.out.print(readFiniteLine(lineCounter).lines()
                 .skip(1)
                 .map(solution)
                 .collect(Collectors.joining("\n")));
     }
 
-    public static void answerQuestions(Function<String, Integer> numberOfQuestionProvider,
-                                       Function<String, Integer> numberOfInputLineCounter,
+    public static void answerQuestions(Function<String, Integer> questionCounter,
+                                       Function<String, Integer> questionInputLineCounter,
                                        Function<String, String> solution) throws IOException {  // todo: instantiation for each sub-problem
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
-            bw.write(IntStream.range(0, numberOfQuestionProvider.apply(readLine(bf)))
-                    .mapToObj(i -> solution.apply(readCountedLine(numberOfInputLineCounter, bf)))
+            bw.write(IntStream.range(0, questionCounter.apply(readLine(bf)))
+                    .mapToObj(i -> solution.apply(readCountedLine(questionInputLineCounter, bf)))
                     .collect(Collectors.joining("\n")));
             bw.flush();
         }
     }
 
-    public static void answerQuestionsWithEndCondition(Function<String, Integer> numberOfInputLineCounter,
-                                                       Predicate<String> terminationCondition,
+    public static void answerQuestionsWithEndCondition(Function<String, Integer> questionInputLineCounter,
+                                                       Predicate<String> endOfInputPredicate,
                                                        Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
@@ -99,14 +104,14 @@ public class IOUtil {
             int i = 1000000;
             while (i-- > 0) {
                 String line = readLine(bf);
-                if (terminationCondition.test(line)) break;
+                if (endOfInputPredicate.test(line)) break;
 
                 StringBuilder input = new StringBuilder();
                 input.append(line).append("\n");
 
-                int numberOfLines = numberOfInputLineCounter.apply(line);
+                int numberOfLines = questionInputLineCounter.apply(line);
                 while (numberOfLines-- > 0) input.append(readLine(bf)).append("\n");
-                totalAnswer.append(solution.apply(input.toString())).append("\n");
+                totalAnswer.append(solution.apply(input.substring(0, input.length() - 1))).append("\n");
             }
 
             bw.write(totalAnswer.toString());
@@ -114,19 +119,19 @@ public class IOUtil {
         }
     }
 
-    public static void answerQuestionsWithEndCondition(Function<String, Integer> numberOfQuestionProvider,
+    public static void answerQuestionsWithEndCondition(Function<String, Integer> questionCounter,
                                                        Function<String, String> solution,
-                                                       Predicate<String> terminationCondition) throws IOException {
+                                                       Predicate<String> endOfInputPredicate) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
-            int numberOfQuestions = numberOfQuestionProvider.apply(bf.readLine());
+            int numberOfQuestions = questionCounter.apply(bf.readLine());
             int i = 0;
             while (i++ < numberOfQuestions) {
                 StringBuilder input = new StringBuilder();
                 int numberOfLines = 0;
                 while (numberOfLines++ < 1000000) {
                     String line = readLine(bf);
-                    if (terminationCondition.test(line)) break;
+                    if (endOfInputPredicate.test(line)) break;
                     input.append(line).append("\n");
                 }
                 bw.write(solution.apply(input.append(i).toString()) + "\n");
@@ -135,7 +140,12 @@ public class IOUtil {
         }
     }
 
-    public static void answerSingleLinedQuestionsWithNoEndCondition(Function<String, String> solution) throws IOException {
+    /**
+     * Each question input is a single line.
+     * @param solution
+     * @throws IOException
+     */
+    public static void answerQuestionsWithNoEndCondition(Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringBuilder answer = new StringBuilder();
