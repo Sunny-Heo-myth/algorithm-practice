@@ -114,7 +114,7 @@ public class IOUtil {
                 totalAnswer.append(solution.apply(input.substring(0, input.length() - 1))).append("\n");
             }
 
-            bw.write(totalAnswer.toString());
+            bw.write(totalAnswer.substring(0, totalAnswer.length() - 1));
             bw.flush();
         }
     }
