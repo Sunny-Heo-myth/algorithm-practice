@@ -1,42 +1,34 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.dp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Arrays;
+import java.util.Stack;
+import java.util.regex.Pattern;
 
 public class BJ1912 {
-    static int[] ints;
-    static Integer[] dp;
-    static int max;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(bf.readLine());
-        ints = new int[n];
-        dp = new Integer[n];
+    public String solve(String input) {
+        int[] arr = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
+                .mapToInt(Integer::parseInt).toArray();
+        if (arr.length == 1) return String.valueOf(arr[0]);
 
-        StringTokenizer st;
-        st = new StringTokenizer(bf.readLine(), " ");
-        for (int i = 0; i < n; i++) {
-            ints[i] = Integer.parseInt(st.nextToken());
+        int[] memo = new int[arr.length];
+        int INVALID = Integer.MAX_VALUE;
+        Arrays.fill(memo, INVALID);
+        Stack<Integer> subProblems = new Stack<>();
+
+        memo[0] = arr[0];
+        subProblems.push(arr.length - 1);
+        while (!subProblems.isEmpty()) {
+            int peek = subProblems.peek();
+            if (memo[peek - 1] == INVALID) {
+                subProblems.push(peek - 1);
+                continue;
+            }
+
+            int pop = subProblems.pop();
+            memo[pop] = Math.max(memo[pop - 1] + arr[pop], arr[pop]);
         }
 
-        dp[0] = ints[0];
-        max = ints[0];
-        recursion(n - 1);
-        System.out.print(max);
-    }
-
-    static int recursion(int n) {
-        if (n == 0) {
-            dp[n] = ints[n];
-        }
-
-        if (dp[n] == null) {
-            dp[n] = Math.max(recursion(n - 1) + ints[n], ints[n]);
-            max = Math.max(dp[n], max);
-        }
-        return dp[n];
+        return String.valueOf(Arrays.stream(memo).max().orElse(INVALID));
     }
 }
