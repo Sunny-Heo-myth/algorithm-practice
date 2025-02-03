@@ -30,4 +30,11 @@ public class BJ1912Test {
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ1912().solve(input));
     }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ1912().solve2(input));
+    }
+
 }

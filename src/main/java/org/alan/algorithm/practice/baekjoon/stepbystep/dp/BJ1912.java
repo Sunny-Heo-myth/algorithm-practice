@@ -31,4 +31,21 @@ public class BJ1912 {
 
         return String.valueOf(Arrays.stream(memo).max().orElse(INVALID));
     }
+
+    public String solve2(String input) {
+        int[] arr = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
+                .mapToInt(Integer::parseInt).toArray();
+        if (arr.length == 1) return String.valueOf(arr[0]);
+
+        int[] memo = new int[arr.length];
+
+        memo[0] = arr[0];
+        int max = memo[0];
+        for (int i = 1; i < arr.length; i++) {
+            memo[i] = Math.max(memo[i - 1] + arr[i], arr[i]);
+            max = Math.max(max, memo[i]);
+        }
+        return String.valueOf(max);
+    }
+
 }
