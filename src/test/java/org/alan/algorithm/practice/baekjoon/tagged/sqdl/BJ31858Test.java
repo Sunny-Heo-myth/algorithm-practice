@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.barkingdog.sqdl;
+package org.alan.algorithm.practice.baekjoon.tagged.sqdl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,7 +42,7 @@ public class BJ31858Test {
                         1 3 5 4 2""", "4"),
                 Arguments.of("""
                         5
-                        1 4 5 2 3""", "4"),
+                        1 4 5 2 3""", "5"),
                 Arguments.of("""
                         5
                         5 3 1 2 4""", "7"),
@@ -58,6 +58,7 @@ public class BJ31858Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ31858().solve(input));
+        Assertions.assertEquals(expected, new BJ31858(input).solve());
     }
+
 }
