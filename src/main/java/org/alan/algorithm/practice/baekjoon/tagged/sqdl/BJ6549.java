@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.divideconquer;
+package org.alan.algorithm.practice.baekjoon.tagged.sqdl;
 
 import java.util.regex.Pattern;
 

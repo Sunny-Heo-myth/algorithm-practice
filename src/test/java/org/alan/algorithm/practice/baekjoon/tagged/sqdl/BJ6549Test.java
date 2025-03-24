@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.divideconquer;
+package org.alan.algorithm.practice.baekjoon.tagged.sqdl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

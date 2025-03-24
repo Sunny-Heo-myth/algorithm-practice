@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.clazz.four;
+package org.alan.algorithm.practice.baekjoon.tagged.sqdl;
 
 import java.util.Stack;
 
