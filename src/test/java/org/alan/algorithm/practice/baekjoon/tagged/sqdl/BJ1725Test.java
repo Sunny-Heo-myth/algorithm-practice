@@ -30,13 +30,29 @@ public class BJ1725Test {
                         5
                         1
                         3
-                        3""", "8")
+                        3""", "8"),
+                Arguments.of("""
+                        7
+                        2
+                        1
+                        5
+                        5
+                        6
+                        3
+                        2""", "15")
         );
     }
     
+//    @ParameterizedTest
+//    @MethodSource("test_cases")
+//    public void test1(String input, String expected) {
+//        Assertions.assertEquals(expected, new BJ1725(input).solve());
+//    }
+
     @ParameterizedTest
     @MethodSource("test_cases")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ1725(input).solve());
+        Assertions.assertEquals(expected, new BJ1725(input).solve2());
     }
+
 }
