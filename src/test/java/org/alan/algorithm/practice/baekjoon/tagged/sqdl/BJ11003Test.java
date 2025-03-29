@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.tagged.sqdl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ public class BJ11003Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test2(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ11003().solve2(input));
+        Assertions.assertEquals(expected, new BJ11003(input).solve());
     }
 
 }
