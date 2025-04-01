@@ -1,11 +1,8 @@
 package org.alan.algorithm.practice.baekjoon.stepbystep.array;
 
-import org.alan.algorithm.practice.baekjoon.utils.IOUtil;
-
-import java.io.IOException;
-
 public class BJ10811 {
     private final int[] baskets;
+    private final int[][] processList;
 
     public BJ10811(String input) {
         // initiate array
@@ -15,7 +12,7 @@ public class BJ10811 {
         for (int i = 0; i < baskets.length; i++) {
             baskets[i] = i + 1;
         }
-        int[][] processList = new int[Integer.parseInt(firstLine[1])][2];
+        processList = new int[Integer.parseInt(firstLine[1])][2];
         for (int i = 0; i < processList.length; i++) {
             String[] line = lines[i + 1].split(" ");
             int from = Integer.parseInt(line[0]) - 1;
@@ -23,10 +20,6 @@ public class BJ10811 {
             processList[i] = new int[]{from, to};
         }
 
-        // process the array
-        for (int[] ints : processList) {
-            process(ints);
-        }
     }
 
     private void process(int[] ints) {
@@ -37,17 +30,11 @@ public class BJ10811 {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i : baskets) {
-            sb.append(i).append(" ");
-        }
-        return sb.deleteCharAt(sb.length() - 1).toString();
-    }
+    public String solve() {
+        for (int[] ints : processList) process(ints);
 
-    public static void main(String[] args) throws IOException {
-        String input = IOUtil.readFiniteLine(firstLine -> Integer.parseInt(firstLine.split(" ")[1]));
-        System.out.print(new BJ10811(input));
+        StringBuilder sb = new StringBuilder();
+        for (int i : baskets) sb.append(i).append(" ");
+        return sb.deleteCharAt(sb.length() - 1).toString();
     }
 }

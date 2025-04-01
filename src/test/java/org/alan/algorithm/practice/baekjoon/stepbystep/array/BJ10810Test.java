@@ -2,20 +2,29 @@ package org.alan.algorithm.practice.baekjoon.stepbystep.array;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 public class BJ10810Test {
 
-    @Test
-    void test1() {
-        String input =
-                "5 4\n" +
-                "1 2 3\n" +
-                "3 4 4\n" +
-                "1 4 1\n" +
-                "2 2 2";
-        String expected = "1 2 1 1 0";
-
-        BJ10810 instance = new BJ10810(input);
-        Assertions.assertEquals(expected, instance.answer());
+    static Stream<Arguments> test_cases() {
+        return Stream.of(
+                Arguments.of("""
+                        5 4
+                        1 2 3
+                        3 4 4
+                        1 4 1
+                        2 2 2""", "1 2 1 1 0")
+        );
     }
+
+    @ParameterizedTest
+    @MethodSource("test_cases")
+    public void test1(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ10810(input).solve());
+    }
+
 }
