@@ -38,8 +38,10 @@ public class IOUtil {
     public static String readCountedLine(Function<String, Integer> lineCounter,
                                          BufferedReader bf) {
         String numberOfLine = readLine(bf);
-        Integer nol = lineCounter.apply(numberOfLine);
-        return nol <= 0 ? numberOfLine : numberOfLine + "\n" + IntStream.range(0, nol)
+        int nol = lineCounter.apply(numberOfLine);
+        if (nol <= 0) return numberOfLine;
+
+        return numberOfLine + "\n" + IntStream.range(0, nol)
                 .mapToObj(i -> readLine(bf))
                 .collect(Collectors.joining("\n"));
     }
@@ -108,6 +110,7 @@ public class IOUtil {
             while (i-- > 0) {
                 String line = readLine(bf);
                 if (endOfInputPredicate.test(line)) break;
+
                 if (questionEndOfInputPredicate.test(line)) {
                     String subAnswer = solution.apply(input.substring(0, input.length() - 1));
                     answer.append(subAnswer).append("\n");
@@ -149,7 +152,7 @@ public class IOUtil {
         }
     }
 
-    public static void answerQuestionsWithEndCondition(Function<String, Integer> questionCounter,
+    public static void answerQuestionsWithEndCondition2(Function<String, Integer> questionCounter,
                                                        Function<String, String> solution,
                                                        Predicate<String> endOfInputPredicate) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -184,8 +187,7 @@ public class IOUtil {
             StringBuilder answer = new StringBuilder();
 
             String line;
-            while ((line = bf.readLine()) != null)
-                answer.append(solution.apply(line)).append("\n");
+            while ((line = bf.readLine()) != null) answer.append(solution.apply(line)).append("\n");
 
             bw.write(answer.toString());
             bw.flush();
