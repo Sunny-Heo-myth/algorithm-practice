@@ -10,37 +10,41 @@ import java.util.stream.Stream;
 public class BJ1874Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("8\n" +
-                        "4\n" +
-                        "3\n" +
-                        "6\n" +
-                        "8\n" +
-                        "7\n" +
-                        "5\n" +
-                        "2\n" +
-                        "1",
-                        "+\n" +
-                        "+\n" +
-                        "+\n" +
-                        "+\n" +
-                        "-\n" +
-                        "-\n" +
-                        "+\n" +
-                        "+\n" +
-                        "-\n" +
-                        "+\n" +
-                        "+\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n"),
-                Arguments.of("5\n" +
-                        "1\n" +
-                        "2\n" +
-                        "5\n" +
-                        "3\n" +
-                        "4",
+                Arguments.of("""
+                                8
+                                4
+                                3
+                                6
+                                8
+                                7
+                                5
+                                2
+                                1""",
+                        """
+                                +
+                                +
+                                +
+                                +
+                                -
+                                -
+                                +
+                                +
+                                -
+                                +
+                                +
+                                -
+                                -
+                                -
+                                -
+                                -
+                                """),
+                Arguments.of("""
+                                5
+                                1
+                                2
+                                5
+                                3
+                                4""",
                         "NO")
         );
     }
