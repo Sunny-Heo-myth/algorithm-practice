@@ -31,6 +31,25 @@ public class BJ6198Test {
                         1""", "0"),
                 Arguments.of("""
                         6
+                        1
+                        2
+                        1
+                        2
+                        1
+                        2""", "2"),
+                Arguments.of("""
+                        6
+                        2
+                        1
+                        2
+                        1
+                        2
+                        1""", "3"),
+                Arguments.of("""
+                        1
+                        100""", "0"),
+                Arguments.of("""
+                        6
                         6
                         5
                         4
