@@ -8,15 +8,17 @@ import java.util.stream.Collectors;
 public class BJ17298 {
 
     public String solve(String input) {
-        int[] seq = Pattern.compile(" ").splitAsStream(input.split("\n")[1]).mapToInt(Integer::parseInt).toArray();
-        int[] answer = new int[seq.length]; Arrays.fill(answer, -1);
-        Stack<Integer> stack = new Stack<>();
+        int[] arr = Pattern.compile(" ").splitAsStream(input.split("\n")[1])
+                .mapToInt(Integer::parseInt).toArray();
 
-        for (int i = 0; i < seq.length; i++) {
-            while (!stack.isEmpty() && seq[stack.peek()] < seq[i]) answer[stack.pop()] = seq[i];
+        int[] rbn = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[i] >= arr[stack.peek()]) stack.pop();
+            rbn[i] = stack.isEmpty() ? -1 : arr[stack.peek()];
             stack.push(i);
         }
 
-        return Arrays.stream(answer).mapToObj(String::valueOf).collect(Collectors.joining(" "));
+        return Arrays.stream(rbn).mapToObj(String::valueOf).collect(Collectors.joining(" "));
     }
 }
