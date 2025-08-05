@@ -1,62 +1,30 @@
 package org.alan.algorithm.practice.baekjoon.clazz.two;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class BJ10845 {
-    private int[] array;
-    private int pointer = 0;
-    private int backPointer = 0;
 
     public String solve(String input) {
-        String[] s = input.split("\n");
-        array = new int[Integer.parseInt(s[0])];
-        StringBuilder sb = new StringBuilder();
+        List<String> ops = input.lines().skip(1).collect(Collectors.toList());
+        Deque<Integer> deque = new ArrayDeque<>();
+        List<Integer> answer = new ArrayList<>();
 
-        for (int i = 1; i < s.length; i++) {
-            String[] ss = s[i].split(" ");
-            if (ss.length == 2) {
-                push(Integer.parseInt(ss[1]));
+        for (String op : ops) {
+            if (op.startsWith("push ")) {
+                deque.offer(Integer.parseInt(op.substring(5)));
             } else {
-                sb.append(operate(s[i])).append("\n");
+                switch (op) {
+                    case "front": answer.add(deque.isEmpty() ? -1 : deque.getFirst()); break;
+                    case "back": answer.add(deque.isEmpty() ? -1 : deque.getLast()); break;
+                    case "size": answer.add(deque.size()); break;
+                    case "empty": answer.add(deque.isEmpty() ? 1 : 0); break;
+                    case "pop": answer.add(deque.isEmpty() ? -1 : deque.removeFirst()); break;
+                    default: throw new IllegalArgumentException();
+                }
             }
         }
-
-        return sb.deleteCharAt(sb.length() - 1).toString();
+        return answer.stream().map(String::valueOf).collect(Collectors.joining("\n"));
     }
 
-    public int operate(String input) {
-        switch (input) {
-            case "pop": return pop();
-            case "size": return size();
-            case "empty": return empty();
-            case "front": return front();
-            case "back": return back();
-            default: throw new IllegalArgumentException();
-        }
-    }
-
-    private void push(int i) {
-        array[backPointer++] = i;
-    }
-
-    private int back() {
-        if (pointer == backPointer) return -1;
-        return array[backPointer - 1];
-    }
-
-    private int front() {
-        if (pointer == backPointer) return -1;
-        return array[pointer];
-    }
-
-    private int size() {
-        return backPointer - pointer;
-    }
-
-    private int pop() {
-        if (pointer == backPointer) return -1;
-        return array[pointer++];
-    }
-
-    private int empty() {
-        return pointer == backPointer ? 1 : 0;
-    }
 }
