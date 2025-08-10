@@ -10,29 +10,35 @@ import java.util.stream.Stream;
 public class BJ5430Test {
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of("RDD\n" +
-                        "4\n" +
-                        "[1,2,3,4]",
+                Arguments.of("""
+                                RDD
+                                4
+                                [1,2,3,4]""",
                         "[2,1]"),
-                Arguments.of("DD\n" +
-                        "1\n" +
-                        "[42]",
+                Arguments.of("""
+                                DD
+                                1
+                                [42]""",
                         "error"),
-                Arguments.of("RRD\n" +
-                        "6\n" +
-                        "[1,1,2,3,5,8]",
+                Arguments.of("""
+                                RRD
+                                6
+                                [1,1,2,3,5,8]""",
                         "[1,2,3,5,8]"),
-                Arguments.of("D\n" +
-                        "0\n" +
-                        "[]",
+                Arguments.of("""
+                                D
+                                0
+                                []""",
                         "error"),
-                Arguments.of("DDRDD\n" +
-                        "5\n" +
-                        "[1,1,2,3,5]",
+                Arguments.of("""
+                                DDRDD
+                                5
+                                [1,1,2,3,5]""",
                         "[2]"),
-                Arguments.of("DDDDR\n" +
-                                "5\n" +
-                                "[1,1,2,3,5]",
+                Arguments.of("""
+                                DDDDR
+                                5
+                                [1,1,2,3,5]""",
                         "[5]")
         );
     }

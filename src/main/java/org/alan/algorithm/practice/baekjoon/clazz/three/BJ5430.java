@@ -1,38 +1,45 @@
 package org.alan.algorithm.practice.baekjoon.clazz.three;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class BJ5430 {
+
     public String solve(String input) {
-        String[] s = input.split("\n");
-        char[] operations = s[0].toCharArray();
+        String[] lines = input.split("\n");
+        String operations = lines[0];
+        String s = lines[2].substring(1, lines[2].length() - 1);
 
-        if (Objects.equals(s[1], "0")) {
-            for (char ch : operations) if (ch == 'D') return "error";    // O(size of operations)
-            return "[]";
+        Deque<Integer> deque = s.isEmpty() ? new ArrayDeque<>()
+                : Pattern.compile(",").splitAsStream(s)
+                .map(Integer::parseInt)
+                .collect(Collectors.toCollection(ArrayDeque::new));
+
+        boolean fromFirst = true;
+        for (char operation : operations.toCharArray()) {
+            if (operation == 'R') {
+                fromFirst = !fromFirst;
+                continue;
+            }
+
+            if (deque.isEmpty()) return "error";
+
+            if (fromFirst) {
+                deque.removeFirst();
+            } else {
+                deque.removeLast();
+            }
         }
 
-        List<Integer> ints = Pattern.compile(",").splitAsStream(s[2].substring(1, s[2].length() - 1))
-                .mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
-
-        int from = 0;
-        int to = ints.size();
-        boolean reversed = false;
-        for (char operation : operations) switch (operation) {  // O(size of operations)
-            case 'R': reversed = !reversed; break;
-            case 'D':
-                if (to - from == 0) return "error";
-                if (reversed) to--;
-                else from++;
-                break;
+        List<Integer> answer = new ArrayList<>();
+        while (!deque.isEmpty()) {
+            if (fromFirst) {
+                answer.add(deque.removeFirst());
+            } else {
+                answer.add(deque.removeLast());
+            }
         }
-
-        List<Integer> cut = ints.subList(from, to);
-        if (reversed) Collections.reverse(cut);  // O(size of cut)
-        return "[" + cut.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]";  // O(size of cut)
+        return "[" + answer.stream().map(String::valueOf).collect(Collectors.joining(",")) + "]";
     }
 }
