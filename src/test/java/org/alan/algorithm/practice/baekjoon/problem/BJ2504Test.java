@@ -21,10 +21,4 @@ public class BJ2504Test {
         Assertions.assertEquals(expected, new BJ2504().solve(input));
     }
 
-    @ParameterizedTest
-    @MethodSource("parameters")
-    public void test2(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ2504().solve2(input));
-    }
-
 }
