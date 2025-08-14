@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.tagged.dp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,6 +61,6 @@ public class BJ15486Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ15486().solve(input));
+        Assertions.assertEquals(expected, new BJ15486(input).solve());
     }
 }
