@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.dynamic;
+package org.alan.algorithm.practice.baekjoon.tagged.dp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,6 +25,6 @@ public class BJ2240Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ2240().solve(input));
+        Assertions.assertEquals(expected, new BJ2240(input).solve());
     }
 }
