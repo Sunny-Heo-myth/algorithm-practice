@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.gold.four;
+package org.alan.algorithm.practice.baekjoon.tagged.dp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,17 +16,17 @@ public class BJ14002Test {
                         4
                         10 20 30 50"""),
                 Arguments.of("""
-                        6
+                        8
                         10 20 30 20 10 30 20 50""", """
                         4
                         10 20 30 50"""),
                 Arguments.of("""
-                        6
+                        9
                         10 15 20 30 20 10 30 20 50""", """
                         5
                         10 15 20 30 50"""),
                 Arguments.of("""
-                        6
+                        11
                         10 15 25 18 20 30 20 10 30 20 50""", """
                         6
                         10 15 18 20 30 50""")
@@ -36,13 +36,7 @@ public class BJ14002Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ14002().solve(input));
+        Assertions.assertEquals(expected, new BJ14002(input).solve());
     }
-
-
-    @ParameterizedTest
-    @MethodSource("parameters")
-    public void test2(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ14002().solve2(input));
-    }
+    
 }
