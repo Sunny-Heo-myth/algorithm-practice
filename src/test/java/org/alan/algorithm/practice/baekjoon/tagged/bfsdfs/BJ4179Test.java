@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.tagged.bfsdfs;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -132,7 +132,7 @@ public class BJ4179Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ4179().solve(input));
+        Assertions.assertEquals(expected, new BJ4179(input).solve());
     }
 
 }
