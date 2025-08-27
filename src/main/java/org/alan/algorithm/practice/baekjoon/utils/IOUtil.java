@@ -73,14 +73,14 @@ public class IOUtil {
     /**
      * This function assumes the first line is the number of sub-problems given thus read input from the second line of input string.
      *
-     * @param lineCounter {@link IOUtil#readFiniteLine(Function)}
+     * @param numberOfQuestions {@link IOUtil#readFiniteLine(Function)}
      * @param solution    solution function which provides actual solution of the given problem.
      * @return answer string split by end-of-line.
      * @throws IOException
      */
-    public static void answerQuestions(Function<String, Integer> lineCounter,
+    public static void answerQuestions(Function<String, Integer> numberOfQuestions,
                                        Function<String, String> solution) throws IOException {
-        System.out.print(readFiniteLine(lineCounter).lines()
+        System.out.print(readFiniteLine(numberOfQuestions).lines()
                 .skip(1)
                 .map(solution)
                 .collect(Collectors.joining("\n")));
@@ -88,7 +88,7 @@ public class IOUtil {
 
     public static void answerQuestions(Function<String, Integer> questionCounter,
                                        Function<String, Integer> questionInputLineCounter,
-                                       Function<String, String> solution) throws IOException {  // todo: instantiation for each sub-problem
+                                       Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             bw.write(IntStream.range(0, questionCounter.apply(readLine(bf)))
@@ -125,15 +125,15 @@ public class IOUtil {
         }
     }
 
-    public static void answerQuestionsWithEndCondition(Function<String, Integer> questionInputLineCounter,
+    public static void answerQuestionsWithEndCondition2(Function<String, Integer> questionInputLineCounter,
                                                        Predicate<String> endOfInputPredicate,
                                                        Function<String, String> solution) throws IOException {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
             StringBuilder answer = new StringBuilder();
 
-            int i = 1_000_000;
-            while (i-- > 0) {
+            int questionCount = 1_000_000;
+            while (questionCount-- > 0) {
                 String line = readLine(bf);
                 if (endOfInputPredicate.test(line)) {
                     break;
