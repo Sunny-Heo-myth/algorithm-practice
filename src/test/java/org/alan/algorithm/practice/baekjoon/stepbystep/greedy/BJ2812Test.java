@@ -26,6 +26,6 @@ public class BJ2812Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ2812().solve(input));
+        Assertions.assertEquals(expected, new BJ2812(input).solve());
     }
 }

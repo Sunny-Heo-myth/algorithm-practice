@@ -4,21 +4,28 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class BJ2812 {
-    public String solve(String input) {
-        String[] lines = input.split("\n");
-        int k = Integer.parseInt(lines[0].split(" ")[1]);
+    private final int k;
+    private final String chars;
 
-        int count = k;
+    public BJ2812(String input) {
+        String[] lines = input.split("\n");
+        k = Integer.parseInt(lines[0].split(" ")[1]);
+        chars = lines[1];
+    }
+
+    public String solve() {
+        int erasable = k;
         Stack<Character> stack = new Stack<>();
-        for (char ch : lines[1].toCharArray()) {
-            while (!stack.isEmpty() && count > 0 && stack.peek() < ch) {
+        for (char ch : chars.toCharArray()) {
+            while (!stack.isEmpty() && ch > stack.peek() && erasable > 0) {
+                erasable--;
                 stack.pop();
-                count--;
             }
             stack.push(ch);
         }
 
-        while (stack.size() > lines[1].length() - k) stack.pop();
+        int length = chars.length() - k;
+        while (stack.size() > length) stack.pop();
         return stack.stream().map(String::valueOf).collect(Collectors.joining());
     }
 }
