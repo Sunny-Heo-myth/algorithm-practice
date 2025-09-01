@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.silver.three;
+package org.alan.algorithm.practice.baekjoon.tagged.dp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +34,6 @@ public class BJ11052Test {
     @ParameterizedTest
     @MethodSource("parameters")
     public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ11052().solve(input));
+        Assertions.assertEquals(expected, new BJ11052(input).solve());
     }
 }
