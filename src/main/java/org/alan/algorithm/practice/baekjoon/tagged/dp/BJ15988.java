@@ -1,33 +1,23 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.dynamic;
-
-import java.util.Stack;
-import java.util.stream.LongStream;
+package org.alan.algorithm.practice.baekjoon.tagged.dp;
 
 public class BJ15988 {
-    private final long[] memo = LongStream.concat(
-            LongStream.of(0, 1, 2, 4),
-            LongStream.generate(() -> 0).limit(999997)
-            ).toArray();
+    private final long[] memo;
 
-    public String solve(String input) {
-        int n = Integer.parseInt(input);
-        Stack<Integer> subs = new Stack<>();
+    public BJ15988(String input) {
+        memo = new long[Integer.parseInt(input) + 1];
+    }
 
-        subs.push(n);
-        while (!subs.isEmpty()) {
-            int x = subs.pop();
-            if (memo[x] != 0) continue;
+    public String solve() {
+        int n = memo.length - 1;
+        if (n <= 3) return String.valueOf(switch (n) {
+            case 1 -> 1;
+            case 2 -> 2;
+            case 3 -> 4;
+            default -> throw new IllegalArgumentException();
+        });
 
-            if (memo[x - 1] != 0 && memo[x - 2] != 0 && memo[x - 3] != 0) {
-                memo[x] = (memo[x - 1] + memo[x - 2] + memo[x - 3]) % 1_000_000_009;
-                continue;
-            }
-
-            subs.push(x);
-            if (memo[x - 1] == 0) subs.push(x - 1);
-            if (memo[x - 2] == 0) subs.push(x - 2);
-            if (memo[x - 3] == 0) subs.push(x - 3);
-        }
+        memo[1] = 1; memo[2] = 2; memo[3] = 4;
+        for (int i = 4; i < memo.length; i++) memo[i] = (memo[i - 1] + memo[i - 2] +memo[i - 3]) % 1_000_000_009;
         return String.valueOf(memo[n]);
     }
 }
