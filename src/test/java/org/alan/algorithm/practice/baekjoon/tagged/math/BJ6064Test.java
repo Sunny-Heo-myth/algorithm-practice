@@ -21,4 +21,10 @@ public class BJ6064Test {
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ6064(input).solve());
     }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ6064_2(input).solve());
+    }
 }
