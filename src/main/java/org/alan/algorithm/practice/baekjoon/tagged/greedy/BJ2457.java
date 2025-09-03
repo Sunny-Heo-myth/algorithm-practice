@@ -1,28 +1,36 @@
-package org.alan.algorithm.practice.baekjoon.stepbystep.string;
+package org.alan.algorithm.practice.baekjoon.tagged.greedy;
 
 import java.util.regex.Pattern;
 
 public class BJ2457 {
-    public String solve(String input) {
-        int[][] flowers = input.lines().skip(1).map(s -> {
-            int[] startEnd = Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt).toArray();
-            return new int[]{startEnd[0] * 100 + startEnd[1], startEnd[2] * 100 + startEnd[3]};
-        }).sorted((f1, f2) -> f1[0] != f2[0] ? f1[0] - f2[0] : f2[1] - f1[1]).toArray(int[][]::new);
+    private final int[][] flowers;
 
-        int now = 301, i = 0, end = 0, count = 0;
-        while (now <= 1130) {
-            boolean found = false;
-            while (i < flowers.length && flowers[i][0] <= now) {
-                if (flowers[i][1] > end) {
-                    end = flowers[i][1];
-                    found = true;
+    public BJ2457(String input) {
+        flowers = input.lines().skip(1)
+                .map(s -> {
+                    int[] arr = Pattern.compile(" ").splitAsStream(s).mapToInt(Integer::parseInt).toArray();
+                    return new int[]{arr[0] * 100 + arr[1], arr[2] * 100 + arr[3]};
+                })
+                .sorted((f1, f2) -> f1[0] != f2[0] ? f1[0] - f2[0] : f2[1] - f1[1])
+                .dropWhile(f -> f[1] < 301)
+                .toArray(int[][]::new);
+    }
+
+    public String solve() {
+        int i = 0, count = 0, reach = 301, currentReach = 0;
+        while (reach <= 1130) {
+            boolean reachFurther = false;
+            while (i < flowers.length && flowers[i][0] <= reach) {
+                if (flowers[i][1] > currentReach) {
+                    reachFurther = true;
+                    currentReach = flowers[i][1];
                 }
                 i++;
             }
 
-            if (!found) return "0";
-            now = end;
+            if (!reachFurther) return "0";
             count++;
+            reach = currentReach;
         }
         return String.valueOf(count);
     }
