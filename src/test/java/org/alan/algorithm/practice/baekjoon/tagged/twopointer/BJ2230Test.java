@@ -30,4 +30,11 @@ class BJ2230Test {
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ2230(input).solve());
     }
+
+    @ParameterizedTest
+    @MethodSource("test_cases")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ2230_2(input).solve());
+    }
+
 }
