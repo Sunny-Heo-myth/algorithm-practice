@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.gold.four;
+package org.alan.algorithm.practice.baekjoon.tagged.stack;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,5 +47,11 @@ public class BJ17298Test {
     @MethodSource("parameters")
     public void test1(String input, String expected) {
         Assertions.assertEquals(expected, new BJ17298().solve(input));
+    }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ17298_2(input).solve());
     }
 }

@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.gold.four;
+package org.alan.algorithm.practice.baekjoon.tagged.stack;
 
 import java.util.Arrays;
 import java.util.Stack;
