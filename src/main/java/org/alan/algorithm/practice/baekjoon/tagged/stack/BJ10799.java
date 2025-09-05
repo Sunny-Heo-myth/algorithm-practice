@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.problem;
+package org.alan.algorithm.practice.baekjoon.tagged.stack;
 
 import java.util.Stack;
 
