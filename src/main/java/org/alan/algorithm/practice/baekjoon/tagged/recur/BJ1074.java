@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.clazz.three;
+package org.alan.algorithm.practice.baekjoon.tagged.recur;
 
 public class BJ1074 {
     public String solve(String input) {

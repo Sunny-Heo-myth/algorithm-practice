@@ -1,4 +1,4 @@
-package org.alan.algorithm.practice.baekjoon.clazz.three;
+package org.alan.algorithm.practice.baekjoon.tagged.recur;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,4 +25,11 @@ public class BJ1074Test {
         BJ1074 instance = new BJ1074();
         Assertions.assertEquals(expected, instance.solve(input));
     }
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ1074_2(input).solve());
+    }
+
 }
