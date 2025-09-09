@@ -11,6 +11,45 @@ public class BJ15683Test {
     static Stream<Arguments> test_cases() {
         return Stream.of(
                 Arguments.of("""
+                        1 1
+                        0""", "1"),
+                Arguments.of("""
+                        1 1
+                        6""", "0"),
+                Arguments.of("""
+                        6 6
+                        1 0 0 0 0 0
+                        0 2 0 0 0 0
+                        0 0 3 0 0 0
+                        0 0 0 4 0 0
+                        0 0 0 0 5 0
+                        0 0 0 0 0 6""", "4"),
+                Arguments.of("""
+                        3 3
+                        0 0 0
+                        0 5 0
+                        0 0 0""", "4"),
+                Arguments.of("""
+                        4 5
+                        0 0 2 0 3
+                        0 6 0 0 0
+                        0 0 6 6 0
+                        0 0 0 0 0""", "8"),
+                Arguments.of("""
+                        6 6
+                        0 0 0 0 0 0
+                        0 0 4 0 0 0
+                        0 4 2 0 4 0
+                        0 0 0 0 0 0
+                        0 0 0 0 0 0
+                        0 0 4 0 0 0""", "9"),
+                Arguments.of("""
+                        4 2
+                        0 0
+                        6 0
+                        0 3
+                        0 6""", "2"),
+                Arguments.of("""
                         4 6
                         0 0 0 0 0 0
                         0 0 0 0 0 0
@@ -51,9 +90,16 @@ public class BJ15683Test {
         );
     }
 
+//    @ParameterizedTest
+//    @MethodSource("test_cases")
+//    public void test1(String input, String expected) {
+//        Assertions.assertEquals(expected, new BJ15683(input).solve());
+//    }
+
     @ParameterizedTest
     @MethodSource("test_cases")
-    public void test1(String input, String expected) {
-        Assertions.assertEquals(expected, new BJ15683(input).solve());
+    public void test2(String input, String expected) {
+        Assertions.assertEquals(expected, new BJ15683_2(input).solve());
     }
+
 }
